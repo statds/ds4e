@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Setting Up Your Data Science Toolkit – Data Science for Everyone</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.bib" rel="next">
+<link href="./02-computer.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-tools.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Setting Up Your Data Science Toolkit</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Science for Everyone</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What Is Data Science?</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-computer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Your Computer as a Tool for Discovery</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-tools.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Setting Up Your Data Science Toolkit</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#your-editing-home-visual-studio-code" id="toc-your-editing-home-visual-studio-code" class="nav-link active" data-scroll-target="#your-editing-home-visual-studio-code"><span class="header-section-number">3.1</span> Your Editing Home: Visual Studio Code</a>
+  <ul class="collapse">
+  <li><a href="#what-an-ide-is-and-why-vs-code" id="toc-what-an-ide-is-and-why-vs-code" class="nav-link" data-scroll-target="#what-an-ide-is-and-why-vs-code"><span class="header-section-number">3.1.1</span> What an IDE Is and Why VS Code</a></li>
+  <li><a href="#installation-and-setup" id="toc-installation-and-setup" class="nav-link" data-scroll-target="#installation-and-setup"><span class="header-section-number">3.1.2</span> Installation and Setup</a></li>
+  <li><a href="#navigating-vs-code" id="toc-navigating-vs-code" class="nav-link" data-scroll-target="#navigating-vs-code"><span class="header-section-number">3.1.3</span> Navigating VS Code</a></li>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">3.1.4</span> Best Practices</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3.1.5</span> Exercises</a></li>
+  </ul></li>
+  <li><a href="#version-control-with-git-your-projects-memory" id="toc-version-control-with-git-your-projects-memory" class="nav-link" data-scroll-target="#version-control-with-git-your-projects-memory"><span class="header-section-number">3.2</span> Version Control with Git: Your Project’s Memory</a>
+  <ul class="collapse">
+  <li><a href="#essential-git-commands" id="toc-essential-git-commands" class="nav-link" data-scroll-target="#essential-git-commands"><span class="header-section-number">3.2.1</span> Essential Git Commands</a></li>
+  <li><a href="#why-git" id="toc-why-git" class="nav-link" data-scroll-target="#why-git"><span class="header-section-number">3.2.2</span> Why Git?</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">3.2.3</span> Getting Started</a></li>
+  <li><a href="#basic-workflow-with-git-bash-or-vs-code" id="toc-basic-workflow-with-git-bash-or-vs-code" class="nav-link" data-scroll-target="#basic-workflow-with-git-bash-or-vs-code"><span class="header-section-number">3.2.4</span> Basic Workflow with Git Bash or VS Code</a></li>
+  <li><a href="#working-with-github" id="toc-working-with-github" class="nav-link" data-scroll-target="#working-with-github"><span class="header-section-number">3.2.5</span> Working with GitHub</a></li>
+  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1"><span class="header-section-number">3.2.6</span> Exercises</a></li>
+  </ul></li>
+  <li><a href="#quarto-reproducible-documents-for-real-data-science" id="toc-quarto-reproducible-documents-for-real-data-science" class="nav-link" data-scroll-target="#quarto-reproducible-documents-for-real-data-science"><span class="header-section-number">3.3</span> Quarto: Reproducible Documents for Real Data Science</a>
+  <ul class="collapse">
+  <li><a href="#why-quarto" id="toc-why-quarto" class="nav-link" data-scroll-target="#why-quarto"><span class="header-section-number">3.3.1</span> Why Quarto?</a></li>
+  <li><a href="#installation-and-setup-1" id="toc-installation-and-setup-1" class="nav-link" data-scroll-target="#installation-and-setup-1"><span class="header-section-number">3.3.2</span> Installation and Setup</a></li>
+  <li><a href="#anatomy-of-a-quarto-file" id="toc-anatomy-of-a-quarto-file" class="nav-link" data-scroll-target="#anatomy-of-a-quarto-file"><span class="header-section-number">3.3.3</span> Anatomy of a Quarto File</a></li>
+  <li><a href="#first-reproducible-notebook" id="toc-first-reproducible-notebook" class="nav-link" data-scroll-target="#first-reproducible-notebook"><span class="header-section-number">3.3.4</span> First Reproducible Notebook</a></li>
+  <li><a href="#exercises-2" id="toc-exercises-2" class="nav-link" data-scroll-target="#exercises-2"><span class="header-section-number">3.3.5</span> Exercises</a></li>
+  </ul></li>
+  <li><a href="#python-and-optionally-r-your-first-programming-language" id="toc-python-and-optionally-r-your-first-programming-language" class="nav-link" data-scroll-target="#python-and-optionally-r-your-first-programming-language"><span class="header-section-number">3.4</span> Python (and optionally R): Your First Programming Language</a>
+  <ul class="collapse">
+  <li><a href="#why-python-for-high-school-data-science" id="toc-why-python-for-high-school-data-science" class="nav-link" data-scroll-target="#why-python-for-high-school-data-science"><span class="header-section-number">3.4.1</span> Why Python for High School Data Science</a></li>
+  <li><a href="#installing-python" id="toc-installing-python" class="nav-link" data-scroll-target="#installing-python"><span class="header-section-number">3.4.2</span> Installing Python</a></li>
+  <li><a href="#learning-the-basics" id="toc-learning-the-basics" class="nav-link" data-scroll-target="#learning-the-basics"><span class="header-section-number">3.4.3</span> Learning the Basics</a></li>
+  <li><a href="#jupyter-vs-quarto-code-chunks-use-quarto-only" id="toc-jupyter-vs-quarto-code-chunks-use-quarto-only" class="nav-link" data-scroll-target="#jupyter-vs-quarto-code-chunks-use-quarto-only"><span class="header-section-number">3.4.4</span> Jupyter vs Quarto Code Chunks (Use Quarto Only)</a></li>
+  <li><a href="#exercises-3" id="toc-exercises-3" class="nav-link" data-scroll-target="#exercises-3"><span class="header-section-number">3.4.5</span> Exercises</a></li>
+  </ul></li>
+  <li><a href="#putting-it-all-together-your-first-data-science-project" id="toc-putting-it-all-together-your-first-data-science-project" class="nav-link" data-scroll-target="#putting-it-all-together-your-first-data-science-project"><span class="header-section-number">3.5</span> Putting It All Together: Your First Data Science Project</a>
+  <ul class="collapse">
+  <li><a href="#choosing-a-simple-meaningful-dataset" id="toc-choosing-a-simple-meaningful-dataset" class="nav-link" data-scroll-target="#choosing-a-simple-meaningful-dataset"><span class="header-section-number">3.5.1</span> Choosing a Simple, Meaningful Dataset</a></li>
+  <li><a href="#setting-up-the-project-folder" id="toc-setting-up-the-project-folder" class="nav-link" data-scroll-target="#setting-up-the-project-folder"><span class="header-section-number">3.5.2</span> Setting Up the Project Folder</a></li>
+  <li><a href="#writing-a-full-quarto-analysis" id="toc-writing-a-full-quarto-analysis" class="nav-link" data-scroll-target="#writing-a-full-quarto-analysis"><span class="header-section-number">3.5.3</span> Writing a Full Quarto Analysis</a></li>
+  <li><a href="#publishing-or-sharing-work" id="toc-publishing-or-sharing-work" class="nav-link" data-scroll-target="#publishing-or-sharing-work"><span class="header-section-number">3.5.4</span> Publishing or Sharing Work</a></li>
+  <li><a href="#exercises-4" id="toc-exercises-4" class="nav-link" data-scroll-target="#exercises-4"><span class="header-section-number">3.5.5</span> Exercises</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Setting Up Your Data Science Toolkit</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This chapter introduces tools that support reproducible and organized data science work. You will use VS Code, Git, GitHub, and Quarto throughout the book.</p>
+<section id="your-editing-home-visual-studio-code" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="your-editing-home-visual-studio-code"><span class="header-section-number">3.1</span> Your Editing Home: Visual Studio Code</h2>
+<section id="what-an-ide-is-and-why-vs-code" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="what-an-ide-is-and-why-vs-code"><span class="header-section-number">3.1.1</span> What an IDE Is and Why VS Code</h3>
+<p>A code editor is more than a place to type. An Integrated Development Environment (IDE) brings together tools that help you write, run, and organize code efficiently. Unlike simple editors such as Notepad or TextEdit, an IDE understands your project structure, highlights syntax, suggests fixes, and connects directly to version control.</p>
+<p>VS Code is widely used in data science because it is fast, lightweight, and highly customizable. It includes an integrated terminal, a built- in file explorer, and a rich extension system that adds support for Python, R, Git, Quarto, and Markdown. These features allow you to work productively without switching between different applications.</p>
+</section>
+<section id="installation-and-setup" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="installation-and-setup"><span class="header-section-number">3.1.2</span> Installation and Setup</h3>
+<p>To install VS Code, visit the official website at https://code.visualstudio.com and download the installer for your operating system. On Windows, choose the <strong>System Installer (64-bit)</strong> and follow the default installation steps. On macOS, you may download the installer from the same page or install VS Code through Homebrew using</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> visual-studio-code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After installation, open VS Code and add several key extensions that support data-science work. You can install them by clicking the Extensions icon in the sidebar or by opening the command palette (Ctrl/Cmd + Shift + P) and selecting “Extensions: Install Extensions.”</p>
+<ul>
+<li><strong>Python</strong> — Provides autocomplete, linting, debugging, and notebook support for Python scripts.</li>
+<li><strong>R</strong> — Adds tools for editing and running R code directly from VS Code.</li>
+<li><strong>GitLens</strong> — Enhances the Git interface with commit history, blame information, and comparisons.</li>
+<li><strong>Quarto</strong> — Enables authoring of reproducible documents, reports, and slides in Quarto.</li>
+<li><strong>Markdown Shortcuts</strong> — Offers convenient formatting commands for Markdown and Quarto editing.</li>
+</ul>
+<p>VS Code also includes a built-in terminal so you can run command-line tools without switching windows. Open it by choosing <em>View → Terminal</em> from the menu or by pressing Ctrl+<code>(Control + backtick). From there you can run commands such as</code>cd<code>,</code>ls<code>,</code>git status<code>, or</code>python` inside your project.</p>
+<p>On Windows, you may want VS Code to use <strong>Git Bash</strong> instead of PowerShell. After installing Git for Windows, open the command palette (Ctrl/Cmd + Shift + P), choose “Preferences: Open User Settings (JSON),” and add the following entry:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="er">"terminal.integrated.defaultProfile.windows":</span> <span class="er">"Git</span> <span class="er">Bash"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can now run <code>cd</code>, <code>ls</code>, <code>git status</code>, and other commands in a familiar Unix-like environment directly inside VS Code.</p>
+</section>
+<section id="navigating-vs-code" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="navigating-vs-code"><span class="header-section-number">3.1.3</span> Navigating VS Code</h3>
+<p>A core habit in VS Code is opening a folder instead of individual files. When you open a folder as a project, VS Code tracks your files, recognizes your structure, and keeps your work organized. This makes it easier to manage assignments, scripts, and datasets in one place. The sidebar provides access to the file explorer, global search, and version control. The command palette (Ctrl/Cmd + Shift + P) is one of the fastest ways to work, allowing you to run nearly any command without searching through menus. VS Code also supports multiple editor panes for side-by-side editing, and it offers an excellent environment for Markdown and Quarto documents.</p>
+</section>
+<section id="best-practices" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">3.1.4</span> Best Practices</h3>
+<ul>
+<li>Always work inside a project folder such as <code>ds4hs/</code>.</li>
+<li>Keep everything in plain text, including scripts, notes, and Quarto documents.</li>
+<li>Turn on autosave and consider enabling format-on-save for clean, consistent files.</li>
+<li>Avoid storing files on the desktop; keep all work organized under your project directory.</li>
+</ul>
+</section>
+<section id="exercises" class="level3" data-number="3.1.5">
+<h3 data-number="3.1.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.1.5</span> Exercises</h3>
+<ul>
+<li>Open the <code>ds4hs</code> folder in VS Code.</li>
+<li>Create a new Markdown file and write a short paragraph in it.</li>
+<li>Use the command palette to install an extension.</li>
+<li>Open the integrated terminal and run <code>ls</code> to view your project files.</li>
+</ul>
+</section>
+</section>
+<section id="version-control-with-git-your-projects-memory" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="version-control-with-git-your-projects-memory"><span class="header-section-number">3.2</span> Version Control with Git: Your Project’s Memory</h2>
+<section id="essential-git-commands" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="essential-git-commands"><span class="header-section-number">3.2.1</span> Essential Git Commands</h3>
+<ul>
+<li><code>git init</code> initializes a repository.</li>
+<li><code>git status</code> shows changes.</li>
+<li><code>git add</code> stages files.</li>
+<li><code>git commit -m "message"</code> records changes.</li>
+<li><code>git diff</code> displays differences.</li>
+<li><code>git push</code> sends changes to GitHub.</li>
+<li><code>git pull</code> retrieves updates.</li>
+</ul>
+<p>Version control is a foundational skill for data science because it treats your work as a living project with a complete history. Git lets you track every change you make, revert mistakes, create experimental branches, and collaborate without overwriting anyone’s work. Unlike saving multiple file versions by hand (e.g., <code>project_final_v12_REAL</code>), Git provides a precise, automatic timeline of your edits. This makes your work reproducible, auditable, and shareable — all essential habits for scientific computing.</p>
+</section>
+<section id="why-git" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="why-git"><span class="header-section-number">3.2.2</span> Why Git?</h3>
+<p>Git offers a lightweight yet powerful system for managing all the changes in your project. It acts as “undo for your entire project,” not just for a single file, meaning you can always go back to a working state. For data science, reproducibility is everything: Git keeps a full record of how your analysis evolved, so others (and future you) can see exactly how results were produced. When working with classmates or research teams, Git prevents accidental overwriting and makes collaboration structured instead of chaotic.</p>
+</section>
+<section id="getting-started" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">3.2.3</span> Getting Started</h3>
+<p>Installing Git - <strong>macOS:</strong> <code>brew install git</code><br>
+- <strong>Windows:</strong> Download Git for Windows (Git Bash included) from<br>
+<a href="https://git-scm.com/downloads" class="uri">https://git-scm.com/downloads</a> - <strong>Linux:</strong> Install from your system’s package manager</p>
+<p>After installation, configure Git the first time you use it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"your@email.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Verify everything is correctly installed:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="basic-workflow-with-git-bash-or-vs-code" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="basic-workflow-with-git-bash-or-vs-code"><span class="header-section-number">3.2.4</span> Basic Workflow with Git Bash or VS Code</h3>
+<p>Git works best when your project is organized as a clean folder containing scripts, Quarto files, and documentation.</p>
+<p>Common Git commands:</p>
+<ul>
+<li><code>git init</code> — start a new repository in your current folder<br>
+</li>
+<li><code>git status</code> — see what has changed<br>
+</li>
+<li><code>git add</code> — stage changes<br>
+</li>
+<li><code>git commit</code> — save changes with a message</li>
+</ul>
+<p>Example workflow:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ds4hs</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"first commit: added folder structure"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A <code>.gitignore</code> file helps you avoid uploading unnecessary files such as large raw datasets, temporary folders, or system files. A typical example:</p>
+<pre><code>data/
+*.csv
+*.DS_Store</code></pre>
+</section>
+<section id="working-with-github" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="working-with-github"><span class="header-section-number">3.2.5</span> Working with GitHub</h3>
+<p>GitHub is the online home for your Git repositories. It allows you to publish your work, share it with others, and sync across computers.</p>
+<p>Typical GitHub workflow:</p>
+<ul>
+<li>Create a new repository on GitHub (empty, no README).</li>
+<li>Connect your local folder to that repository:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/yourname/ds4hs.git</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>To download someone else’s project:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/someone/project.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="exercises-1" class="level3" data-number="3.2.6">
+<h3 data-number="3.2.6" class="anchored" data-anchor-id="exercises-1"><span class="header-section-number">3.2.6</span> Exercises</h3>
+<ul>
+<li>Create a <code>ds4hs</code> folder (if not already created), initialize it as a Git repository, and make at least two commits showing meaningful progress.</li>
+<li>Write a <code>.gitignore</code> file that excludes data, temporary files, or OS files on your system. Verify with <code>git status</code> that the ignored files do not appear.</li>
+<li>Create a new GitHub repository and publish your <code>ds4hs</code> project using <code>git push</code>.</li>
+<li>Clone a public GitHub repository of your choice. Explore its structure: identify where code, documentation, and data are stored.</li>
+<li>Modify your <code>ds4hs</code> project by adding a README, commit the change, and push it to GitHub.</li>
+</ul>
+</section>
+</section>
+<section id="quarto-reproducible-documents-for-real-data-science" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="quarto-reproducible-documents-for-real-data-science"><span class="header-section-number">3.3</span> Quarto: Reproducible Documents for Real Data Science</h2>
+<section id="why-quarto" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="why-quarto"><span class="header-section-number">3.3.1</span> Why Quarto?</h3>
+<p>Quarto is the modern tool for writing documents that combine text, code, figures, and results in one place. Instead of keeping separate Word files, screenshots, exported plots, and loose scripts, Quarto keeps everything together and reruns your analysis whenever data or code change. This makes work transparent, reproducible, and easy to review. Data scientists use Quarto because it replaces Word and PowerPoint entirely for technical documents, reports, and notebooks, and naturally forces better project habits. When teaching or doing projects, Quarto helps your work look professional while keeping the focus on reasoning and evidence rather than formatting.</p>
+</section>
+<section id="installation-and-setup-1" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="installation-and-setup-1"><span class="header-section-number">3.3.2</span> Installation and Setup</h3>
+<p>To use Quarto, you need two things:</p>
+<ul>
+<li><p><strong>Quarto CLI</strong><br>
+Download and install from https://quarto.org/docs/get-started This gives you the command-line tool <code>quarto</code> for rendering documents. After installation, verify:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Quarto Extension in VS Code</strong><br>
+Open the Extensions panel, search for <strong>Quarto</strong>, and install it. This adds syntax highlighting, preview tools, and convenient buttons for rendering.</p></li>
+<li><p><strong>Rendering formats</strong><br>
+With the extension installed, you can render a <code>.qmd</code> file directly to HTML or PDF using the “Render” button in VS Code or by running</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render myfile.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>PDF output requires a LaTeX installation (TinyTeX or TeX Live); HTML works out of the box.</p></li>
+</ul>
+</section>
+<section id="anatomy-of-a-quarto-file" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="anatomy-of-a-quarto-file"><span class="header-section-number">3.3.3</span> Anatomy of a Quarto File</h3>
+<p>A basic Quarto document has three components:</p>
+<ul>
+<li><p><strong>YAML header</strong><br>
+Appears at the top between <code>---</code> lines and controls title, author, format, and other options.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Document"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Markdown body</strong><br>
+This is where you write text, using the same Markdown syntax you already know: headings, emphasis, lists, links, and so on.</p></li>
+<li><p><strong>Code chunks</strong><br>
+Code blocks that run during rendering and insert their results automatically. Quarto supports many languages.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"hello quarto"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>hello quarto</code></pre>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="first-reproducible-notebook" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="first-reproducible-notebook"><span class="header-section-number">3.3.4</span> First Reproducible Notebook</h3>
+<p>A simple workflow for your first Quarto notebook:</p>
+<ol type="1">
+<li>Create a new file: <code>my_first.qmd</code>.</li>
+<li>Add a YAML header, a few sentences of text, and a code chunk.</li>
+<li>Add a small plot.</li>
+<li>Render to HTML.</li>
+</ol>
+<p>Example structure:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My First Quarto Notebook"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Write some text:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>This is my first Quarto document. Below is a simple plot created in</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Python.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Insert a plot:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>])</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"A Simple Plot"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03-tools_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Render using the VS Code “Render” button or:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render my_first.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="exercises-2" class="level3" data-number="3.3.5">
+<h3 data-number="3.3.5" class="anchored" data-anchor-id="exercises-2"><span class="header-section-number">3.3.5</span> Exercises</h3>
+<ul>
+<li>Create a new <code>.qmd</code> file titled “My First Quarto Notebook.”</li>
+<li>Add a YAML header with a title of your choice.</li>
+<li>Write one paragraph explaining what your notebook will show.</li>
+<li>Add a Python or R code chunk that produces a figure.</li>
+<li>Render to HTML and check that text, code, and output all appear.</li>
+</ul>
+</section>
+</section>
+<section id="python-and-optionally-r-your-first-programming-language" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="python-and-optionally-r-your-first-programming-language"><span class="header-section-number">3.4</span> Python (and optionally R): Your First Programming Language</h2>
+<p>Python is the most widely used language in modern data science, and it is an excellent first language for high school students. Its clean syntax allows beginners to focus on ideas instead of punctuation, and its large ecosystem means almost anything you want to do already has a library that helps you do it. For our purposes, Python will serve as the main tool for writing code, analyzing data, producing graphics, and connecting all of these pieces inside a Quarto notebook.</p>
+<section id="why-python-for-high-school-data-science" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="why-python-for-high-school-data-science"><span class="header-section-number">3.4.1</span> Why Python for High School Data Science</h3>
+<p>Python has earned its central place in data science because it balances power and readability. It comes with “batteries included,” meaning the basic installation already provides many useful tools. Its syntax reads almost like English, making it easier to learn than most languages. Most importantly, the Python ecosystem is enormous — libraries like <code>pandas</code> for data analysis, <code>matplotlib</code> and <code>seaborn</code> for plots, and <code>scikit-learn</code> for machine learning allow students to progress quickly from small ideas to real discoveries. While R is also a strong choice, especially for statistics, this book will use Python as the default and treat R as an optional companion language.</p>
+</section>
+<section id="installing-python" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="installing-python"><span class="header-section-number">3.4.2</span> Installing Python</h3>
+<p>You have two reliable options for installation, and either one works well in practice.</p>
+<ul>
+<li><strong>Official Python installer (python.org)</strong> Best if you prefer a clean, minimal installation. Steps:
+<ul>
+<li>Visit https://www.python.org/downloads/<br>
+</li>
+<li>Download the version recommended for your system<br>
+</li>
+<li>Run the installer and make sure to check “Add Python to PATH” on Windows</li>
+</ul></li>
+<li><strong>Anaconda distribution</strong> Best if you want many scientific libraries already installed. Steps:
+<ul>
+<li>Visit https://www.anaconda.com/products/distribution<br>
+</li>
+<li>Download the installer for your system<br>
+</li>
+<li>Install with the default recommended settings</li>
+</ul></li>
+</ul>
+<p>After installation, verify that Python works by opening Git Bash or Terminal and typing:</p>
+<pre><code>python --version</code></pre>
+<p>You should see something like <code>Python 3.12.1</code>. If you see an error, revisit the installation steps.</p>
+</section>
+<section id="learning-the-basics" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="learning-the-basics"><span class="header-section-number">3.4.3</span> Learning the Basics</h3>
+<p>Python programming begins with building blocks. Students should spend time in a Quarto notebook writing small code chunks, running them, and modifying them to observe how the machine responds.</p>
+<p><strong>Core building blocks to practice</strong> * Variables and basic types <code>python   x = 5   name = "Ada"   pi = 3.14159</code></p>
+<ul>
+<li><p>Lists</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Dictionaries</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>student <span class="op">=</span> {<span class="st">"name"</span>: <span class="st">"Hana"</span>, <span class="st">"grade"</span>: <span class="dv">10</span>, <span class="st">"favorite_color"</span>: <span class="st">"blue"</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Reading data Using <code>pandas</code> after installing it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Simple visualization</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>], [<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">13</span>, <span class="dv">17</span>])</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+</section>
+<section id="jupyter-vs-quarto-code-chunks-use-quarto-only" class="level3" data-number="3.4.4">
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="jupyter-vs-quarto-code-chunks-use-quarto-only"><span class="header-section-number">3.4.4</span> Jupyter vs Quarto Code Chunks (Use Quarto Only)</h3>
+<p>Python is often taught using Jupyter notebooks, but this book will use <strong>Quarto notebooks exclusively</strong>. Quarto lets you combine code, text, figures, and explanations in one source file that produces polished HTML or PDF output. It is more powerful, more reproducible, and easier to use with version control.</p>
+<p>A sample Quarto Python chunk:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/example.csv"</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Students should write, run, and document their work entirely within Quarto. This reinforces good habits from the beginning and keeps every project reproducible.</p>
+</section>
+<section id="exercises-3" class="level3" data-number="3.4.5">
+<h3 data-number="3.4.5" class="anchored" data-anchor-id="exercises-3"><span class="header-section-number">3.4.5</span> Exercises</h3>
+<ul>
+<li>Create a new Quarto document and write a few Python lines that define variables, lists, and dictionaries.</li>
+<li>Install Python and verify your installation with <code>python --version</code>.</li>
+<li>Read a small CSV file into a pandas DataFrame and plot one column.</li>
+<li>Modify the sample plot code to change colors, labels, or data.</li>
+<li>Add a short paragraph in your Quarto file describing what you learned.</li>
+</ul>
+</section>
+</section>
+<section id="putting-it-all-together-your-first-data-science-project" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="putting-it-all-together-your-first-data-science-project"><span class="header-section-number">3.5</span> Putting It All Together: Your First Data Science Project</h2>
+<p>This chapter integrates everything from Part I—command line, VS Code, Git, GitHub, Quarto, and Python/R—into a single, coherent project workflow. The goal is to let students experience how real data science work is done: create a clean folder, version it with Git, write a reproducible Quarto file, and share the final analysis.</p>
+<section id="choosing-a-simple-meaningful-dataset" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="choosing-a-simple-meaningful-dataset"><span class="header-section-number">3.5.1</span> Choosing a Simple, Meaningful Dataset</h3>
+<p>The first step in any project is choosing a dataset that is small, clean, and intrinsically interesting. Students should select something they care about so they remain motivated while practicing the workflow. Good examples include:</p>
+<ul>
+<li>NYC 311 complaint counts for a single neighborhood</li>
+<li>School lunch nutrition data from USDA open data</li>
+<li>A small sports dataset (NBA scores, soccer goals, WNBA box scores)</li>
+<li>Trends in daily steps from a personal fitness tracker</li>
+<li>Any two-column CSV they record themselves (date + measurement)</li>
+</ul>
+<p>Best practice is to avoid large, messy datasets for this first project. Students should aim to complete end-to-end analysis, not get stuck in heavy cleaning.</p>
+</section>
+<section id="setting-up-the-project-folder" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="setting-up-the-project-folder"><span class="header-section-number">3.5.2</span> Setting Up the Project Folder</h3>
+<p>A clean folder structure helps keep the project reproducible and organized. Students use the command line to create folders and set up a Git repository.</p>
+<p>Recommended structure:</p>
+<ul>
+<li><code>data/</code> — raw datasets in CSV or JSON</li>
+<li><code>analysis/</code> — Quarto notebooks</li>
+<li><code>figures/</code> — automatically generated plots</li>
+<li><code>README.md</code> — short description of the project</li>
+</ul>
+<p>Key steps:</p>
+<ul>
+<li>Use the command line to create the folder and subfolders<br>
+<em>(mkdir ds4hs-project, cd ds4hs-project, mkdir data analysis figures)</em></li>
+<li>Initialize Git with<br>
+<code>git init</code></li>
+<li>Make the first commit with<br>
+<code>git add .</code> and <code>git commit -m "Initial project structure"</code></li>
+</ul>
+<p>Students should verify that Git is tracking the project by running <code>git status</code> and confirming the working tree is clean.</p>
+</section>
+<section id="writing-a-full-quarto-analysis" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="writing-a-full-quarto-analysis"><span class="header-section-number">3.5.3</span> Writing a Full Quarto Analysis</h3>
+<p>The core of the project is a reproducible Quarto notebook that explains the data, code, and conclusions in one document. The notebook should include:</p>
+<ul>
+<li>A clear statement of the question (e.g., “How do 311 noise complaints differ between weekdays and weekends?”)</li>
+<li>Code to import the dataset</li>
+<li>Two or three meaningful visualizations (bar plots, line plots, scatterplots, histograms)</li>
+<li>Short summary paragraphs explaining the patterns</li>
+</ul>
+<p>A minimal workflow:</p>
+<ol type="1">
+<li>Create <code>analysis/project.qmd</code> in VS Code.</li>
+<li>Add a YAML header with a title, author, and format.</li>
+<li>Insert code chunks to load the dataset and inspect its structure.</li>
+<li>Generate plots and save outputs to the <code>figures/</code> folder.</li>
+<li>Render the notebook to HTML using the VS Code Quarto extension.</li>
+</ol>
+<p>Students should keep text and code in one place—not separate PowerPoints, Word files, or screenshots. Quarto ensures everything is reproducible.</p>
+</section>
+<section id="publishing-or-sharing-work" class="level3" data-number="3.5.4">
+<h3 data-number="3.5.4" class="anchored" data-anchor-id="publishing-or-sharing-work"><span class="header-section-number">3.5.4</span> Publishing or Sharing Work</h3>
+<p>Once the analysis renders cleanly, students can make the project public (or share privately).</p>
+<p>Options include:</p>
+<ul>
+<li>Push the project to GitHub with<br>
+<code>git add .</code>, <code>git commit</code>, and <code>git push</code></li>
+<li>Share the rendered HTML via a GitHub repository</li>
+<li>Optionally, enable GitHub Pages so the report becomes a public website at <code>https://username.github.io/ds4hs-project</code></li>
+</ul>
+<p>This final step completes the full data science cycle: version control, reproducible notebook, and public sharing.</p>
+</section>
+<section id="exercises-4" class="level3" data-number="3.5.5">
+<h3 data-number="3.5.5" class="anchored" data-anchor-id="exercises-4"><span class="header-section-number">3.5.5</span> Exercises</h3>
+<ul>
+<li>Choose one dataset from the list above (or another small dataset that interests you). Add it to the <code>data/</code> folder.</li>
+<li>Build the full folder structure using only the command line.</li>
+<li>Initialize a Git repository and make at least two commits: one for the structure and one for adding your dataset.</li>
+<li>Create a Quarto notebook that loads the data and produces at least two visualizations.</li>
+<li>Push your finished project to GitHub and share the link with your class.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./02-computer.html" class="pagination-link" aria-label="Your Computer as a Tool for Discovery">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Your Computer as a Tool for Discovery</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.bib" class="pagination-link" aria-label="">
+        <span class="nav-page-text"></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
