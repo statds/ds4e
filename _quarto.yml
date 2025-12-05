@@ -7,16 +7,14 @@ book:
     - name: "[Jun Yan](https://statcomp.org)"
   date: today
 
-#  sidebar:
+#  sidebar:k
 #    logo: images/ids-f24.png
   
   chapters:
     - index.qmd
-#    - 01-intro.qmd
-#    - 02-computer.qmd
-#    - 03-tools.qmd
-
-bibliography:
+    - 01-intro.qmd
+    - 02-computer.qmd
+    - 03-tools.qmd
     - references.bib
 
 csl: apa.csl
