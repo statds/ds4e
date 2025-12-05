@@ -1,6 +1,22 @@
 # quarto outputs
 *.html
-*_files/
+/*_files/
+/.quarto/
+/_site/
+/_book/
+
+/data/
+/.quarto/
+/_book/
+/_freeze/
+/tmp/
+/output/
+
+/templates/
+
+.DS_Store
+
+**/*.quarto_ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -209,6 +225,3 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
-
-/.quarto/
-**/*.quarto_ipynb
