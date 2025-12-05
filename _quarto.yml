@@ -1,0 +1,34 @@
+project:
+  type: book
+
+book:
+  title: "Data Science for Everyone"
+  author:
+    - name: "[Jun Yan](https://statcomp.org)"
+  date: today
+
+#  sidebar:
+#    logo: images/ids-f24.png
+  
+  chapters:
+    - index.qmd
+#    - 01-intro.qmd
+#    - 02-computer.qmd
+#    - 03-tools.qmd
+
+bibliography:
+    - references.bib
+
+csl: apa.csl
+
+format:
+  html:
+    html-math-method: mathjax
+    theme: cosmo
+#  pdf:
+#    documentclass: scrbook
+#    include-in-header: preamble.tex
+#    prefer-html: true
+
+execute:
+  freeze: auto
