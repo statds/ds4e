@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -179,14 +144,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">2.1</span> Introduction</a></li>
   <li><a href="#whats-inside-your-computer" id="toc-whats-inside-your-computer" class="nav-link" data-scroll-target="#whats-inside-your-computer"><span class="header-section-number">2.2</span> What’s Inside Your Computer</a></li>
-  <li><a href="#operating-systems-and-why-professionals-love-linux" id="toc-operating-systems-and-why-professionals-love-linux" class="nav-link" data-scroll-target="#operating-systems-and-why-professionals-love-linux"><span class="header-section-number">2.3</span> Operating Systems and Why Professionals Love Linux</a>
+  <li><a href="#operating-systems" id="toc-operating-systems" class="nav-link" data-scroll-target="#operating-systems"><span class="header-section-number">2.3</span> Operating Systems</a>
   <ul class="collapse">
   <li><a href="#installing-software-from-the-command-line" id="toc-installing-software-from-the-command-line" class="nav-link" data-scroll-target="#installing-software-from-the-command-line"><span class="header-section-number">2.3.1</span> Installing Software from the Command Line</a></li>
   </ul></li>
   <li><a href="#how-computers-represent-numbers" id="toc-how-computers-represent-numbers" class="nav-link" data-scroll-target="#how-computers-represent-numbers"><span class="header-section-number">2.4</span> How Computers Represent Numbers</a></li>
   <li><a href="#the-command-line-speaking-your-computers-language" id="toc-the-command-line-speaking-your-computers-language" class="nav-link" data-scroll-target="#the-command-line-speaking-your-computers-language"><span class="header-section-number">2.5</span> The Command Line: Speaking Your Computer’s Language</a>
   <ul class="collapse">
-  <li><a href="#what-the-command-line-is-and-why-data-scientists-use-it" id="toc-what-the-command-line-is-and-why-data-scientists-use-it" class="nav-link" data-scroll-target="#what-the-command-line-is-and-why-data-scientists-use-it"><span class="header-section-number">2.5.1</span> What the Command Line Is and Why Data Scientists Use It</a></li>
+  <li><a href="#instructing-your-computer-through-command-line" id="toc-instructing-your-computer-through-command-line" class="nav-link" data-scroll-target="#instructing-your-computer-through-command-line"><span class="header-section-number">2.5.1</span> Instructing Your Computer through Command Line</a></li>
   <li><a href="#navigating-your-system" id="toc-navigating-your-system" class="nav-link" data-scroll-target="#navigating-your-system"><span class="header-section-number">2.5.2</span> Navigating Your System</a></li>
   <li><a href="#managing-files-and-folders" id="toc-managing-files-and-folders" class="nav-link" data-scroll-target="#managing-files-and-folders"><span class="header-section-number">2.5.3</span> Managing Files and Folders</a></li>
   <li><a href="#running-programs-from-the-terminal" id="toc-running-programs-from-the-terminal" class="nav-link" data-scroll-target="#running-programs-from-the-terminal"><span class="header-section-number">2.5.4</span> Running Programs from the Terminal</a></li>
@@ -258,8 +223,8 @@ The GPU started as a special chip for drawing graphics and games. Modern data sc
 </div>
 </div>
 </section>
-<section id="operating-systems-and-why-professionals-love-linux" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="operating-systems-and-why-professionals-love-linux"><span class="header-section-number">2.3</span> Operating Systems and Why Professionals Love Linux</h2>
+<section id="operating-systems" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="operating-systems"><span class="header-section-number">2.3</span> Operating Systems</h2>
 <p>An <strong>operating system (OS)</strong> is the layer of software that connects your programs to the hardware. It controls files, devices, memory, and how programs run. The three main families you will see in data science are Windows, macOS, and Linux.</p>
 <ul>
 <li><p><strong>Linux</strong><br>
@@ -280,12 +245,7 @@ Each Linux distribution comes with its own package manager. For example: <code>a
 <li><p><strong>macOS</strong><br>
 On macOS, the most popular package manager is <strong>Homebrew</strong>. After installing Homebrew once, you can run commands like <code>brew install git</code> or <code>brew install python</code> to get new tools.</p></li>
 <li><p><strong>Windows</strong><br>
-On Windows 10 and 11, you can use <strong><code>winget</code></strong> from the command line to install software. Once Git Bash is installed and set up, you can run commands such as</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">winget</span> install Python.Python.3.12</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">winget</span> install Git.Git</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">winget</span> install RProject.R</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">winget</span> install Quarto.Quarto</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>from a terminal and let Windows handle the downloads and installation steps.</p></li>
+On Windows 10 and 11, you can use <strong><code>winget</code></strong> from the command line to install software in Windows Shells (PowerShell or CMD). For example, yo can install Git Bash with <code>winget install Git.Git</code>. Git Bash is a Windows terminal that lets you use the same command-line tools and Git commands commonly used on Linux and macOS. However, <code>winget</code> is a Windows-only tool and should be run in PowerShell or Command Prompt, not in Git Bash.</p></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -343,9 +303,9 @@ These are used for decimals and measurements. Most real-valued data in science a
 <section id="the-command-line-speaking-your-computers-language" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="the-command-line-speaking-your-computers-language"><span class="header-section-number">2.5</span> The Command Line: Speaking Your Computer’s Language</h2>
 <p>Most people use computers through windows, buttons, and icons. The command line offers a different approach: you type short instructions that the computer understands directly. This way of working gives you transparency, repeatability, and control that clicking cannot provide. Data science relies on these qualities because your work must be clear, sharable, and reproducible. On Windows, you will use Git Bash; on macOS or Linux, you will use the Terminal app.</p>
-<section id="what-the-command-line-is-and-why-data-scientists-use-it" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="what-the-command-line-is-and-why-data-scientists-use-it"><span class="header-section-number">2.5.1</span> What the Command Line Is and Why Data Scientists Use It</h3>
-<p>The command line is an interface where you communicate with the computer by typing commands. Each command performs one well-defined action. Because every action appears plainly on the screen, the command line makes your steps visible and traceable. This transparency helps you understand what you are doing, and it allows others to follow your work. Clicking through menus, by contrast, leaves no reliable record. The command line also supports automation: a command that you type once can be saved in a script and reused whenever you need it. This repeatability is a cornerstone of reproducible data science.</p>
+<section id="instructing-your-computer-through-command-line" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="instructing-your-computer-through-command-line"><span class="header-section-number">2.5.1</span> Instructing Your Computer through Command Line</h3>
+<p>The command line is an interface where you communicate with the computer by typing commands. Each command performs one well-defined action. Because every action appears plainly on the screen, the command line makes your steps visible and traceable. This transparency helps you understand what you are doing, and it allows others to follow your work. In contrast, pointing and clicking through mouses leaves no reliable record. The command line also supports automation: a command that you type once can be saved in a script and reused whenever you need it. This repeatability is a cornerstone of reproducible data science.</p>
 <p>When you write commands in a script and save them in a file, the computer can repeat those steps exactly. If you make a mistake, you can correct the script and run it again. If a friend wants to understand your analysis, you can send them the script instead of trying to describe what you clicked. This practice of scripting is at the heart of reproducible data science.</p>
 <p>The command line also gives you access to tools that do not have a graphical interface at all. Many powerful utilities, including Git for version control and Quarto for reproducible documents, are designed to be run from the terminal. Learning the command line opens the door to these tools and lets you combine them in flexible ways.</p>
 <p>At first, the command line may feel slower than clicking. That feeling fades as you learn the basic commands. Eventually, you will be able to move through folders, manage files, and run complex workflows with just a few keystrokes. Small scripts you write today can become the building blocks for larger projects later.</p>
