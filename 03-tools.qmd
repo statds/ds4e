@@ -1,8 +1,44 @@
-# Setting Up Your Data Science Toolkit
+# Right Tools for Data Science Projects
 
-This chapter introduces tools that support reproducible and organized
-data science work. You will use VS Code, Git, GitHub, and Quarto
-throughout the book.
+## Introduction
+
+This chapter introduces the tools required to carry out reproducible data
+science projects in this course. A reproducible project is one in which the
+full analysis --- data inputs, code, narrative, and results --- can be rerun
+by someone else, or by the same analyst at a later time, with the same
+outcomes. Reproducibility is therefore a property of an entire project rather
+than of any single tool. The goal of this chapter is not to teach tools in
+isolation, but to explain how a small set of tools work together to support
+this project-level reproducibility.
+
+
+Without a structured workflow, data science work tends to become fragile.
+Files are renamed or overwritten, intermediate results are lost, and analysis
+steps are no longer clear even to the original author. These problems become
+more severe as projects grow in size or involve collaboration. In an academic
+setting, they also make it difficult to review, grade, or extend work. The
+tools introduced in this chapter are motivated by these common failure modes
+and are chosen to prevent them in a systematic way.
+
+
+The tools in this chapter form a coherent workflow rather than a loose
+collection of software. Git records the history of a project and makes changes
+explicit. GitHub provides a shared location for storing, submitting, and
+reviewing projects. Quarto allows code, text, and results to live in a single
+executable document. Python or R provides the computational engine for data
+analysis. VS Code serves as a coordinating environment that brings these tools
+together in daily work. Each tool plays a distinct role, and reproducibility
+emerges from their interaction.
+
+
+In this course, all homework and projects are treated as reproducible data
+science projects. Submissions consist of files organized in a clear directory
+structure, tracked with version control, and rendered into reproducible
+documents. Screenshots, manually edited outputs, and undocumented analysis
+steps are not acceptable substitutes. By the end of this chapter, you should
+be able to set up a complete project, make changes in a controlled way, and
+produce results that can be reliably reproduced and reviewed.
+
 
 ## Your Editing Home: Visual Studio Code
 
