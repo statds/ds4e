@@ -79,7 +79,7 @@ moving to a machine with more RAM makes a big difference. GPUs become
 important mainly for large deep learning or image-heavy projects.
 :::
 
-## Operating Systems and Why Professionals Love Linux
+## Operating Systems
 
 An **operating system (OS)** is the layer of software that connects your
 programs to the hardware. It controls files, devices, memory, and how
@@ -133,18 +133,12 @@ Here are the most common options:
 
 - **Windows**  
   On Windows 10 and 11, you can use **`winget`** from the command line to
-  install software. Once Git Bash is installed and set up, you can run
-  commands such as
-
-  ```bash
-  winget install Python.Python.3.12
-  winget install Git.Git
-  winget install RProject.R
-  winget install Quarto.Quarto
-  ```
-
-  from a terminal and let Windows handle the downloads and installation
-  steps.
+  install software in Windows Shells (PowerShell or CMD). For example, yo
+  can install Git Bash with `winget install Git.Git`. Git Bash is a Windows
+  terminal that lets you use the same command-line tools and Git commands
+  commonly used on Linux and macOS. However, `winget` is a Windows-only
+  tool and should be run in PowerShell or Command Prompt, not in Git Bash.
+  
 
 ::: {.callout-note collapse="true"}
 ### ⭐ Advanced: Other Options on Windows
@@ -210,14 +204,14 @@ on these qualities because your work must be clear, sharable, and
 reproducible. On Windows, you will use Git Bash; on macOS or Linux, you will
 use the Terminal app.
 
-### What the Command Line Is and Why Data Scientists Use It
+### Instructing Your Computer through Command Line
 
 The command line is an interface where you communicate with the computer by
 typing commands. Each command performs one well-defined action. Because every
 action appears plainly on the screen, the command line makes your steps
 visible and traceable. This transparency helps you understand what you are
-doing, and it allows others to follow your work. Clicking through menus, by
-contrast, leaves no reliable record. The command line also supports
+doing, and it allows others to follow your work. In contrast, pointing and
+clicking through mouses leaves no reliable record. The command line also supports
 automation: a command that you type once can be saved in a script and reused
 whenever you need it. This repeatability is a cornerstone of reproducible
 data science.
