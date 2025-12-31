@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Setting Up Your Data Science Toolkit – Data Science for Everyone</title>
+<title>3&nbsp; Right Tools for Data Science Projects – Data Science for Everyone</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-tools.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Setting Up Your Data Science Toolkit</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-tools.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Right Tools for Data Science Projects</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -164,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-tools.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Setting Up Your Data Science Toolkit</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Right Tools for Data Science Projects</span></span></a>
   </div>
 </li>
     </ul>
@@ -177,46 +177,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#your-editing-home-visual-studio-code" id="toc-your-editing-home-visual-studio-code" class="nav-link active" data-scroll-target="#your-editing-home-visual-studio-code"><span class="header-section-number">3.1</span> Your Editing Home: Visual Studio Code</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">3.1</span> Introduction</a></li>
+  <li><a href="#git-version-control-for-reproducible-projects" id="toc-git-version-control-for-reproducible-projects" class="nav-link" data-scroll-target="#git-version-control-for-reproducible-projects"><span class="header-section-number">3.2</span> Git: Version Control for Reproducible Projects</a>
   <ul class="collapse">
-  <li><a href="#what-an-ide-is-and-why-vs-code" id="toc-what-an-ide-is-and-why-vs-code" class="nav-link" data-scroll-target="#what-an-ide-is-and-why-vs-code"><span class="header-section-number">3.1.1</span> What an IDE Is and Why VS Code</a></li>
-  <li><a href="#installation-and-setup" id="toc-installation-and-setup" class="nav-link" data-scroll-target="#installation-and-setup"><span class="header-section-number">3.1.2</span> Installation and Setup</a></li>
-  <li><a href="#navigating-vs-code" id="toc-navigating-vs-code" class="nav-link" data-scroll-target="#navigating-vs-code"><span class="header-section-number">3.1.3</span> Navigating VS Code</a></li>
-  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">3.1.4</span> Best Practices</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3.1.5</span> Exercises</a></li>
+  <li><a href="#why-git" id="toc-why-git" class="nav-link" data-scroll-target="#why-git"><span class="header-section-number">3.2.1</span> Why Git?</a></li>
+  <li><a href="#installing-git" id="toc-installing-git" class="nav-link" data-scroll-target="#installing-git"><span class="header-section-number">3.2.2</span> Installing Git</a></li>
+  <li><a href="#essential-git-commands" id="toc-essential-git-commands" class="nav-link" data-scroll-target="#essential-git-commands"><span class="header-section-number">3.2.3</span> Essential Git Commands</a></li>
+  <li><a href="#basic-workflow" id="toc-basic-workflow" class="nav-link" data-scroll-target="#basic-workflow"><span class="header-section-number">3.2.4</span> Basic Workflow</a></li>
+  <li><a href="#good-practices-for-git" id="toc-good-practices-for-git" class="nav-link" data-scroll-target="#good-practices-for-git"><span class="header-section-number">3.2.5</span> Good Practices for Git</a></li>
   </ul></li>
-  <li><a href="#version-control-with-git-your-projects-memory" id="toc-version-control-with-git-your-projects-memory" class="nav-link" data-scroll-target="#version-control-with-git-your-projects-memory"><span class="header-section-number">3.2</span> Version Control with Git: Your Project’s Memory</a>
+  <li><a href="#github-hosting-and-collaboration-for-git-projects" id="toc-github-hosting-and-collaboration-for-git-projects" class="nav-link" data-scroll-target="#github-hosting-and-collaboration-for-git-projects"><span class="header-section-number">3.3</span> GitHub: Hosting and Collaboration for Git Projects</a>
   <ul class="collapse">
-  <li><a href="#essential-git-commands" id="toc-essential-git-commands" class="nav-link" data-scroll-target="#essential-git-commands"><span class="header-section-number">3.2.1</span> Essential Git Commands</a></li>
-  <li><a href="#why-git" id="toc-why-git" class="nav-link" data-scroll-target="#why-git"><span class="header-section-number">3.2.2</span> Why Git?</a></li>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">3.2.3</span> Getting Started</a></li>
-  <li><a href="#basic-workflow-with-git-bash-or-vs-code" id="toc-basic-workflow-with-git-bash-or-vs-code" class="nav-link" data-scroll-target="#basic-workflow-with-git-bash-or-vs-code"><span class="header-section-number">3.2.4</span> Basic Workflow with Git Bash or VS Code</a></li>
-  <li><a href="#working-with-github" id="toc-working-with-github" class="nav-link" data-scroll-target="#working-with-github"><span class="header-section-number">3.2.5</span> Working with GitHub</a></li>
-  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1"><span class="header-section-number">3.2.6</span> Exercises</a></li>
+  <li><a href="#what-github-is-and-why-it-matters" id="toc-what-github-is-and-why-it-matters" class="nav-link" data-scroll-target="#what-github-is-and-why-it-matters"><span class="header-section-number">3.3.1</span> What GitHub Is and Why It Matters</a></li>
+  <li><a href="#authentication-on-github-ssh" id="toc-authentication-on-github-ssh" class="nav-link" data-scroll-target="#authentication-on-github-ssh"><span class="header-section-number">3.3.2</span> Authentication on GitHub (SSH)</a></li>
+  <li><a href="#creating-and-publishing-a-new-repository" id="toc-creating-and-publishing-a-new-repository" class="nav-link" data-scroll-target="#creating-and-publishing-a-new-repository"><span class="header-section-number">3.3.3</span> Creating and Publishing a New Repository</a></li>
+  <li><a href="#cloning-an-existing-repository" id="toc-cloning-an-existing-repository" class="nav-link" data-scroll-target="#cloning-an-existing-repository"><span class="header-section-number">3.3.4</span> Cloning an Existing Repository</a></li>
   </ul></li>
-  <li><a href="#quarto-reproducible-documents-for-real-data-science" id="toc-quarto-reproducible-documents-for-real-data-science" class="nav-link" data-scroll-target="#quarto-reproducible-documents-for-real-data-science"><span class="header-section-number">3.3</span> Quarto: Reproducible Documents for Real Data Science</a>
+  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python"><span class="header-section-number">3.4</span> Python</a>
   <ul class="collapse">
-  <li><a href="#why-quarto" id="toc-why-quarto" class="nav-link" data-scroll-target="#why-quarto"><span class="header-section-number">3.3.1</span> Why Quarto?</a></li>
-  <li><a href="#installation-and-setup-1" id="toc-installation-and-setup-1" class="nav-link" data-scroll-target="#installation-and-setup-1"><span class="header-section-number">3.3.2</span> Installation and Setup</a></li>
-  <li><a href="#anatomy-of-a-quarto-file" id="toc-anatomy-of-a-quarto-file" class="nav-link" data-scroll-target="#anatomy-of-a-quarto-file"><span class="header-section-number">3.3.3</span> Anatomy of a Quarto File</a></li>
-  <li><a href="#first-reproducible-notebook" id="toc-first-reproducible-notebook" class="nav-link" data-scroll-target="#first-reproducible-notebook"><span class="header-section-number">3.3.4</span> First Reproducible Notebook</a></li>
-  <li><a href="#exercises-2" id="toc-exercises-2" class="nav-link" data-scroll-target="#exercises-2"><span class="header-section-number">3.3.5</span> Exercises</a></li>
+  <li><a href="#installing-python-python-3.12" id="toc-installing-python-python-3.12" class="nav-link" data-scroll-target="#installing-python-python-3.12"><span class="header-section-number">3.4.1</span> Installing Python (Python 3.12)</a></li>
+  <li><a href="#creating-a-virtual-environment" id="toc-creating-a-virtual-environment" class="nav-link" data-scroll-target="#creating-a-virtual-environment"><span class="header-section-number">3.4.2</span> Creating a virtual environment</a></li>
+  <li><a href="#a-short-python-warm-up" id="toc-a-short-python-warm-up" class="nav-link" data-scroll-target="#a-short-python-warm-up"><span class="header-section-number">3.4.3</span> A short Python warm-up</a></li>
   </ul></li>
-  <li><a href="#python-and-optionally-r-your-first-programming-language" id="toc-python-and-optionally-r-your-first-programming-language" class="nav-link" data-scroll-target="#python-and-optionally-r-your-first-programming-language"><span class="header-section-number">3.4</span> Python (and optionally R): Your First Programming Language</a>
+  <li><a href="#quarto-reproducible-documents-for-real-data-science" id="toc-quarto-reproducible-documents-for-real-data-science" class="nav-link" data-scroll-target="#quarto-reproducible-documents-for-real-data-science"><span class="header-section-number">3.5</span> Quarto: Reproducible Documents for Real Data Science</a>
   <ul class="collapse">
-  <li><a href="#why-python-for-high-school-data-science" id="toc-why-python-for-high-school-data-science" class="nav-link" data-scroll-target="#why-python-for-high-school-data-science"><span class="header-section-number">3.4.1</span> Why Python for High School Data Science</a></li>
-  <li><a href="#installing-python" id="toc-installing-python" class="nav-link" data-scroll-target="#installing-python"><span class="header-section-number">3.4.2</span> Installing Python</a></li>
-  <li><a href="#learning-the-basics" id="toc-learning-the-basics" class="nav-link" data-scroll-target="#learning-the-basics"><span class="header-section-number">3.4.3</span> Learning the Basics</a></li>
-  <li><a href="#jupyter-vs-quarto-code-chunks-use-quarto-only" id="toc-jupyter-vs-quarto-code-chunks-use-quarto-only" class="nav-link" data-scroll-target="#jupyter-vs-quarto-code-chunks-use-quarto-only"><span class="header-section-number">3.4.4</span> Jupyter vs Quarto Code Chunks (Use Quarto Only)</a></li>
-  <li><a href="#exercises-3" id="toc-exercises-3" class="nav-link" data-scroll-target="#exercises-3"><span class="header-section-number">3.4.5</span> Exercises</a></li>
+  <li><a href="#why-quarto" id="toc-why-quarto" class="nav-link" data-scroll-target="#why-quarto"><span class="header-section-number">3.5.1</span> Why Quarto?</a></li>
+  <li><a href="#installation-and-setup-cli-first" id="toc-installation-and-setup-cli-first" class="nav-link" data-scroll-target="#installation-and-setup-cli-first"><span class="header-section-number">3.5.2</span> Installation and setup (CLI-first)</a></li>
+  <li><a href="#quarto-and-python-environments" id="toc-quarto-and-python-environments" class="nav-link" data-scroll-target="#quarto-and-python-environments"><span class="header-section-number">3.5.3</span> Quarto and Python environments</a></li>
+  <li><a href="#anatomy-of-a-quarto-file" id="toc-anatomy-of-a-quarto-file" class="nav-link" data-scroll-target="#anatomy-of-a-quarto-file"><span class="header-section-number">3.5.4</span> Anatomy of a Quarto file</a></li>
+  <li><a href="#first-reproducible-notebook" id="toc-first-reproducible-notebook" class="nav-link" data-scroll-target="#first-reproducible-notebook"><span class="header-section-number">3.5.5</span> First reproducible notebook</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3.5.6</span> Exercises</a></li>
   </ul></li>
-  <li><a href="#putting-it-all-together-your-first-data-science-project" id="toc-putting-it-all-together-your-first-data-science-project" class="nav-link" data-scroll-target="#putting-it-all-together-your-first-data-science-project"><span class="header-section-number">3.5</span> Putting It All Together: Your First Data Science Project</a>
+  <li><a href="#your-editing-home-visual-studio-code" id="toc-your-editing-home-visual-studio-code" class="nav-link" data-scroll-target="#your-editing-home-visual-studio-code"><span class="header-section-number">3.6</span> Your Editing Home: Visual Studio Code</a>
   <ul class="collapse">
-  <li><a href="#choosing-a-simple-meaningful-dataset" id="toc-choosing-a-simple-meaningful-dataset" class="nav-link" data-scroll-target="#choosing-a-simple-meaningful-dataset"><span class="header-section-number">3.5.1</span> Choosing a Simple, Meaningful Dataset</a></li>
-  <li><a href="#setting-up-the-project-folder" id="toc-setting-up-the-project-folder" class="nav-link" data-scroll-target="#setting-up-the-project-folder"><span class="header-section-number">3.5.2</span> Setting Up the Project Folder</a></li>
-  <li><a href="#writing-a-full-quarto-analysis" id="toc-writing-a-full-quarto-analysis" class="nav-link" data-scroll-target="#writing-a-full-quarto-analysis"><span class="header-section-number">3.5.3</span> Writing a Full Quarto Analysis</a></li>
-  <li><a href="#publishing-or-sharing-work" id="toc-publishing-or-sharing-work" class="nav-link" data-scroll-target="#publishing-or-sharing-work"><span class="header-section-number">3.5.4</span> Publishing or Sharing Work</a></li>
-  <li><a href="#exercises-4" id="toc-exercises-4" class="nav-link" data-scroll-target="#exercises-4"><span class="header-section-number">3.5.5</span> Exercises</a></li>
+  <li><a href="#what-an-ide-is-and-why-vs-code" id="toc-what-an-ide-is-and-why-vs-code" class="nav-link" data-scroll-target="#what-an-ide-is-and-why-vs-code"><span class="header-section-number">3.6.1</span> What an IDE Is and Why VS Code</a></li>
+  <li><a href="#installation-and-setup" id="toc-installation-and-setup" class="nav-link" data-scroll-target="#installation-and-setup"><span class="header-section-number">3.6.2</span> Installation and Setup</a></li>
+  <li><a href="#integrated-terminal-and-shell-choice" id="toc-integrated-terminal-and-shell-choice" class="nav-link" data-scroll-target="#integrated-terminal-and-shell-choice"><span class="header-section-number">3.6.3</span> Integrated Terminal and Shell Choice</a></li>
+  <li><a href="#working-with-projects-in-vs-code" id="toc-working-with-projects-in-vs-code" class="nav-link" data-scroll-target="#working-with-projects-in-vs-code"><span class="header-section-number">3.6.4</span> Working with Projects in VS Code</a></li>
+  <li><a href="#good-practices" id="toc-good-practices" class="nav-link" data-scroll-target="#good-practices"><span class="header-section-number">3.6.5</span> Good Practices</a></li>
+  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1"><span class="header-section-number">3.6.6</span> Exercises</a></li>
+  </ul></li>
+  <li><a href="#putting-it-all-together-your-first-data-science-project" id="toc-putting-it-all-together-your-first-data-science-project" class="nav-link" data-scroll-target="#putting-it-all-together-your-first-data-science-project"><span class="header-section-number">3.7</span> Putting It All Together: Your First Data Science Project</a>
+  <ul class="collapse">
+  <li><a href="#choosing-a-simple-meaningful-dataset" id="toc-choosing-a-simple-meaningful-dataset" class="nav-link" data-scroll-target="#choosing-a-simple-meaningful-dataset"><span class="header-section-number">3.7.1</span> Choosing a Simple, Meaningful Dataset</a></li>
+  <li><a href="#setting-up-the-project-folder" id="toc-setting-up-the-project-folder" class="nav-link" data-scroll-target="#setting-up-the-project-folder"><span class="header-section-number">3.7.2</span> Setting Up the Project Folder</a></li>
+  <li><a href="#writing-a-full-quarto-analysis" id="toc-writing-a-full-quarto-analysis" class="nav-link" data-scroll-target="#writing-a-full-quarto-analysis"><span class="header-section-number">3.7.3</span> Writing a Full Quarto Analysis</a></li>
+  <li><a href="#publishing-or-sharing-work" id="toc-publishing-or-sharing-work" class="nav-link" data-scroll-target="#publishing-or-sharing-work"><span class="header-section-number">3.7.4</span> Publishing or Sharing Work</a></li>
+  <li><a href="#exercises-2" id="toc-exercises-2" class="nav-link" data-scroll-target="#exercises-2"><span class="header-section-number">3.7.5</span> Exercises</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -226,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Setting Up Your Data Science Toolkit</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Right Tools for Data Science Projects</span></h1>
 </div>
 
 
@@ -243,306 +250,402 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This chapter introduces tools that support reproducible and organized data science work. You will use VS Code, Git, GitHub, and Quarto throughout the book.</p>
-<section id="your-editing-home-visual-studio-code" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="your-editing-home-visual-studio-code"><span class="header-section-number">3.1</span> Your Editing Home: Visual Studio Code</h2>
-<section id="what-an-ide-is-and-why-vs-code" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="what-an-ide-is-and-why-vs-code"><span class="header-section-number">3.1.1</span> What an IDE Is and Why VS Code</h3>
-<p>A code editor is more than a place to type. An Integrated Development Environment (IDE) brings together tools that help you write, run, and organize code efficiently. Unlike simple editors such as Notepad or TextEdit, an IDE understands your project structure, highlights syntax, suggests fixes, and connects directly to version control.</p>
-<p>VS Code is widely used in data science because it is fast, lightweight, and highly customizable. It includes an integrated terminal, a built- in file explorer, and a rich extension system that adds support for Python, R, Git, Quarto, and Markdown. These features allow you to work productively without switching between different applications.</p>
+<section id="introduction" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">3.1</span> Introduction</h2>
+<p>This chapter introduces the tools required to carry out reproducible data science projects in this course. A reproducible project is one in which the full analysis — data inputs, code, narrative, and results — can be rerun by someone else, or by the same analyst at a later time, with the same outcomes. Reproducibility is therefore a property of an entire project rather than of any single tool. The goal of this chapter is not to teach tools in isolation, but to explain how a small set of tools work together to support this project-level reproducibility.</p>
+<p>Without a structured workflow, data science work tends to become fragile. Files are renamed or overwritten, intermediate results are lost, and analysis steps are no longer clear even to the original author. These problems become more severe as projects grow in size or involve collaboration. In an academic setting, they also make it difficult to review, grade, or extend work. The tools introduced in this chapter are motivated by these common failure modes and are chosen to prevent them in a systematic way.</p>
+<p>The tools in this chapter form a coherent workflow rather than a loose collection of software. Git records the history of a project and makes changes explicit. GitHub provides a shared location for storing, submitting, and reviewing projects. Quarto allows code, text, and results to live in a single executable document. Python or R provides the computational engine for data analysis. VS Code serves as a coordinating environment that brings these tools together in daily work. Each tool plays a distinct role, and reproducibility emerges from their interaction.</p>
+<p>In this course, all homework and projects are treated as reproducible data science projects. Submissions consist of files organized in a clear directory structure, tracked with version control, and rendered into reproducible documents. Screenshots, manually edited outputs, and undocumented analysis steps are not acceptable substitutes. By the end of this chapter, you should be able to set up a complete project, make changes in a controlled way, and produce results that can be reliably reproduced and reviewed.</p>
 </section>
-<section id="installation-and-setup" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="installation-and-setup"><span class="header-section-number">3.1.2</span> Installation and Setup</h3>
-<p>To install VS Code, visit the official website at https://code.visualstudio.com and download the installer for your operating system. On Windows, choose the <strong>System Installer (64-bit)</strong> and follow the default installation steps. On macOS, you may download the installer from the same page or install VS Code through Homebrew using</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> visual-studio-code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>After installation, open VS Code and add several key extensions that support data-science work. You can install them by clicking the Extensions icon in the sidebar or by opening the command palette (Ctrl/Cmd + Shift + P) and selecting “Extensions: Install Extensions.”</p>
+<section id="git-version-control-for-reproducible-projects" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="git-version-control-for-reproducible-projects"><span class="header-section-number">3.2</span> Git: Version Control for Reproducible Projects</h2>
+<section id="why-git" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="why-git"><span class="header-section-number">3.2.1</span> Why Git?</h3>
+<p>Version control is a foundational skill for data science because it treats your work as a living project with a complete history. Git lets you track every change you make, recover from mistakes, and collaborate without overwriting anyone’s work. Unlike saving multiple file versions by hand (e.g., <code>project_final_v12_REAL</code>), Git provides a precise, automatic timeline of your edits. This makes your work reproducible, auditable, and shareable, which are essential habits for scientific computing and data science projects.</p>
+<p>Git is used to manage data science projects as evolving artifacts rather than one-time snapshots. Analyses typically change as data are cleaned, models are revised, and interpretations improve. A Git repository should contain only the files needed to understand, reproduce, and extend a project—nothing more.</p>
+</section>
+<section id="installing-git" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="installing-git"><span class="header-section-number">3.2.2</span> Installing Git</h3>
+<p>Git must be installed before it can be used. Use the method appropriate for your system.</p>
 <ul>
-<li><strong>Python</strong> — Provides autocomplete, linting, debugging, and notebook support for Python scripts.</li>
-<li><strong>R</strong> — Adds tools for editing and running R code directly from VS Code.</li>
-<li><strong>GitLens</strong> — Enhances the Git interface with commit history, blame information, and comparisons.</li>
-<li><strong>Quarto</strong> — Enables authoring of reproducible documents, reports, and slides in Quarto.</li>
-<li><strong>Markdown Shortcuts</strong> — Offers convenient formatting commands for Markdown and Quarto editing.</li>
+<li><strong>Windows (PowerShell):</strong></li>
 </ul>
-<p>VS Code also includes a built-in terminal so you can run command-line tools without switching windows. Open it by choosing <em>View → Terminal</em> from the menu or by pressing Ctrl+<code>(Control + backtick). From there you can run commands such as</code>cd<code>,</code>ls<code>,</code>git status<code>, or</code>python` inside your project.</p>
-<p>On Windows, you may want VS Code to use <strong>Git Bash</strong> instead of PowerShell. After installing Git for Windows, open the command palette (Ctrl/Cmd + Shift + P), choose “Preferences: Open User Settings (JSON),” and add the following entry:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="er">"terminal.integrated.defaultProfile.windows":</span> <span class="er">"Git</span> <span class="er">Bash"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You can now run <code>cd</code>, <code>ls</code>, <code>git status</code>, and other commands in a familiar Unix-like environment directly inside VS Code.</p>
-</section>
-<section id="navigating-vs-code" class="level3" data-number="3.1.3">
-<h3 data-number="3.1.3" class="anchored" data-anchor-id="navigating-vs-code"><span class="header-section-number">3.1.3</span> Navigating VS Code</h3>
-<p>A core habit in VS Code is opening a folder instead of individual files. When you open a folder as a project, VS Code tracks your files, recognizes your structure, and keeps your work organized. This makes it easier to manage assignments, scripts, and datasets in one place. The sidebar provides access to the file explorer, global search, and version control. The command palette (Ctrl/Cmd + Shift + P) is one of the fastest ways to work, allowing you to run nearly any command without searching through menus. VS Code also supports multiple editor panes for side-by-side editing, and it offers an excellent environment for Markdown and Quarto documents.</p>
-</section>
-<section id="best-practices" class="level3" data-number="3.1.4">
-<h3 data-number="3.1.4" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">3.1.4</span> Best Practices</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id Git<span class="op">.</span><span class="fu">Git</span> <span class="op">-</span>e</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This installs Git together with <strong>Git Bash</strong>, a terminal environment used throughout this book. Do not run <code>winget</code> inside Git Bash.</p>
 <ul>
-<li>Always work inside a project folder such as <code>ds4hs/</code>.</li>
-<li>Keep everything in plain text, including scripts, notes, and Quarto documents.</li>
-<li>Turn on autosave and consider enabling format-on-save for clean, consistent files.</li>
-<li>Avoid storing files on the desktop; keep all work organized under your project directory.</li>
+<li><strong>macOS (Homebrew):</strong></li>
 </ul>
-</section>
-<section id="exercises" class="level3" data-number="3.1.5">
-<h3 data-number="3.1.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.1.5</span> Exercises</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li>Open the <code>ds4hs</code> folder in VS Code.</li>
-<li>Create a new Markdown file and write a short paragraph in it.</li>
-<li>Use the command palette to install an extension.</li>
-<li>Open the integrated terminal and run <code>ls</code> to view your project files.</li>
+<li><strong>Debian / Ubuntu Linux (including WSL):</strong></li>
 </ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After installation, configure Git once so your work is properly attributed:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"your@email.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Verify that Git is installed and configured correctly:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-</section>
-<section id="version-control-with-git-your-projects-memory" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="version-control-with-git-your-projects-memory"><span class="header-section-number">3.2</span> Version Control with Git: Your Project’s Memory</h2>
-<section id="essential-git-commands" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="essential-git-commands"><span class="header-section-number">3.2.1</span> Essential Git Commands</h3>
+<section id="essential-git-commands" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="essential-git-commands"><span class="header-section-number">3.2.3</span> Essential Git Commands</h3>
+<p>Git is most effective when you stage files deliberately and keep the repository clean. The following commands form the core of everyday Git usage in data science projects.</p>
 <ul>
-<li><code>git init</code> initializes a repository.</li>
-<li><code>git status</code> shows changes.</li>
-<li><code>git add</code> stages files.</li>
-<li><code>git commit -m "message"</code> records changes.</li>
-<li><code>git diff</code> displays differences.</li>
-<li><code>git push</code> sends changes to GitHub.</li>
-<li><code>git pull</code> retrieves updates.</li>
+<li><code>git init</code> initializes a repository in a project folder.</li>
+<li><code>git status</code> shows which files have changed.</li>
+<li><code>git add &lt;file&gt;</code> stages selected files to be recorded.</li>
+<li><code>git commit -m "message"</code> saves a snapshot of staged changes.</li>
+<li><code>git diff</code> displays differences between versions.</li>
+<li><code>git push</code> sends committed changes to a remote repository, such as one hosted on GitHub.</li>
+<li><code>git pull</code> retrieves updates from a remote repository, such as one hosted on GitHub.</li>
 </ul>
-<p>Version control is a foundational skill for data science because it treats your work as a living project with a complete history. Git lets you track every change you make, revert mistakes, create experimental branches, and collaborate without overwriting anyone’s work. Unlike saving multiple file versions by hand (e.g., <code>project_final_v12_REAL</code>), Git provides a precise, automatic timeline of your edits. This makes your work reproducible, auditable, and shareable — all essential habits for scientific computing.</p>
+<p>These two commands are where Git connects to an online platform. A common example of such a platform is GitHub, which serves as a shared location for backing up work and collaborating on projects. The next section focuses on GitHub itself and how it is used in our workflow.</p>
+<p>Avoid using <code>git add .</code> as a default habit. It often stages generated files, temporary outputs, or other unintended content. Staging files explicitly helps keep repositories small, readable, and reproducible.</p>
 </section>
-<section id="why-git" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="why-git"><span class="header-section-number">3.2.2</span> Why Git?</h3>
-<p>Git offers a lightweight yet powerful system for managing all the changes in your project. It acts as “undo for your entire project,” not just for a single file, meaning you can always go back to a working state. For data science, reproducibility is everything: Git keeps a full record of how your analysis evolved, so others (and future you) can see exactly how results were produced. When working with classmates or research teams, Git prevents accidental overwriting and makes collaboration structured instead of chaotic.</p>
+<section id="basic-workflow" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="basic-workflow"><span class="header-section-number">3.2.4</span> Basic Workflow</h3>
+<p>Git works best when your project is organized as a single folder containing scripts, Quarto files, and documentation. A typical workflow follows a simple cycle: edit files, inspect what changed, stage selected files, and commit them with a short message explaining what was done.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ds4hs</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add analysis.qmd</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"initial project structure"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Git can also connect your local project to a remote repository hosted online. This idea is introduced above when discussing <code>git push</code> and <code>git pull</code>, and it is developed in detail in the next section, which focuses on GitHub as a concrete example of an online hosting platform.</p>
 </section>
-<section id="getting-started" class="level3" data-number="3.2.3">
-<h3 data-number="3.2.3" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">3.2.3</span> Getting Started</h3>
-<p>Installing Git - <strong>macOS:</strong> <code>brew install git</code><br>
-- <strong>Windows:</strong> Download Git for Windows (Git Bash included) from<br>
-<a href="https://git-scm.com/downloads" class="uri">https://git-scm.com/downloads</a> - <strong>Linux:</strong> Install from your system’s package manager</p>
-<p>After installation, configure Git the first time you use it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"your@email.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Verify everything is correctly installed:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="basic-workflow-with-git-bash-or-vs-code" class="level3" data-number="3.2.4">
-<h3 data-number="3.2.4" class="anchored" data-anchor-id="basic-workflow-with-git-bash-or-vs-code"><span class="header-section-number">3.2.4</span> Basic Workflow with Git Bash or VS Code</h3>
-<p>Git works best when your project is organized as a clean folder containing scripts, Quarto files, and documentation.</p>
-<p>Common Git commands:</p>
+<section id="good-practices-for-git" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="good-practices-for-git"><span class="header-section-number">3.2.5</span> Good Practices for Git</h3>
+<p>Good Git usage is less about memorizing commands and more about developing clean, repeatable habits. The following practices are especially important for reproducible data science projects:</p>
 <ul>
-<li><code>git init</code> — start a new repository in your current folder<br>
-</li>
-<li><code>git status</code> — see what has changed<br>
-</li>
-<li><code>git add</code> — stage changes<br>
-</li>
-<li><code>git commit</code> — save changes with a message</li>
-</ul>
-<p>Example workflow:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ds4hs</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"first commit: added folder structure"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>A <code>.gitignore</code> file helps you avoid uploading unnecessary files such as large raw datasets, temporary folders, or system files. A typical example:</p>
-<pre><code>data/
-*.csv
-*.DS_Store</code></pre>
-</section>
-<section id="working-with-github" class="level3" data-number="3.2.5">
-<h3 data-number="3.2.5" class="anchored" data-anchor-id="working-with-github"><span class="header-section-number">3.2.5</span> Working with GitHub</h3>
-<p>GitHub is the online home for your Git repositories. It allows you to publish your work, share it with others, and sync across computers.</p>
-<p>Typical GitHub workflow:</p>
-<ul>
-<li>Create a new repository on GitHub (empty, no README).</li>
-<li>Connect your local folder to that repository:</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/yourname/ds4hs.git</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>To download someone else’s project:</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/someone/project.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="exercises-1" class="level3" data-number="3.2.6">
-<h3 data-number="3.2.6" class="anchored" data-anchor-id="exercises-1"><span class="header-section-number">3.2.6</span> Exercises</h3>
-<ul>
-<li>Create a <code>ds4hs</code> folder (if not already created), initialize it as a Git repository, and make at least two commits showing meaningful progress.</li>
-<li>Write a <code>.gitignore</code> file that excludes data, temporary files, or OS files on your system. Verify with <code>git status</code> that the ignored files do not appear.</li>
-<li>Create a new GitHub repository and publish your <code>ds4hs</code> project using <code>git push</code>.</li>
-<li>Clone a public GitHub repository of your choice. Explore its structure: identify where code, documentation, and data are stored.</li>
-<li>Modify your <code>ds4hs</code> project by adding a README, commit the change, and push it to GitHub.</li>
+<li><p><strong>Keep the repository clean.</strong> Track only files that are needed to understand, reproduce, and extend the project. Avoid committing generated files, rendered outputs, large raw datasets, or temporary artifacts unless they are explicitly required.</p></li>
+<li><p><strong>Stage files deliberately.</strong> Add files explicitly rather than staging everything at once. This helps prevent accidental inclusion of unnecessary or generated content.</p></li>
+<li><p><strong>Commit small, logical changes.</strong> Each commit should represent a coherent step in the project, making the history easier to read and reason about.</p></li>
+<li><p><strong>Write informative commit messages.</strong> A short message explaining what changed and why is more valuable than a vague description.</p></li>
+<li><p><strong>Use <code>.gitignore</code> consistently.</strong> The <code>.gitignore</code> file is the primary mechanism for keeping a repository clean over time. It tells Git which files should never be tracked, such as temporary outputs, cache directories, and system-specific files.</p></li>
 </ul>
 </section>
 </section>
-<section id="quarto-reproducible-documents-for-real-data-science" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="quarto-reproducible-documents-for-real-data-science"><span class="header-section-number">3.3</span> Quarto: Reproducible Documents for Real Data Science</h2>
-<section id="why-quarto" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="why-quarto"><span class="header-section-number">3.3.1</span> Why Quarto?</h3>
-<p>Quarto is the modern tool for writing documents that combine text, code, figures, and results in one place. Instead of keeping separate Word files, screenshots, exported plots, and loose scripts, Quarto keeps everything together and reruns your analysis whenever data or code change. This makes work transparent, reproducible, and easy to review. Data scientists use Quarto because it replaces Word and PowerPoint entirely for technical documents, reports, and notebooks, and naturally forces better project habits. When teaching or doing projects, Quarto helps your work look professional while keeping the focus on reasoning and evidence rather than formatting.</p>
-</section>
-<section id="installation-and-setup-1" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="installation-and-setup-1"><span class="header-section-number">3.3.2</span> Installation and Setup</h3>
-<p>To use Quarto, you need two things:</p>
+<section id="github-hosting-and-collaboration-for-git-projects" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="github-hosting-and-collaboration-for-git-projects"><span class="header-section-number">3.3</span> GitHub: Hosting and Collaboration for Git Projects</h2>
+<section id="what-github-is-and-why-it-matters" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="what-github-is-and-why-it-matters"><span class="header-section-number">3.3.1</span> What GitHub Is and Why It Matters</h3>
+<p>GitHub is an online platform that hosts Git repositories. Git manages project history on your computer, while GitHub stores a synchronized copy online. GitHub adds four capabilities that local Git alone does not provide.</p>
 <ul>
-<li><p><strong>Quarto CLI</strong><br>
-Download and install from https://quarto.org/docs/get-started This gives you the command-line tool <code>quarto</code> for rendering documents. After installation, verify:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Quarto Extension in VS Code</strong><br>
-Open the Extensions panel, search for <strong>Quarto</strong>, and install it. This adds syntax highlighting, preview tools, and convenient buttons for rendering.</p></li>
-<li><p><strong>Rendering formats</strong><br>
-With the extension installed, you can render a <code>.qmd</code> file directly to HTML or PDF using the “Render” button in VS Code or by running</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render myfile.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>PDF output requires a LaTeX installation (TinyTeX or TeX Live); HTML works out of the box.</p></li>
+<li>Backup: a remote copy protects against local hardware failure.</li>
+<li>Work anywhere: the same repository can be used on multiple machines; you can work offline and synchronize later.</li>
+<li>Collaboration: multiple contributors can work safely without overwriting each other.</li>
+<li>Review: changes can be inspected and discussed before they are merged.</li>
+</ul>
+<p>Once a local repository is connected to GitHub, only two commands are needed for routine synchronization.</p>
+<ul>
+<li><code>git push</code> uploads committed local changes to GitHub.</li>
+<li><code>git pull</code> downloads changes from GitHub and integrates them locally.</li>
 </ul>
 </section>
-<section id="anatomy-of-a-quarto-file" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="anatomy-of-a-quarto-file"><span class="header-section-number">3.3.3</span> Anatomy of a Quarto File</h3>
-<p>A basic Quarto document has three components:</p>
+<section id="authentication-on-github-ssh" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="authentication-on-github-ssh"><span class="header-section-number">3.3.2</span> Authentication on GitHub (SSH)</h3>
+<p>GitHub requires authentication before it accepts <code>git push</code>. A common method is SSH key authentication.</p>
+<p>SSH uses a key pair.</p>
 <ul>
-<li><p><strong>YAML header</strong><br>
-Appears at the top between <code>---</code> lines and controls title, author, format, and other options.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Document"</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Markdown body</strong><br>
-This is where you write text, using the same Markdown syntax you already know: headings, emphasis, lists, links, and so on.</p></li>
-<li><p><strong>Code chunks</strong><br>
-Code blocks that run during rendering and insert their results automatically. Quarto supports many languages.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"hello quarto"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>hello quarto</code></pre>
-</div>
-</div></li>
+<li>Private key: stays on your computer and must never be shared.</li>
+<li>Public key: added to your GitHub account to identify your computer.</li>
+</ul>
+<p>Generate a key pair locally.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_email@example.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The key pair will be stored in the <code>.ssh</code> folder in your home directory.</p>
+<p>Display the public key.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Copy the public key to your clipboard.</p>
+<ul>
+<li>macOS (Terminal):</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pbcopy</span> <span class="op">&lt;</span> ~/.ssh/id_ed25519.pub</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Windows (Git Bash):</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub <span class="kw">|</span> <span class="ex">clip</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Windows (PowerShell):</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Get-Content</span> <span class="va">$env</span><span class="op">:</span><span class="va">USERPROFILE</span>\<span class="op">.</span><span class="fu">ssh</span>\id_ed25519<span class="op">.</span><span class="fu">pub</span> <span class="op">|</span> clip</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Linux / WSL:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install xclip</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">xclip</span> <span class="at">-selection</span> clipboard <span class="op">&lt;</span> ~/.ssh/id_ed25519.pub</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Add the public key on GitHub.</p>
+<ul>
+<li>Profile menu — Settings</li>
+<li>SSH and GPG keys — New SSH key</li>
+<li>Paste the key and save</li>
+</ul>
+<p>Test the connection.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For up-to-date authentication, one may ask an AI assistant for help for your operating system. For example:</p>
+<ul>
+<li>“How do I set up SSH keys for GitHub on Windows using Git Bash and verify that <code>git push</code> works?”</li>
 </ul>
 </section>
-<section id="first-reproducible-notebook" class="level3" data-number="3.3.4">
-<h3 data-number="3.3.4" class="anchored" data-anchor-id="first-reproducible-notebook"><span class="header-section-number">3.3.4</span> First Reproducible Notebook</h3>
-<p>A simple workflow for your first Quarto notebook:</p>
-<ol type="1">
-<li>Create a new file: <code>my_first.qmd</code>.</li>
-<li>Add a YAML header, a few sentences of text, and a code chunk.</li>
-<li>Add a small plot.</li>
-<li>Render to HTML.</li>
-</ol>
-<p>Example structure:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My First Quarto Notebook"</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Write some text:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>This is my first Quarto document. Below is a simple plot created in</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Python.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Insert a plot:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>])</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"A Simple Plot"</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03-tools_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Render using the VS Code “Render” button or:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render my_first.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="creating-and-publishing-a-new-repository" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="creating-and-publishing-a-new-repository"><span class="header-section-number">3.3.3</span> Creating and Publishing a New Repository</h3>
+<p>This workflow applies only if you already have a local Git repository. If not, create one first with <code>git init</code>.</p>
+<p>First, create a new empty repository on GitHub (do not initialize it with a README). Then connect your local repository to GitHub.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:yourname/example-repo.git</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Here, <code>yourname</code> is your GitHub username and <code>example-repo</code> is the repository name you chose on GitHub.</p>
 </section>
-<section id="exercises-2" class="level3" data-number="3.3.5">
-<h3 data-number="3.3.5" class="anchored" data-anchor-id="exercises-2"><span class="header-section-number">3.3.5</span> Exercises</h3>
+<section id="cloning-an-existing-repository" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="cloning-an-existing-repository"><span class="header-section-number">3.3.4</span> Cloning an Existing Repository</h3>
+<p>Cloning is used when the repository already exists on GitHub. Suppose that <code>someone</code> is the GitHub username or organization that owns a repository called <code>project</code>. To clone this repository to your own computer, first <code>cd</code> to the folder where you want put the repository and then:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:someone/project.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Cloning creates a new local directory containing the full project history.</p>
+</section>
+</section>
+<section id="python" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="python"><span class="header-section-number">3.4</span> Python</h2>
+<p>Python is the most widely used programming language in modern data science and an excellent first language for beginners. Its clean, readable syntax allows students to focus on ideas rather than punctuation, while its large ecosystem means that most common tasks already have well-tested libraries. In this course, Python will be used to write code, analyze data, and produce graphics. These skills form the foundation for reproducible data science workflows introduced later in the book.</p>
+<p>Python has earned its central role because it balances power and accessibility. The base language is expressive and easy to read, and many core tools are included by default. Beyond that, widely used libraries such as <code>pandas</code> for data analysis, <code>matplotlib</code> for visualization, and <code>scikit-learn</code> for machine learning allow students to move quickly from simple examples to realistic projects. While R is also an excellent language, especially for statistics, Python will be the default language in this book, with R treated as an optional companion.</p>
+<section id="installing-python-python-3.12" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="installing-python-python-3.12"><span class="header-section-number">3.4.1</span> Installing Python (Python 3.12)</h3>
+<p>We will use <strong>Python 3.12</strong>. At the time of writing, this version is supported by major scientific and machine-learning libraries, including TensorFlow and PyTorch. From the beginning, we use the command line to install and manage software so that the workflow is transparent and reproducible.</p>
+<p>Choose the instructions for your operating system.</p>
+<p><strong>Windows (using winget)</strong></p>
+<p>Open <strong>PowerShell</strong> (not Git Bash) and run:</p>
+<pre><code>winget install Python.Python.3.12</code></pre>
+<p>After installation, close and reopen your terminal so that <code>python</code> is available on the PATH.</p>
+<p><strong>macOS (using Homebrew)</strong></p>
+<p>If Homebrew is not installed, follow the instructions at <a href="https://brew.sh">https://brew.sh</a>.</p>
+<p>Then install Python 3.12 by running:</p>
+<pre><code>brew install python@3.12</code></pre>
+<p>Homebrew installs Python in a standard location and makes it available from the terminal.</p>
+<p><strong>Linux (Debian / Ubuntu using apt)</strong></p>
+<p>These instructions assume a Debian- or Ubuntu-based system.</p>
+<p>First update package information:</p>
+<pre><code>sudo apt update</code></pre>
+<p>Install Python 3.12 and the virtual environment module:</p>
+<pre><code>sudo apt install python3.12 python3.12-venv</code></pre>
+<p>Verify the installation:</p>
+<pre><code>python3.12 --version</code></pre>
+<p>You should see output similar to:</p>
+<pre><code>Python 3.12.x</code></pre>
+<p>If this command fails, resolve the installation before continuing.</p>
+</section>
+<section id="creating-a-virtual-environment" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="creating-a-virtual-environment"><span class="header-section-number">3.4.2</span> Creating a virtual environment</h3>
+<p>Virtual environments should be created in a deliberate and consistent location. We recommend creating a dedicated directory in your home folder to store environments for this course.</p>
+<p>From a terminal, create a directory named <code>envs</code> in your home directory:</p>
+<pre><code>mkdir -p ~/envs</code></pre>
+<p>Create a virtual environment named <code>ds-env</code> inside this directory:</p>
+<pre><code>python -m venv ~/envs/ds-env</code></pre>
+<p>Activate the environment:</p>
 <ul>
-<li>Create a new <code>.qmd</code> file titled “My First Quarto Notebook.”</li>
-<li>Add a YAML header with a title of your choice.</li>
-<li>Write one paragraph explaining what your notebook will show.</li>
-<li>Add a Python or R code chunk that produces a figure.</li>
-<li>Render to HTML and check that text, code, and output all appear.</li>
+<li><p><strong>Windows (Git Bash):</strong></p>
+<pre><code>source ~/envs/ds-env/Scripts/activate</code></pre></li>
+<li><p><strong>macOS / Linux:</strong></p>
+<pre><code>source ~/envs/ds-env/bin/activate</code></pre></li>
 </ul>
+<p>When the environment is active, your prompt will usually change to show <code>(ds-env)</code>.</p>
+<p>Upgrade the package manager and install a small set of core libraries:</p>
+<pre><code>python -m pip install --upgrade pip
+pip install numpy pandas matplotlib</code></pre>
+<p>All Python packages for this course should be installed <em>inside</em> this environment.</p>
+<p>To leave the environment, run:</p>
+<pre><code>deactivate</code></pre>
 </section>
-</section>
-<section id="python-and-optionally-r-your-first-programming-language" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="python-and-optionally-r-your-first-programming-language"><span class="header-section-number">3.4</span> Python (and optionally R): Your First Programming Language</h2>
-<p>Python is the most widely used language in modern data science, and it is an excellent first language for high school students. Its clean syntax allows beginners to focus on ideas instead of punctuation, and its large ecosystem means almost anything you want to do already has a library that helps you do it. For our purposes, Python will serve as the main tool for writing code, analyzing data, producing graphics, and connecting all of these pieces inside a Quarto notebook.</p>
-<section id="why-python-for-high-school-data-science" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="why-python-for-high-school-data-science"><span class="header-section-number">3.4.1</span> Why Python for High School Data Science</h3>
-<p>Python has earned its central place in data science because it balances power and readability. It comes with “batteries included,” meaning the basic installation already provides many useful tools. Its syntax reads almost like English, making it easier to learn than most languages. Most importantly, the Python ecosystem is enormous — libraries like <code>pandas</code> for data analysis, <code>matplotlib</code> and <code>seaborn</code> for plots, and <code>scikit-learn</code> for machine learning allow students to progress quickly from small ideas to real discoveries. While R is also a strong choice, especially for statistics, this book will use Python as the default and treat R as an optional companion language.</p>
-</section>
-<section id="installing-python" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="installing-python"><span class="header-section-number">3.4.2</span> Installing Python</h3>
-<p>You have two reliable options for installation, and either one works well in practice.</p>
+<section id="a-short-python-warm-up" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="a-short-python-warm-up"><span class="header-section-number">3.4.3</span> A short Python warm-up</h3>
+<p>Before moving on, you should be comfortable with:</p>
 <ul>
-<li><strong>Official Python installer (python.org)</strong> Best if you prefer a clean, minimal installation. Steps:
-<ul>
-<li>Visit https://www.python.org/downloads/<br>
-</li>
-<li>Download the version recommended for your system<br>
-</li>
-<li>Run the installer and make sure to check “Add Python to PATH” on Windows</li>
-</ul></li>
-<li><strong>Anaconda distribution</strong> Best if you want many scientific libraries already installed. Steps:
-<ul>
-<li>Visit https://www.anaconda.com/products/distribution<br>
-</li>
-<li>Download the installer for your system<br>
-</li>
-<li>Install with the default recommended settings</li>
-</ul></li>
+<li>running Python from the command line,</li>
+<li>writing and executing simple scripts,</li>
+<li>using variables, lists, and loops,</li>
+<li>importing and using packages.</li>
 </ul>
-<p>After installation, verify that Python works by opening Git Bash or Terminal and typing:</p>
+<p>For a concise, <strong>official</strong> warm-up that can be completed in <strong>2–3 hours</strong>, use the following resources from the Python Documentation:</p>
+<ul>
+<li><em>An Informal Introduction to Python</em>: <a href="https://docs.python.org/3/tutorial/introduction.html">https://docs.python.org/3/tutorial/introduction.html</a></li>
+<li><em>More Control Flow Tools</em>: <a href="https://docs.python.org/3/tutorial/controlflow.html">https://docs.python.org/3/tutorial/controlflow.html</a></li>
+<li><em>Modules</em>: <a href="https://docs.python.org/3/tutorial/modules.html">https://docs.python.org/3/tutorial/modules.html</a></li>
+</ul>
+<p>Read these sections in order. They provide just enough structure to begin experimenting with Python and to learn additional features on demand.</p>
+<p>After completing this warm-up, you should be ready to work interactively and write small scripts. The next section builds on this foundation to introduce a reproducible data science workflow.</p>
+<!-- ### Exercises -->
+<!-- * Create a new Quarto document and write a few Python lines that -->
+<!-- define -->
+<!--   variables, lists, and dictionaries. -->
+<!-- * Install Python and verify your installation with `python --version`. -->
+<!-- * Read a small CSV file into a pandas DataFrame and plot one column. -->
+<!-- * Modify the sample plot code to change colors, labels, or data. -->
+<!-- * Add a short paragraph in your Quarto file describing what you -->
+<!-- learned. -->
+</section>
+</section>
+<section id="quarto-reproducible-documents-for-real-data-science" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="quarto-reproducible-documents-for-real-data-science"><span class="header-section-number">3.5</span> Quarto: Reproducible Documents for Real Data Science</h2>
+<section id="why-quarto" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="why-quarto"><span class="header-section-number">3.5.1</span> Why Quarto?</h3>
+<p>Quarto is a tool for writing documents that combine text, code, figures, and results in a single, executable source file. Instead of keeping separate word-processor files, exported plots, screenshots, and loose scripts, Quarto keeps analysis and narrative together and regenerates results automatically whenever code or data change. This makes work transparent, reproducible, and easier to review.</p>
+<p>Quarto is widely used in data science for technical reports, notebooks, and presentations where correctness and traceability matter. Compared to traditional notebooks, Quarto emphasizes documents first and interactivity second. Compared to Word or PowerPoint, it prioritizes reproducible computation over manual formatting. These properties make Quarto well suited for teaching and for real data science projects, where reasoning and evidence are more important than appearance.</p>
+</section>
+<section id="installation-and-setup-cli-first" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="installation-and-setup-cli-first"><span class="header-section-number">3.5.2</span> Installation and setup (CLI-first)</h3>
+<p>Quarto is a command-line tool. We install and use it from the terminal, independent of any editor.</p>
+<p><strong>Windows (using winget)</strong></p>
+<p>Open <strong>PowerShell</strong> and run:</p>
+<pre><code>winget install Quarto.Quarto</code></pre>
+<p>Close and reopen the terminal after installation.</p>
+<p><strong>macOS (using Homebrew)</strong></p>
+<pre><code>brew install quarto</code></pre>
+<p><strong>Linux (Debian / Ubuntu)</strong></p>
+<pre><code>sudo apt update
+sudo apt install quarto</code></pre>
+<p>After installation, verify that Quarto is available:</p>
+<pre><code>quarto check</code></pre>
+<p>This command reports available engines (such as Python) and confirms that Quarto is correctly installed.</p>
+<p><strong>Editor support (optional)</strong></p>
+<p>Quarto works entirely from the command line. If you use VS Code, you may optionally install the <strong>Quarto</strong> extension for syntax highlighting and convenience features. This is not required for rendering documents.</p>
+</section>
+<section id="quarto-and-python-environments" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="quarto-and-python-environments"><span class="header-section-number">3.5.3</span> Quarto and Python environments</h3>
+<p>Quarto does not manage Python installations or virtual environments. When rendering a document, it uses the Python interpreter available on your PATH.</p>
+<p>For this course, you must activate your course environment <em>before</em> running Quarto commands.</p>
+<pre><code>source ~/envs/ds-env/bin/activate</code></pre>
+<p>On Windows (Git Bash):</p>
+<pre><code>source ~/envs/ds-env/Scripts/activate</code></pre>
+<p>After activation, verify:</p>
 <pre><code>python --version</code></pre>
-<p>You should see something like <code>Python 3.12.1</code>. If you see an error, revisit the installation steps.</p>
+<p>Quarto will now execute all Python code chunks using this environment.</p>
 </section>
-<section id="learning-the-basics" class="level3" data-number="3.4.3">
-<h3 data-number="3.4.3" class="anchored" data-anchor-id="learning-the-basics"><span class="header-section-number">3.4.3</span> Learning the Basics</h3>
-<p>Python programming begins with building blocks. Students should spend time in a Quarto notebook writing small code chunks, running them, and modifying them to observe how the machine responds.</p>
-<p><strong>Core building blocks to practice</strong> * Variables and basic types <code>python   x = 5   name = "Ada"   pi = 3.14159</code></p>
+<section id="anatomy-of-a-quarto-file" class="level3" data-number="3.5.4">
+<h3 data-number="3.5.4" class="anchored" data-anchor-id="anatomy-of-a-quarto-file"><span class="header-section-number">3.5.4</span> Anatomy of a Quarto file</h3>
+<p>A Quarto document (<code>.qmd</code>) has three main components, executed from top to bottom during rendering.</p>
+<p><strong>YAML header</strong></p>
+<p>The YAML header appears at the top of the file between <code>---</code> lines and controls document-level settings such as title and output format.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Document"</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Markdown body</strong></p>
+<p>The body contains text written in Markdown: headings, paragraphs, lists, links, and mathematical notation. This is where you explain your analysis and interpret results.</p>
+<p><strong>Code chunks</strong></p>
+<p>Code chunks contain executable code. During rendering, Quarto runs the code and inserts the output directly into the document. In this course, we use Python by default.</p>
+<p>print(“Hello, Quarto”)</p>
+</section>
+<section id="first-reproducible-notebook" class="level3" data-number="3.5.5">
+<h3 data-number="3.5.5" class="anchored" data-anchor-id="first-reproducible-notebook"><span class="header-section-number">3.5.5</span> First reproducible notebook</h3>
+<p>A minimal workflow for your first Quarto document is:</p>
 <ul>
-<li><p>Lists</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Dictionaries</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>student <span class="op">=</span> {<span class="st">"name"</span>: <span class="st">"Hana"</span>, <span class="st">"grade"</span>: <span class="dv">10</span>, <span class="st">"favorite_color"</span>: <span class="st">"blue"</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Reading data Using <code>pandas</code> after installing it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Simple visualization</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>], [<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">13</span>, <span class="dv">17</span>])</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li>create a source file,</li>
+<li>write text and code together,</li>
+<li>render the document from the command line.</li>
+</ul>
+<p>Create a new file named <code>my_first.qmd</code> with the following header:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My First Quarto Notebook"</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Add a short paragraph:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>This document demonstrates a simple, reproducible analysis written in</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>Python using Quarto.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Before running this example, make sure the required plotting library is installed in your active environment:</p>
+<pre><code>pip install matplotlib</code></pre>
+<p>Insert a Python code chunk that produces a figure:</p>
+<p>import matplotlib.pyplot as plt</p>
+<p>plt.plot([1, 2, 3], [1, 4, 9]) plt.title(“A Simple Plot”) plt.show()</p>
+<p>Activate your environment and render:</p>
+<pre><code>source ~/envs/ds-env/bin/activate
+quarto render my_first.qmd</code></pre>
+<p>This produces an HTML file that contains the text, code, and generated output.</p>
+</section>
+<section id="exercises" class="level3" data-number="3.5.6">
+<h3 data-number="3.5.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.5.6</span> Exercises</h3>
+<ul>
+<li>Create a new <code>.qmd</code> file titled <em>My First Quarto Notebook</em>.</li>
+<li>Add a YAML header specifying an HTML output format.</li>
+<li>Write one paragraph describing the purpose of the notebook.</li>
+<li>Add a Python code chunk that generates a figure.</li>
+<li>Render the document to HTML from the command line.</li>
+<li>Modify the code, re-render, and confirm that the output updates automatically.</li>
+<li>Delete the rendered HTML file and regenerate it from the <code>.qmd</code> source.</li>
+</ul>
+<p>These steps reinforce the core idea of reproducibility: results are always generated from source, not copied or pasted.</p>
+</section>
+</section>
+<section id="your-editing-home-visual-studio-code" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="your-editing-home-visual-studio-code"><span class="header-section-number">3.6</span> Your Editing Home: Visual Studio Code</h2>
+<section id="what-an-ide-is-and-why-vs-code" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="what-an-ide-is-and-why-vs-code"><span class="header-section-number">3.6.1</span> What an IDE Is and Why VS Code</h3>
+<p>An Integrated Development Environment (IDE) brings together tools for editing files, running code, and organizing projects in a single place. Unlike simple editors such as Notepad or TextEdit, an IDE understands project structure, highlights syntax, reports errors, and integrates directly with version control and command-line tools.</p>
+<p>VS Code</p>
+<ul>
+<li>Unified editor for text, code, and documents</li>
+<li>Integrated terminal for Git, Python, R, and Quarto</li>
+<li>Built-in file explorer and project navigation</li>
+<li>Extension system for language and tool support</li>
+<li>Native Git integration for version-controlled work</li>
+</ul>
+<p>These features support a project-based, reproducible workflow rather than scattered scripts and files.</p>
+</section>
+<section id="installation-and-setup" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="installation-and-setup"><span class="header-section-number">3.6.2</span> Installation and Setup</h3>
+<p>If VS Code is not yet installed, download it from the official website at <a href="https://code.visualstudio.com">https://code.visualstudio.com</a> and install the version for your operating system. On Windows, choose the System Installer (64-bit) and follow the default steps. On macOS, you may install it from the same website or via Homebrew using</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> visual-studio-code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After installation, open VS Code and confirm that it can see the tools you installed earlier. Open the integrated terminal (<em>View → Terminal</em>) and run</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If these commands run successfully, VS Code is correctly connected to your existing setup.</p>
+<p>Next, install a small set of extensions that support data science workflows. Use the Extensions icon in the sidebar or open the command palette (Ctrl/Cmd + Shift + P) and choose “Extensions: Install Extensions.”</p>
+<ul>
+<li>Python — Editing support, autocomplete, linting, debugging, and notebook integration for Python.</li>
+<li>R — Editing and execution support for R scripts.</li>
+<li>GitLens — Enhanced Git history, blame, and comparison tools.</li>
+<li>Quarto — Authoring and previewing Quarto documents.</li>
+<li>Markdown Shortcuts — Convenient commands for Markdown and Quarto editing.</li>
+</ul>
+<p>These extensions do not install Python, R, Git, or Quarto; they only connect VS Code to tools you already installed.</p>
+</section>
+<section id="integrated-terminal-and-shell-choice" class="level3" data-number="3.6.3">
+<h3 data-number="3.6.3" class="anchored" data-anchor-id="integrated-terminal-and-shell-choice"><span class="header-section-number">3.6.3</span> Integrated Terminal and Shell Choice</h3>
+<p>VS Code includes a built-in terminal so you can run command-line tools inside the editor. This avoids switching between separate terminal windows and keeps all work in one place. Open the terminal with <em>View → Terminal</em> or Ctrl+` (Control + backtick).</p>
+<p>On Windows, it is often preferable to use Git Bash rather than PowerShell so that commands match those used in class. After installing Git for Windows, open the command palette (Ctrl/Cmd + Shift + P), choose “Preferences: Open User Settings (JSON),” and add</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="er">"terminal.integrated.defaultProfile.windows":</span> <span class="er">"Git</span> <span class="er">Bash"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Restart the terminal. You can now run commands such as <code>cd</code>, <code>ls</code>, <code>git status</code>, and <code>quarto render</code> in a Unix-like environment directly inside VS Code.</p>
+</section>
+<section id="working-with-projects-in-vs-code" class="level3" data-number="3.6.4">
+<h3 data-number="3.6.4" class="anchored" data-anchor-id="working-with-projects-in-vs-code"><span class="header-section-number">3.6.4</span> Working with Projects in VS Code</h3>
+<p>A core habit in VS Code is opening folders rather than individual files. When you open a folder, VS Code treats it as a project: it tracks files, recognizes structure, and enables Git integration. This is essential for reproducible data science work.</p>
+<p>Use <em>File → Open Folder</em> and select your project directory, such as <code>ds4hs/</code>. The sidebar then shows your files, Git status, and search tools in one place. The command palette (Ctrl/Cmd + Shift + P) provides fast access to nearly all VS Code features without navigating menus. VS Code also supports split editors for side-by-side viewing and works well for Markdown and Quarto documents.</p>
+</section>
+<section id="good-practices" class="level3" data-number="3.6.5">
+<h3 data-number="3.6.5" class="anchored" data-anchor-id="good-practices"><span class="header-section-number">3.6.5</span> Good Practices</h3>
+<ul>
+<li>Always open a project folder (for example, <code>ds4hs/</code>) rather than individual files.</li>
+<li>Keep all work in plain text: scripts, notes, and Quarto documents.</li>
+<li>Use the integrated terminal for Git, Python, and Quarto commands.</li>
+<li>Enable autosave and consider format-on-save for consistent files.</li>
+<li>Avoid storing work on the desktop; keep everything inside your project directory.</li>
 </ul>
 </section>
-<section id="jupyter-vs-quarto-code-chunks-use-quarto-only" class="level3" data-number="3.4.4">
-<h3 data-number="3.4.4" class="anchored" data-anchor-id="jupyter-vs-quarto-code-chunks-use-quarto-only"><span class="header-section-number">3.4.4</span> Jupyter vs Quarto Code Chunks (Use Quarto Only)</h3>
-<p>Python is often taught using Jupyter notebooks, but this book will use <strong>Quarto notebooks exclusively</strong>. Quarto lets you combine code, text, figures, and explanations in one source file that produces polished HTML or PDF output. It is more powerful, more reproducible, and easier to use with version control.</p>
-<p>A sample Quarto Python chunk:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/example.csv"</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Students should write, run, and document their work entirely within Quarto. This reinforces good habits from the beginning and keeps every project reproducible.</p>
-</section>
-<section id="exercises-3" class="level3" data-number="3.4.5">
-<h3 data-number="3.4.5" class="anchored" data-anchor-id="exercises-3"><span class="header-section-number">3.4.5</span> Exercises</h3>
+<section id="exercises-1" class="level3" data-number="3.6.6">
+<h3 data-number="3.6.6" class="anchored" data-anchor-id="exercises-1"><span class="header-section-number">3.6.6</span> Exercises</h3>
 <ul>
-<li>Create a new Quarto document and write a few Python lines that define variables, lists, and dictionaries.</li>
-<li>Install Python and verify your installation with <code>python --version</code>.</li>
-<li>Read a small CSV file into a pandas DataFrame and plot one column.</li>
-<li>Modify the sample plot code to change colors, labels, or data.</li>
-<li>Add a short paragraph in your Quarto file describing what you learned.</li>
+<li>Open the <code>ds4hs</code> folder in VS Code using <em>File → Open Folder</em>.</li>
+<li>Open the integrated terminal and confirm <code>git --version</code> works.</li>
+<li>Create a new Markdown file and write a short paragraph in it.</li>
+<li>Use the command palette to install one extension.</li>
+<li>Run <code>ls</code> in the terminal and verify that it lists your project files.</li>
 </ul>
 </section>
 </section>
-<section id="putting-it-all-together-your-first-data-science-project" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="putting-it-all-together-your-first-data-science-project"><span class="header-section-number">3.5</span> Putting It All Together: Your First Data Science Project</h2>
+<section id="putting-it-all-together-your-first-data-science-project" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="putting-it-all-together-your-first-data-science-project"><span class="header-section-number">3.7</span> Putting It All Together: Your First Data Science Project</h2>
 <p>This chapter integrates everything from Part I—command line, VS Code, Git, GitHub, Quarto, and Python/R—into a single, coherent project workflow. The goal is to let students experience how real data science work is done: create a clean folder, version it with Git, write a reproducible Quarto file, and share the final analysis.</p>
-<section id="choosing-a-simple-meaningful-dataset" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="choosing-a-simple-meaningful-dataset"><span class="header-section-number">3.5.1</span> Choosing a Simple, Meaningful Dataset</h3>
+<section id="choosing-a-simple-meaningful-dataset" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="choosing-a-simple-meaningful-dataset"><span class="header-section-number">3.7.1</span> Choosing a Simple, Meaningful Dataset</h3>
 <p>The first step in any project is choosing a dataset that is small, clean, and intrinsically interesting. Students should select something they care about so they remain motivated while practicing the workflow. Good examples include:</p>
 <ul>
 <li>NYC 311 complaint counts for a single neighborhood</li>
@@ -553,8 +656,8 @@ Code blocks that run during rendering and insert their results automatically. Qu
 </ul>
 <p>Best practice is to avoid large, messy datasets for this first project. Students should aim to complete end-to-end analysis, not get stuck in heavy cleaning.</p>
 </section>
-<section id="setting-up-the-project-folder" class="level3" data-number="3.5.2">
-<h3 data-number="3.5.2" class="anchored" data-anchor-id="setting-up-the-project-folder"><span class="header-section-number">3.5.2</span> Setting Up the Project Folder</h3>
+<section id="setting-up-the-project-folder" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="setting-up-the-project-folder"><span class="header-section-number">3.7.2</span> Setting Up the Project Folder</h3>
 <p>A clean folder structure helps keep the project reproducible and organized. Students use the command line to create folders and set up a Git repository.</p>
 <p>Recommended structure:</p>
 <ul>
@@ -574,8 +677,8 @@ Code blocks that run during rendering and insert their results automatically. Qu
 </ul>
 <p>Students should verify that Git is tracking the project by running <code>git status</code> and confirming the working tree is clean.</p>
 </section>
-<section id="writing-a-full-quarto-analysis" class="level3" data-number="3.5.3">
-<h3 data-number="3.5.3" class="anchored" data-anchor-id="writing-a-full-quarto-analysis"><span class="header-section-number">3.5.3</span> Writing a Full Quarto Analysis</h3>
+<section id="writing-a-full-quarto-analysis" class="level3" data-number="3.7.3">
+<h3 data-number="3.7.3" class="anchored" data-anchor-id="writing-a-full-quarto-analysis"><span class="header-section-number">3.7.3</span> Writing a Full Quarto Analysis</h3>
 <p>The core of the project is a reproducible Quarto notebook that explains the data, code, and conclusions in one document. The notebook should include:</p>
 <ul>
 <li>A clear statement of the question (e.g., “How do 311 noise complaints differ between weekdays and weekends?”)</li>
@@ -593,8 +696,8 @@ Code blocks that run during rendering and insert their results automatically. Qu
 </ol>
 <p>Students should keep text and code in one place—not separate PowerPoints, Word files, or screenshots. Quarto ensures everything is reproducible.</p>
 </section>
-<section id="publishing-or-sharing-work" class="level3" data-number="3.5.4">
-<h3 data-number="3.5.4" class="anchored" data-anchor-id="publishing-or-sharing-work"><span class="header-section-number">3.5.4</span> Publishing or Sharing Work</h3>
+<section id="publishing-or-sharing-work" class="level3" data-number="3.7.4">
+<h3 data-number="3.7.4" class="anchored" data-anchor-id="publishing-or-sharing-work"><span class="header-section-number">3.7.4</span> Publishing or Sharing Work</h3>
 <p>Once the analysis renders cleanly, students can make the project public (or share privately).</p>
 <p>Options include:</p>
 <ul>
@@ -605,8 +708,8 @@ Code blocks that run during rendering and insert their results automatically. Qu
 </ul>
 <p>This final step completes the full data science cycle: version control, reproducible notebook, and public sharing.</p>
 </section>
-<section id="exercises-4" class="level3" data-number="3.5.5">
-<h3 data-number="3.5.5" class="anchored" data-anchor-id="exercises-4"><span class="header-section-number">3.5.5</span> Exercises</h3>
+<section id="exercises-2" class="level3" data-number="3.7.5">
+<h3 data-number="3.7.5" class="anchored" data-anchor-id="exercises-2"><span class="header-section-number">3.7.5</span> Exercises</h3>
 <ul>
 <li>Choose one dataset from the list above (or another small dataset that interests you). Add it to the <code>data/</code> folder.</li>
 <li>Build the full folder structure using only the command line.</li>
