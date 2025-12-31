@@ -40,6 +40,264 @@ be able to set up a complete project, make changes in a controlled way, and
 produce results that can be reliably reproduced and reviewed.
 
 
+## Git: Version Control for Reproducible Projects
+
+### Why Git?
+
+Version control is a foundational skill for data science because it treats
+your work as a living project with a complete history. Git lets you track
+every change you make, recover from mistakes, and collaborate without
+overwriting anyone’s work. Unlike saving multiple file versions by hand
+(e.g., `project_final_v12_REAL`), Git provides a precise, automatic timeline
+of your edits. This makes your work reproducible, auditable, and shareable,
+which are essential habits for scientific computing and data science
+projects.
+
+Git is used to manage data science projects as evolving artifacts rather than one-time snapshots. Analyses typically change as
+data are cleaned, models are revised, and interpretations improve. A Git
+repository should contain only the files needed to understand, reproduce,
+and extend a project---nothing more.
+
+### Installing Git
+
+Git must be installed before it can be used. Use the method appropriate
+for your system.
+
+* **Windows (PowerShell):**
+
+```powershell
+winget install --id Git.Git -e
+```
+
+This installs Git together with **Git Bash**, a terminal environment used
+throughout this book. Do not run `winget` inside Git Bash.
+
+* **macOS (Homebrew):**
+
+```bash
+brew install git
+```
+
+* **Debian / Ubuntu Linux (including WSL):**
+
+```bash
+sudo apt update
+sudo apt install git
+```
+
+After installation, configure Git once so your work is properly attributed:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
+```
+
+Verify that Git is installed and configured correctly:
+
+```bash
+git --version
+git config --list
+```
+
+### Essential Git Commands
+
+Git is most effective when you stage files deliberately and keep the
+repository clean. The following commands form the core of everyday Git
+usage in data science projects.
+
+* `git init` initializes a repository in a project folder.
+* `git status` shows which files have changed.
+* `git add <file>` stages selected files to be recorded.
+* `git commit -m "message"` saves a snapshot of staged changes.
+* `git diff` displays differences between versions.
+* `git push` sends committed changes to a remote repository, such as one hosted on GitHub.
+* `git pull` retrieves updates from a remote repository, such as one hosted on GitHub.
+
+These two commands are where Git connects to an online platform. A common
+example of such a platform is GitHub, which serves as a shared location
+for backing up work and collaborating on projects. The next section focuses
+on GitHub itself and how it is used in our workflow.
+
+
+Avoid using `git add .` as a default habit. It often stages generated
+files, temporary outputs, or other unintended content. Staging files
+explicitly helps keep repositories small, readable, and reproducible.
+
+### Basic Workflow
+
+Git works best when your project is organized as a single folder containing
+scripts, Quarto files, and documentation. A typical workflow follows a
+simple cycle: edit files, inspect what changed, stage selected files, and
+commit them with a short message explaining what was done.
+
+```bash
+cd ds4hs
+git init
+git status
+git add README.md
+git add analysis.qmd
+git commit -m "initial project structure"
+```
+
+Git can also connect your local project to a remote repository hosted
+online. This idea is introduced above when discussing `git push` and
+`git pull`, and it is developed in detail in the next section, which
+focuses on GitHub as a concrete example of an online hosting platform.
+
+
+### Good Practices for Git
+
+Good Git usage is less about memorizing commands and more about developing
+clean, repeatable habits. The following practices are especially important
+for reproducible data science projects:
+
+* **Keep the repository clean.** Track only files that are needed to
+  understand, reproduce, and extend the project. Avoid committing
+  generated files, rendered outputs, large raw datasets, or temporary
+  artifacts unless they are explicitly required.
+
+* **Stage files deliberately.** Add files explicitly rather than staging
+  everything at once. This helps prevent accidental inclusion of
+  unnecessary or generated content.
+
+* **Commit small, logical changes.** Each commit should represent a
+  coherent step in the project, making the history easier to read and
+  reason about.
+
+* **Write informative commit messages.** A short message explaining what
+  changed and why is more valuable than a vague description.
+
+* **Use `.gitignore` consistently.** The `.gitignore` file is the primary
+  mechanism for keeping a repository clean over time. It tells Git which
+  files should never be tracked, such as temporary outputs, cache
+  directories, and system-specific files.
+
+
+## GitHub: Hosting and Collaboration for Git Projects
+
+### What GitHub Is and Why It Matters
+
+GitHub is an online platform that hosts Git repositories. Git manages
+project history on your computer, while GitHub stores a synchronized copy
+online. GitHub adds four capabilities that local Git alone does not
+provide.
+
+* Backup: a remote copy protects against local hardware failure.
+* Work anywhere: the same repository can be used on multiple machines;
+  you can work offline and synchronize later.
+* Collaboration: multiple contributors can work safely without
+  overwriting each other.
+* Review: changes can be inspected and discussed before they are merged.
+
+Once a local repository is connected to GitHub, only two commands are
+needed for routine synchronization.
+
+* `git push` uploads committed local changes to GitHub.
+* `git pull` downloads changes from GitHub and integrates them locally.
+
+### Authentication on GitHub (SSH)
+
+GitHub requires authentication before it accepts `git push`. A common
+method is SSH key authentication.
+
+SSH uses a key pair.
+
+* Private key: stays on your computer and must never be shared.
+* Public key: added to your GitHub account to identify your computer.
+
+Generate a key pair locally.
+
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+The key pair will be stored in the `.ssh` folder in your home directory.
+
+
+Display the public key.
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+Copy the public key to your clipboard.
+
+* macOS (Terminal):
+
+```bash
+pbcopy < ~/.ssh/id_ed25519.pub
+```
+
+* Windows (Git Bash):
+
+```bash
+cat ~/.ssh/id_ed25519.pub | clip
+```
+
+* Windows (PowerShell):
+
+```powershell
+Get-Content $env:USERPROFILE\.ssh\id_ed25519.pub | clip
+```
+
+* Linux / WSL:
+
+```bash
+sudo apt update
+sudo apt install xclip
+xclip -selection clipboard < ~/.ssh/id_ed25519.pub
+```
+
+Add the public key on GitHub.
+
+* Profile menu --- Settings
+* SSH and GPG keys --- New SSH key
+* Paste the key and save
+
+Test the connection.
+
+```bash
+ssh -T git@github.com
+```
+
+For up-to-date authentication, one may ask an AI assistant for help
+for your operating system. For example:
+
+* "How do I set up SSH keys for GitHub on Windows using Git Bash and
+  verify that `git push` works?"
+
+### Creating and Publishing a New Repository
+
+This workflow applies only if you already have a local Git repository.
+If not, create one first with `git init`.
+
+First, create a new empty repository on GitHub (do not initialize it
+with a README). Then connect your local repository to GitHub.
+
+```bash
+git remote add origin git@github.com:yourname/example-repo.git
+git branch -M main
+git push -u origin main
+```
+
+Here, `yourname` is your GitHub username and `example-repo` is the
+repository name you chose on GitHub.
+
+### Cloning an Existing Repository
+
+Cloning is used when the repository already exists on GitHub.
+Suppose that `someone` is the GitHub username or organization that owns
+a repository called `project`. To clone this repository to your
+own computer, first `cd` to the folder where you want put the repository
+and then:
+
+```bash
+git clone git@github.com:someone/project.git
+```
+
+Cloning creates a new local directory containing the full project
+history.
+
+
 ## Your Editing Home: Visual Studio Code
 
 ### What an IDE Is and Why VS Code
@@ -147,137 +405,6 @@ Markdown and Quarto documents.
 - Create a new Markdown file and write a short paragraph in it.
 - Use the command palette to install an extension.
 - Open the integrated terminal and run `ls` to view your project files.
-
-
-## Version Control with Git: Your Project’s Memory
-### Essential Git Commands
-
-- `git init` initializes a repository.
-- `git status` shows changes.
-- `git add` stages files.
-- `git commit -m "message"` records changes.
-- `git diff` displays differences.
-- `git push` sends changes to GitHub.
-- `git pull` retrieves updates.
-
-
-Version control is a foundational skill for data science because it
-treats your work as a living project with a complete history. Git lets
-you track every change you make, revert mistakes, create experimental
-branches, and collaborate without overwriting anyone’s work. Unlike
-saving multiple file versions by hand (e.g.,
-`project_final_v12_REAL`),
-Git provides a precise, automatic timeline of your edits. This makes
-your work reproducible, auditable, and shareable — all essential
-habits
-for scientific computing.
-
-### Why Git?
-
-Git offers a lightweight yet powerful system for managing all the
-changes in your project. It acts as “undo for your entire project,”
-not
-just for a single file, meaning you can always go back to a working
-state. For data science, reproducibility is everything: Git keeps a
-full
-record of how your analysis evolved, so others (and future you) can
-see
-exactly how results were produced. When working with classmates or
-research teams, Git prevents accidental overwriting and makes
-collaboration structured instead of chaotic.
-
-### Getting Started
-
-Installing Git
-- **macOS:** `brew install git`  
-- **Windows:** Download Git for Windows (Git Bash included) from  
-  <https://git-scm.com/downloads>
-- **Linux:** Install from your system’s package manager
-
-After installation, configure Git the first time you use it:
-
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "your@email.com"
-```
-
-Verify everything is correctly installed:
-
-```bash
-git --version
-git config --list
-```
-
-### Basic Workflow with Git Bash or VS Code
-
-Git works best when your project is organized as a clean folder
-containing scripts, Quarto files, and documentation.
-
-Common Git commands:
-
-- `git init` — start a new repository in your current folder  
-- `git status` — see what has changed  
-- `git add` — stage changes  
-- `git commit` — save changes with a message  
-
-Example workflow:
-
-```bash
-cd ds4hs
-git init
-git status
-git add .
-git commit -m "first commit: added folder structure"
-```
-
-A `.gitignore` file helps you avoid uploading unnecessary files such
-as
-large raw datasets, temporary folders, or system files. A typical
-example:
-
-```
-data/
-*.csv
-*.DS_Store
-```
-
-### Working with GitHub
-
-GitHub is the online home for your Git repositories. It allows you to
-publish your work, share it with others, and sync across computers.
-
-Typical GitHub workflow:
-
-- Create a new repository on GitHub (empty, no README).
-- Connect your local folder to that repository:
-
-```bash
-git remote add origin https://github.com/yourname/ds4hs.git
-git branch -M main
-git push -u origin main
-```
-
-- To download someone else’s project:
-
-```bash
-git clone https://github.com/someone/project.git
-```
-
-### Exercises
-
-- Create a `ds4hs` folder (if not already created), initialize it as a
-  Git repository, and make at least two commits showing meaningful
-  progress.
-- Write a `.gitignore` file that excludes data, temporary files, or OS
-  files on your system. Verify with `git status` that the ignored
-files
-  do not appear.
-- Create a new GitHub repository and publish your `ds4hs` project using
-  `git push`.
-- Clone a public GitHub repository of your choice. Explore its
-  structure: identify where code, documentation, and data are stored.
-- Modify your `ds4hs` project by adding a README, commit the change, and
-  push it to GitHub.
 
 
 ## Quarto: Reproducible Documents for Real Data Science
