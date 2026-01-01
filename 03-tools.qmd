@@ -2,8 +2,6 @@
 
 ## Introduction
 
-## Introduction
-
 This chapter introduces the tools required to carry out reproducible data
 science projects in this course. A reproducible project is one in which the
 full analysis --- data inputs, code, narrative, and results --- can be rerun
@@ -959,21 +957,20 @@ output.
 These steps reinforce the core idea of reproducibility: results are
 always generated from source, not copied or pasted.
 
-
-## Your Editing Home: Visual Studio Code
+## Visual Studio Code: An Integrated Development Environment
 
 ### What an IDE Is and Why VS Code
 
 An Integrated Development Environment (IDE) brings together tools for
-editing files, running code, and organizing projects in a single
-place. Unlike simple editors such as Notepad or TextEdit, an IDE
-understands project structure, highlights syntax, reports errors, and
-integrates directly with version control and command-line tools.
+editing files, running code, and organizing projects in a single place.
+Unlike simple editors such as Notepad or TextEdit, an IDE understands
+project structure, highlights syntax, reports errors, and integrates
+with version control and command-line tools.
 
-VS Code
+VS Code serves as a coordinating environment for this workflow:
 
 * Unified editor for text, code, and documents
-* Integrated terminal for Git, Python, R, and Quarto
+* Integrated terminal for Git, Python, R, Julia, and Quarto
 * Built-in file explorer and project navigation
 * Extension system for language and tool support
 * Native Git integration for version-controlled work
@@ -981,102 +978,123 @@ VS Code
 These features support a project-based, reproducible workflow rather
 than scattered scripts and files.
 
-### Installation and Setup
+### Installation
 
-If VS Code is not yet installed, download it from the official website
-at [https://code.visualstudio.com](https://code.visualstudio.com) and install the version for your
-operating system. On Windows, choose the System Installer (64-bit) and
-follow the default steps. On macOS, you may install it from the same
-website or via Homebrew using
+Install Visual Studio Code using the method appropriate for your
+system.
+
+Windows
+
+Download the System Installer (64-bit) from
+[https://code.visualstudio.com](https://code.visualstudio.com)
+and follow the default installation steps.
+
+macOS
+
+Download from the same website, or install via Homebrew:
 
 ```bash
 brew install --cask visual-studio-code
 ```
 
-After installation, open VS Code and confirm that it can see the tools
-you installed earlier. Open the integrated terminal (*View → Terminal*)
-and run
+Linux
+
+Install using your distribution's package manager or the official
+packages provided on the VS Code website.
+
+After installation, launch VS Code and open the integrated terminal
+(*View --- Terminal*). Confirm that it can see the tools you installed
+earlier:
 
 ```bash
 git --version
-python --version
 quarto --version
+```
+
+Also verify the language you chose to work with:
+
+```bash
+python --version   # if using Python
+R --version        # if using R
+julia --version    # if using Julia
 ```
 
 If these commands run successfully, VS Code is correctly connected to
 your existing setup.
 
-Next, install a small set of extensions that support data science
-workflows. Use the Extensions icon in the sidebar or open the command
-palette (Ctrl/Cmd + Shift + P) and choose “Extensions: Install
-Extensions.”
+### Extensions
 
-* Python — Editing support, autocomplete, linting, debugging, and
-  notebook integration for Python.
-* R — Editing and execution support for R scripts.
-* GitLens — Enhanced Git history, blame, and comparison tools.
-* Quarto — Authoring and previewing Quarto documents.
-* Markdown Shortcuts — Convenient commands for Markdown and Quarto
-  editing.
+VS Code functionality is extended through extensions. Install a small,
+focused set that supports reproducible data science work. Use the
+Extensions icon in the sidebar or open the command palette
+(Ctrl/Cmd + Shift + P) and choose *Extensions: Install Extensions*.
 
-These extensions do not install Python, R, Git, or Quarto; they only
-connect VS Code to tools you already installed.
+Core extensions (recommended for everyone)
+
+* Quarto --- Authoring, previewing, and rendering Quarto documents.
+* GitLens --- Enhanced Git history, blame, and comparison tools.
+
+Language-specific extensions (install the one you need)
+
+* Python --- Editing, linting, debugging, and notebook support for
+  Python.
+* R --- Editing and execution support for R scripts.
+* Julia --- Language support for Julia, including code execution.
+
+These extensions do not install Python, R, Julia, Git, or Quarto. They
+only connect VS Code to tools you already installed.
 
 ### Integrated Terminal and Shell Choice
 
 VS Code includes a built-in terminal so you can run command-line tools
-inside the editor. This avoids switching between separate terminal
-windows and keeps all work in one place. Open the terminal with *View →
-Terminal* or Ctrl+` (Control + backtick).
+inside the editor. This keeps editing and execution in one place. Open
+the terminal with *View --- Terminal* or Ctrl+` (Control + backtick).
 
-On Windows, it is often preferable to use Git Bash rather than
-PowerShell so that commands match those used in class. After installing
-Git for Windows, open the command palette (Ctrl/Cmd + Shift + P),
-choose “Preferences: Open User Settings (JSON),” and add
+On Windows, it is often preferable to use Git Bash so that commands
+match those used in Unix-like environments. After installing Git for
+Windows, open the command palette, choose *Preferences: Open User
+Settings (JSON)*, and add:
 
 ```json
 "terminal.integrated.defaultProfile.windows": "Git Bash"
 ```
 
 Restart the terminal. You can now run commands such as `cd`, `ls`,
-`git status`, and `quarto render` in a Unix-like environment directly
-inside VS Code.
+`git status`, and `quarto render` directly inside VS Code.
 
 ### Working with Projects in VS Code
 
 A core habit in VS Code is opening folders rather than individual
 files. When you open a folder, VS Code treats it as a project: it
-tracks files, recognizes structure, and enables Git integration. This
-is essential for reproducible data science work.
+tracks files, recognizes structure, and enables Git integration.
 
-Use *File → Open Folder* and select your project directory, such as
-`ds4hs/`. The sidebar then shows your files, Git status, and search
-tools in one place. The command palette (Ctrl/Cmd + Shift + P) provides
-fast access to nearly all VS Code features without navigating menus.
-VS Code also supports split editors for side-by-side viewing and works
-well for Markdown and Quarto documents.
+Use *File --- Open Folder* and select your project directory (for
+example, `ds4e/`). The sidebar then shows your files, Git status, and
+search tools in one place. The command palette provides fast access to
+nearly all VS Code features and reduces reliance on menus. VS Code also
+supports split editors for side-by-side viewing and works well for
+Markdown and Quarto documents.
 
 ### Good Practices
 
-* Always open a project folder (for example, `ds4hs/`) rather than
-  individual files.
+* Always open a project folder rather than individual files.
 * Keep all work in plain text: scripts, notes, and Quarto documents.
-* Use the integrated terminal for Git, Python, and Quarto commands.
-* Enable autosave and consider format-on-save for consistent files.
-* Avoid storing work on the desktop; keep everything inside your
-  project directory.
+* Use the integrated terminal for Git, language, and Quarto commands.
+* Enable autosave and consider format-on-save for consistency.
+* Keep all work inside your project directory, not on the desktop.
 
 ### Exercises
 
-* Open the `ds4hs` folder in VS Code using *File → Open Folder*.
+* Open your project folder in VS Code using *File --- Open Folder*.
 * Open the integrated terminal and confirm `git --version` works.
-* Create a new Markdown file and write a short paragraph in it.
-* Use the command palette to install one extension.
+* Verify the version of your chosen language.
+* Create a new Markdown file and write a short paragraph.
+* Install one language extension and the Quarto extension.
 * Run `ls` in the terminal and verify that it lists your project files.
 
 
 
-## Putting It All Together: Your First Data Science Project
+## First Data Science Project: Putting All Together
 
 This chapter integrates everything from Part I—command line, VS Code,
 Git, GitHub, Quarto, and Python/R—into a single, coherent project
