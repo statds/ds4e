@@ -474,6 +474,288 @@ foundation to introduce a reproducible data science workflow.
 <!-- * Modify the sample plot code to change colors, labels, or data. -->
 <!-- * Add a short paragraph in your Quarto file describing what you -->
 <!-- learned. -->
+## R
+
+R is a programming language designed for statistical computing and
+graphics. It is widely used in statistics, biostatistics, and the parts
+of data science that emphasize modeling, inference, and visualization.
+R also has an unusually strong culture of packaging and documentation,
+which makes it well suited for project-based work where others need to
+rerun and review an analysis.
+
+R is often preferred when the workflow depends on statistical modeling,
+publication-quality graphics, or domain-specific methods that are most
+mature in the R ecosystem. In practice, many projects use both Python
+and R, selecting the language based on the task rather than loyalty to a
+tool. This book uses Python as the default engine, but the workflow in
+this chapter applies equally well to R.
+
+To keep R-based projects reproducible, you must manage two things
+carefully: the R version and the set of R packages used by the project.
+The installation steps below install R, and the environment steps show
+how to record and restore project-specific package versions.
+
+### Installing R (R 4.5)
+
+Choose the instructions for your operating system.
+
+Windows (using winget)
+
+Open PowerShell (not Git Bash) and run:
+
+```bash
+winget install -e --id RProject.R
+```
+
+After installation, close and reopen your terminal.
+
+Verify that R is available:
+
+```bash
+R --version
+Rscript --version
+```
+
+If `R` is not found, it is usually because the installer did not add R
+to your PATH. In that case, locate your R installation (often under
+`C:\\Program Files\\R\\`) and either run `R.exe` / `Rscript.exe` from
+that folder or add the appropriate `bin` directory to your PATH.
+
+macOS (using Homebrew)
+
+Install R:
+
+```bash
+brew install r
+```
+
+Verify:
+
+```bash
+R --version
+Rscript --version
+```
+
+Linux (Debian / Ubuntu using apt)
+
+For a straightforward installation, use your system package manager:
+
+```bash
+sudo apt update
+sudo apt install r-base r-base-dev
+```
+
+Verify:
+
+```bash
+R --version
+Rscript --version
+```
+
+If your distribution provides an older R than you need, install from the
+CRAN-maintained Ubuntu repository and follow the current instructions in
+the CRAN "Ubuntu Packages For R" guide.
+
+### Creating a project library with renv
+
+R packages are installed into libraries, which are directories on disk.
+If you install packages globally, different projects can silently share
+(and overwrite) the same dependencies. This is convenient at first, but
+it eventually breaks reproducibility when package versions change.
+
+For R projects in this book, use `renv` to manage a per-project package
+library. `renv` creates a project-local library and records dependency
+versions in a lockfile (`renv.lock`). Anyone with the same R version can
+restore the project library from that lockfile.
+
+First, install `renv` (once per machine).
+
+```bash
+R -q -e "install.packages('renv')"
+```
+
+Then, from the root directory of an R project, initialize `renv`:
+
+```bash
+R -q -e "renv::init()"
+```
+
+Install core packages used in many projects:
+
+```bash
+R -q -e "install.packages(c('ggplot2', 'dplyr', 'readr'))"
+```
+
+Snapshot the environment to update `renv.lock`:
+
+```bash
+R -q -e "renv::snapshot()"
+```
+
+On another machine (or after deleting the project library), restore the
+environment from the lockfile:
+
+```bash
+R -q -e "renv::restore()"
+```
+
+In a Git repository, commit `renv.lock` and the `renv/` infrastructure
+files created by `renv`. Do not commit the installed package binaries in
+`renv/library/` unless you have a specific reason to do so.
+
+### A short R warm-up
+
+Before moving on, you should be comfortable with:
+
+* starting R from the command line,
+* running one-line commands with `R -e`,
+* writing and running scripts with `Rscript`,
+* using vectors, lists, and data frames,
+* loading packages and reading help pages.
+
+For an official warm-up that can be completed in a few hours, use the R
+Core Team manual "An Introduction to R" and work through the sections on
+objects, data structures, and graphics. As you work, practice using
+`help()` and `help.search()` to find documentation from within R.
+
+After completing this warm-up, you should be ready to write small R
+scripts and to render Quarto documents using R as the execution engine.
+
+## Julia
+
+Julia is a programming language designed for numerical and scientific
+computing. It combines a high-level, expressive syntax with performance
+that is often comparable to low-level languages such as C or Fortran.
+This design makes Julia attractive for simulation-heavy workloads,
+optimization, and research code where clarity and speed are both
+important.
+
+Julia is increasingly used in data science and applied statistics when
+projects involve custom algorithms, large simulations, or performance-
+critical components that would be cumbersome to write in other
+high-level languages. It is less ubiquitous than Python or R, but its
+package ecosystem is mature enough for many modeling, visualization,
+and data manipulation tasks.
+
+As with Python and R, reproducibility in Julia depends on controlling
+the language version and the exact versions of packages used. Julia was
+designed with this in mind: its built-in package manager records full
+dependency graphs for each project, making environment management a
+first-class feature rather than an add-on.
+
+### Installing Julia (1.x series)
+
+Choose the instructions for your operating system.
+
+Windows (using winget)
+
+Open PowerShell (not Git Bash) and run:
+
+```bash
+winget install -e --id JuliaLang.Julia
+```
+
+After installation, close and reopen your terminal.
+
+Verify:
+
+```bash
+julia --version
+```
+
+macOS (using Homebrew)
+
+Install Julia:
+
+```bash
+brew install julia
+```
+
+Verify:
+
+```bash
+julia --version
+```
+
+Linux
+
+Download the official Linux binary from the Julia website and extract
+it to a convenient location, such as `/opt/julia` or your home
+directory. Then add the `bin` directory to your PATH.
+
+Verify:
+
+```bash
+julia --version
+```
+
+If `julia` is not found, check that the directory containing the Julia
+binary is on your PATH.
+
+### Project environments with Julia's package manager
+
+Julia uses project environments to isolate dependencies. Each project
+is associated with a `Project.toml` file that lists direct dependencies
+and a `Manifest.toml` file that records the exact versions of all
+packages, including transitive dependencies.
+
+To create or activate a project environment, navigate to the project
+root directory and start Julia:
+
+```bash
+julia
+```
+
+At the Julia prompt, activate a local environment:
+
+```julia
+]
+activate .
+```
+
+The closing bracket `]` switches Julia into package manager mode. The
+command `activate .` tells Julia to use a project environment stored in
+the current directory.
+
+Add commonly used packages:
+
+```julia
+]
+add DataFrames CSV Plots
+```
+
+This creates (or updates) `Project.toml` and `Manifest.toml` in the
+project directory. These files fully specify the environment.
+
+On another machine, or after cloning the repository, activate the
+project and instantiate the environment:
+
+```julia
+]
+activate .
+instantiate
+```
+
+In a Git repository, commit both `Project.toml` and `Manifest.toml`.
+These files play the same role as `requirements.txt` or `renv.lock` in
+other languages, but with stricter guarantees about reproducibility.
+
+### A short Julia warm-up
+
+Before moving on, you should be comfortable with:
+
+* starting Julia from the command line,
+* using the Julia REPL and its help system,
+* activating and instantiating project environments,
+* working with arrays, dictionaries, and tables,
+* loading packages with `using` and `import`.
+
+A concise and authoritative starting point is the official Julia manual
+"Getting Started" and the sections on the REPL, packages, and
+performance tips. After this warm-up, you should be able to write small
+Julia scripts and use Julia as an execution engine in Quarto documents
+when a project benefits from Julia's performance and numerical
+strengths.
 
 
 ## Quarto: Reproducible Documents for Real Data Science
