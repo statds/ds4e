@@ -2,6 +2,8 @@
 
 ## Introduction
 
+## Introduction
+
 This chapter introduces the tools required to carry out reproducible data
 science projects in this course. A reproducible project is one in which the
 full analysis --- data inputs, code, narrative, and results --- can be rerun
@@ -25,19 +27,34 @@ The tools in this chapter form a coherent workflow rather than a loose
 collection of software. Git records the history of a project and makes changes
 explicit. GitHub provides a shared location for storing, submitting, and
 reviewing projects. Quarto allows code, text, and results to live in a single
-executable document. Python or R provides the computational engine for data
-analysis. VS Code serves as a coordinating environment that brings these tools
-together in daily work. Each tool plays a distinct role, and reproducibility
-emerges from their interaction.
+executable document. Python, R, or Julia provides the computational engine for
+data analysis. VS Code serves as a coordinating environment that brings these
+tools together in daily work. Each tool plays a distinct role, and
+reproducibility emerges from their interaction.
 
 
-In this course, all homework and projects are treated as reproducible data
-science projects. Submissions consist of files organized in a clear directory
-structure, tracked with version control, and rendered into reproducible
-documents. Screenshots, manually edited outputs, and undocumented analysis
-steps are not acceptable substitutes. By the end of this chapter, you should
-be able to set up a complete project, make changes in a controlled way, and
-produce results that can be reliably reproduced and reviewed.
+This chapter includes parallel setup sections for Python, R, and Julia.
+You only need to choose one language and follow that section. If you
+already know one of these languages, start there. Otherwise, Python, R,
+and Julia are all reasonable choices. Quarto can technically execute
+code cells written in different languages within the same document, but
+for clarity and consistency you are expected to work primarily in a
+single language. Once your chosen language is set up, you can skip the
+other language sections; the remainder of the book assumes a
+single-language workflow rather than switching between languages.
+
+
+All work produced using this setup is treated as a reproducible project.
+Files are organized in a clear directory structure, tracked with version
+control, and rendered into executable documents that combine narrative,
+code, and results. Screenshots, manually edited outputs, and undocumented
+analysis steps are not substitutes for this workflow. Once learned, this
+way of working is not limited to data science courses: the same tools
+can be used to manage assignments in other classes, maintain a research
+diary, write a blog, draft a novel, or even organize personal notes and
+creative writing. By the end of this chapter, you should be able to set
+up a complete project, make changes in a controlled way, and produce
+work that can be reliably revisited, reused, and shared.
 
 
 ## Git: Version Control for Reproducible Projects
