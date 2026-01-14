@@ -349,7 +349,7 @@ Choose the instructions for your operating system.
 Open **PowerShell** (not Git Bash) and run:
 
 ```
-winget install Python.Python.3.12
+winget install -e --id Python.Python.3.12
 ```
 
 After installation, close and reopen your terminal so that `python` is
@@ -802,7 +802,7 @@ independent of any editor.
 Open **PowerShell** and run:
 
 ```
-winget install Quarto.Quarto
+winget install --id Posit.Quarto -e
 ```
 
 Close and reopen the terminal after installation.
