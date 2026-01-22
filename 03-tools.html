@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.bib" rel="next">
+<link href="./04-chess.html" rel="next">
 <link href="./02-computer.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -165,6 +165,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./03-tools.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Right Tools for Data Science Projects</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-chess.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Simulation-Based Comparison of Elo and Glicko</span></span></a>
   </div>
 </li>
     </ul>
@@ -428,7 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Choose the instructions for your operating system.</p>
 <p><strong>Windows (using winget)</strong></p>
 <p>Open <strong>PowerShell</strong> (not Git Bash) and run:</p>
-<pre><code>winget install Python.Python.3.12</code></pre>
+<pre><code>winget install -e --id Python.Python.3.12</code></pre>
 <p>After installation, close and reopen your terminal so that <code>python</code> is available on the PATH.</p>
 <p><strong>macOS (using Homebrew)</strong></p>
 <p>If Homebrew is not installed, follow the instructions at <a href="https://brew.sh">https://brew.sh</a>.</p>
@@ -627,7 +633,7 @@ pip install numpy pandas matplotlib</code></pre>
 <p>Quarto is a command-line tool. We install and use it from the terminal, independent of any editor.</p>
 <p><strong>Windows (using winget)</strong></p>
 <p>Open <strong>PowerShell</strong> and run:</p>
-<pre><code>winget install Quarto.Quarto</code></pre>
+<pre><code>winget install --id Posit.Quarto -e</code></pre>
 <p>Close and reopen the terminal after installation.</p>
 <p><strong>macOS (using Homebrew)</strong></p>
 <pre><code>brew install quarto</code></pre>
@@ -1279,8 +1285,8 @@ quarto render my_first.qmd</code></pre>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.bib" class="pagination-link" aria-label="">
-        <span class="nav-page-text"></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./04-chess.html" class="pagination-link" aria-label="Simulation-Based Comparison of Elo and Glicko">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Simulation-Based Comparison of Elo and Glicko</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
