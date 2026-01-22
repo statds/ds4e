@@ -1,0 +1,303 @@
+# Simulation-Based Comparison of Elo and Glicko
+
+
+## Overview and Learning Goals
+
+This chapter describes a complete, reproducible data science project
+designed to compare the Elo and Glicko rating systems using simulation.
+The project is intentionally scoped so that it is feasible for beginner
+researchers (e.g., high school students) while still addressing questions
+that are relevant in the research literature.
+
+The goals of the chapter are:
+
+- To understand Elo and Glicko as statistical learning algorithms.
+- To design controlled simulations with known ground truth.
+- To evaluate rating systems using principled metrics.
+- To practice reproducible computational research.
+
+The chapter proceeds as a step-by-step roadmap, with clearly defined
+deliverables at each stage.
+
+
+## Project Structure and Reproducibility
+
+Before writing any modeling code, set up a reproducible project
+structure.
+
+Recommended directory layout:
+
+```
+project-root/
+  README.md
+  _quarto.yml
+  src/
+    elo.py
+    glicko.py
+    simulator.py
+    update_pipeline.py
+    evaluation.py
+  tests/
+    test_elo.py
+    test_glicko.py
+  results/
+  reports/
+```
+
+Key principles:
+
+- All randomness must be controlled by explicit random seeds.
+- All numerical constants (e.g., Elo K-factor) should be defined in one
+  place.
+- Running the full pipeline should produce the same results every time.
+
+
+
+## Phase 1: Implementing the Rating Systems
+
+This phase focuses on correctness and clarity, not speed or realism.
+
+### Elo Rating System
+
+The Elo system updates player ratings after each game according to
+
+$$
+R_A' = R_A + K (S_A - E_A),
+$$
+
+where \(S_A\) is the observed outcome and \(E_A\) is the expected win
+probability.
+
+Implementation tasks:
+
+- Write a function computing the expected score
+  $$
+  E_A = \frac{1}{1 + 10^{(R_B - R_A)/400}}.
+  $$
+- Write a function that updates two players’ ratings after a match.
+- Use a fixed value of \(K\) (e.g., \(K = 32\)) for all players.
+
+Required tests:
+
+- Symmetry: swapping players A and B swaps the updated ratings.
+- Zero-sum property: rating changes for the two players sum to zero.
+- Sanity check: when a much stronger player wins, the update is small.
+
+The Elo implementation should be short, readable, and fully tested.
+
+
+
+### Glicko Rating System
+
+The Glicko system extends Elo by tracking uncertainty in each player’s
+rating.
+
+Each player has:
+- a rating \(r\)
+- a rating deviation (RD), denoted \(\phi\)
+
+Implementation scope:
+
+- Implement **Glicko (1999)**, not Glicko-2.
+- Include RD inflation during periods of inactivity.
+- Use standard parameter values from the original paper.
+
+Conceptual interpretation for beginners:
+
+- Elo uses a fixed learning rate.
+- Glicko uses an adaptive learning rate controlled by RD.
+
+Required tests:
+
+- RD decreases as a player plays more games.
+- RD increases during inactivity.
+- Rating updates shrink as RD becomes small.
+
+At the end of this phase, Elo and Glicko updates should be interchangeable
+modules with identical inputs and outputs (except for RD).
+
+
+
+## Phase 2: Simulating Match Data
+
+Simulation allows us to evaluate rating systems against known truth.
+
+### Latent Skill Model
+
+Assign each player a true (unobserved) skill value:
+
+\[
+\theta_i \sim \mathcal{N}(0, 1).
+\]
+
+Match outcomes are generated probabilistically:
+
+\[
+\Pr(i \text{ beats } j) = \sigma(\theta_i - \theta_j),
+\quad
+\sigma(x) = \frac{1}{1 + e^{-x}}.
+\]
+
+Only the win/loss outcome is observed by the rating system.
+
+
+
+### Experimental Design Switches
+
+The simulator should support three independent design features.
+
+#### Cold-Start
+
+- Players enter the system with no prior games.
+- Some players play only a small number of early matches.
+- Goal: study early-game behavior and convergence speed.
+
+#### Inactivity
+
+- Each player is assigned an activity rate.
+- Time gaps between matches are explicitly simulated.
+- Goal: study how ratings behave after long periods without games.
+
+#### Matchmaking Bias
+
+- Opponents are not selected uniformly at random.
+- Examples:
+  - Similar-skill matchmaking.
+  - Stratified leagues.
+- Goal: study rating bias induced by non-random schedules.
+
+The simulator should output a single match log containing:
+- time index
+- player IDs
+- match outcome
+- true skills (for evaluation only)
+
+
+
+## Phase 3: Rating Update Pipeline
+
+Using the simulated match log:
+
+1. Initialize all player ratings.
+2. Process matches in chronological order.
+3. Update ratings using:
+   - Elo
+   - Glicko
+4. Store rating histories over time.
+
+The output should be a panel-style dataset containing, for each player
+and time point:
+- estimated rating
+- rating deviation (for Glicko)
+- number of games played
+
+This dataset is the input for all evaluation steps.
+
+
+
+## Phase 4: Evaluation Metrics
+
+Evaluation must be defined *before* inspecting results.
+
+### Predictive Accuracy
+
+Use proper scoring rules:
+
+- Log loss:
+  \[
+  -\frac{1}{N}\sum
+  \left[
+    y \log \hat{p} + (1-y)\log(1-\hat{p})
+  \right].
+  \]
+
+- Brier score:
+  \[
+  \frac{1}{N}\sum (y - \hat{p})^2.
+  \]
+
+Predictions should be computed using ratings *before* each match.
+
+
+
+### Skill Recovery
+
+Because true skills are known in simulation:
+
+- Compute correlation between estimated ratings and \(\theta\).
+- Compute mean absolute error after rescaling ratings to the skill scale.
+
+These metrics quantify how well each system recovers latent skill.
+
+
+
+### Stability and Uncertainty
+
+Key diagnostics:
+
+- Rating volatility by player activity level.
+- For Glicko: RD as a function of time since last match.
+
+These diagnostics test whether uncertainty behaves as intended.
+
+
+
+### Fairness Under Matchmaking Bias
+
+Evaluate error and rank bias by true-skill deciles.
+
+Questions of interest:
+
+- Are weaker players systematically over- or under-rated?
+- Does biased scheduling distort rank order?
+
+
+
+## Phase 5: Repeated Experiments and Uncertainty
+
+All results should be averaged over multiple simulation runs
+with different random seeds.
+
+Recommended outputs:
+
+- Mean performance metrics with standard errors.
+- Sensitivity plots across design parameters.
+- Summary tables comparing Elo and Glicko.
+
+
+
+## Reporting and Interpretation
+
+The final report should include:
+
+- Explicit assumptions and design choices.
+- Clear separation between results and interpretation.
+- Discussion of limitations (e.g., simplified skill model).
+- Reproducibility instructions.
+
+The emphasis should be on *clarity and insight*, not on algorithmic
+novelty.
+
+
+
+## Conceptual Takeaways
+
+This project illustrates several core ideas in data science:
+
+- Ratings as online statistical estimators.
+- Bias–variance tradeoffs in learning systems.
+- The role of uncertainty in sequential decision-making.
+- How design choices (e.g., matchmaking) affect inference.
+
+By controlling the data-generating process, students can see these ideas
+clearly and connect theory to practice.
+
+
+## Exercises
+
++ Phase 1
+    - Set up a GitHub repository to store this project.
+    - Clones it to an appropriate location on your computer.
+    - Add a `src` folder, and in it, add a `elo.py` file.
+    - In the `elo.py` file, write two functions, one to update the current ranking, and the other to compute the win probability.
+
