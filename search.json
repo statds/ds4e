@@ -308,5 +308,15 @@
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Simulation-Based Comparison of Elo and Glicko</span>"
     ]
+  },
+  {
+    "objectID": "04-chess.html#exercises",
+    "href": "04-chess.html#exercises",
+    "title": "4  Simulation-Based Comparison of Elo and Glicko",
+    "section": "4.10 Exercises",
+    "text": "4.10 Exercises\n\nPhase 1\n\nSet up a GitHub repository to store this project.\nClones it to an appropriate location on your computer.\nAdd a src folder, and in it, add a elo.py file.\nIn the elo.py file, write two functions, one to update the current ranking, and the other to compute the win probability.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Simulation-Based Comparison of Elo and Glicko</span>"
+    ]
   }
 ]
