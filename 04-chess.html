@@ -70,6 +70,14 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']]
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -241,8 +249,8 @@ window.Quarto = {
 <section id="project-structure-and-reproducibility" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="project-structure-and-reproducibility"><span class="header-section-number">4.2</span> Project Structure and Reproducibility</h2>
 <p>Before writing any modeling code, set up a reproducible project structure.</p>
-<p>Recommended directory layout:</p>
-<pre><code>project-root/
+<p>Suppose your project name is <code>chess-ranking</code>, its directory layout would enentually looks like:</p>
+<pre><code>chess-ranking
   README.md
   _quarto.yml
   src/
@@ -265,52 +273,132 @@ window.Quarto = {
 </section>
 <section id="phase-1-implementing-the-rating-systems" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="phase-1-implementing-the-rating-systems"><span class="header-section-number">4.3</span> Phase 1: Implementing the Rating Systems</h2>
-<p>This phase focuses on correctness and clarity, not speed or realism.</p>
+<p>This phase focuses on correctness and clarity rather than computational efficiency or realism. The goal is to implement each rating system in a transparent and verifiable way.</p>
 <section id="elo-rating-system" class="level3" data-number="4.3.1">
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="elo-rating-system"><span class="header-section-number">4.3.1</span> Elo Rating System</h3>
-<p>The Elo system updates player ratings after each game according to</p>
+<p>In the Elo rating system, each player is assigned a real-valued rating. Consider a match between player A and player B. Let <span class="math inline">\(R_A\)</span> and <span class="math inline">\(R_B\)</span> denote their ratings before the match.</p>
+<p>After the match, player A’s rating is updated according to</p>
 <p><span class="math display">\[
 R_A' = R_A + K (S_A - E_A),
 \]</span></p>
-<p>where (S_A) is the observed outcome and (E_A) is the expected win probability.</p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(R_A'\)</span> is player A’s updated rating,</li>
+<li><span class="math inline">\(K &gt; 0\)</span> is a fixed tuning parameter controlling the size of updates,</li>
+<li><span class="math inline">\(S_A\)</span> is the observed score for player A,</li>
+<li><span class="math inline">\(E_A\)</span> is the expected score for player A given the two ratings.</li>
+</ul>
+<p>The observed score <span class="math inline">\(S_A\)</span> is defined as - <span class="math inline">\(S_A = 1\)</span> if player A wins, - <span class="math inline">\(S_A = 0\)</span> if player A loses. (We ignore ties for now.)</p>
+<p>The expected score <span class="math inline">\(E_A\)</span> is defined by</p>
+<p><span class="math display">\[
+E_A = \frac{1}{1 + 10^{(R_B - R_A)/400}}.
+\]</span></p>
+<p>The update for player B is defined analogously, with <span class="math inline">\(S_B = 1 - S_A\)</span> and <span class="math inline">\(E_B = 1 - E_A\)</span>.</p>
 <p>Implementation tasks:</p>
 <ul>
-<li>Write a function computing the expected score <span class="math display">\[
-E_A = \frac{1}{1 + 10^{(R_B - R_A)/400}}.
-\]</span></li>
-<li>Write a function that updates two players’ ratings after a match.</li>
-<li>Use a fixed value of (K) (e.g., (K = 32)) for all players.</li>
+<li>Write a function that computes the expected score <span class="math inline">\(E_A\)</span> given <span class="math inline">\(R_A\)</span> and <span class="math inline">\(R_B\)</span>.</li>
+<li>Write a function that updates the ratings of two players after a single match.</li>
+<li>Use a fixed value of <span class="math inline">\(K\)</span> (for example, <span class="math inline">\(K = 32\)</span>) for all players.</li>
 </ul>
 <p>Required tests:</p>
 <ul>
 <li>Symmetry: swapping players A and B swaps the updated ratings.</li>
-<li>Zero-sum property: rating changes for the two players sum to zero.</li>
-<li>Sanity check: when a much stronger player wins, the update is small.</li>
+<li>Zero-sum property: <span class="math inline">\((R_A' - R_A) + (R_B' - R_B) = 0\)</span>.</li>
+<li>Sanity check: when a much higher-rated player defeats a much lower-rated player, the rating update is small.</li>
 </ul>
-<p>The Elo implementation should be short, readable, and fully tested.</p>
+<p>The final Elo implementation should be short, readable, and fully tested.</p>
 </section>
 <section id="glicko-rating-system" class="level3" data-number="4.3.2">
 <h3 data-number="4.3.2" class="anchored" data-anchor-id="glicko-rating-system"><span class="header-section-number">4.3.2</span> Glicko Rating System</h3>
-<p>The Glicko system extends Elo by tracking uncertainty in each player’s rating.</p>
-<p>Each player has: - a rating (r) - a rating deviation (RD), denoted ()</p>
-<p>Implementation scope:</p>
+<p>The Glicko (1999) system extends Elo by tracking uncertainty in each player’s rating. Each player <span class="math inline">\(i\)</span> is represented by</p>
+<ul>
+<li><span class="math inline">\(r_i\)</span>: rating (real-valued, on the Elo-like scale),</li>
+<li><span class="math inline">\(\phi_i\)</span>: rating deviation (RD), with <span class="math inline">\(\phi_i \ge 0\)</span>.</li>
+</ul>
+<p>Interpretation: <span class="math inline">\(\phi_i\)</span> is a standard-deviation-like uncertainty measure; smaller <span class="math inline">\(\phi_i\)</span> implies higher confidence in <span class="math inline">\(r_i\)</span>.</p>
+<p>The system updates ratings in discrete rating periods. Within a rating period, each player may play <span class="math inline">\(m\)</span> games. Updates are applied once per period.</p>
+<p>Notation for a rating period for a focal player <span class="math inline">\(A\)</span>:</p>
+<ul>
+<li>Pre-period state: <span class="math inline">\((r_A, \phi_A)\)</span>.</li>
+<li>Opponents indexed by <span class="math inline">\(j = 1, \dots, m\)</span> with pre-period states <span class="math inline">\((r_j, \phi_j)\)</span>.</li>
+<li>Outcomes: <span class="math inline">\(s_j \in \{0, 1\}\)</span> is the score of player <span class="math inline">\(A\)</span> against opponent <span class="math inline">\(j\)</span> (win <span class="math inline">\(=1\)</span>, loss <span class="math inline">\(=0\)</span>). (Draws can be added later with <span class="math inline">\(s_j=1/2\)</span>.)</li>
+<li>Constant: <span class="math inline">\(q = \ln(10)/400\)</span>.</li>
+</ul>
+<p>Step 0 (RD inflation for inactivity)</p>
+<p>Let <span class="math inline">\(\phi_A^{\ast}\)</span> denote the inflated RD at the start of the rating period (before using current results). If <span class="math inline">\(t\)</span> rating periods have elapsed since player <span class="math inline">\(A\)</span> last competed, inflate by</p>
+<p><span class="math display">\[
+\phi_A^{\ast} = \min\left(\sqrt{\phi_A^2 + c^2 t},\ 350\right),
+\]</span></p>
+<p>where <span class="math inline">\(c &gt; 0\)</span> is a system constant and <span class="math inline">\(350\)</span> is the conventional RD cap (also used as the RD for an unrated player).</p>
+<p>Step 1 (Opponent-weighting function)</p>
+<p>For each opponent <span class="math inline">\(j\)</span>, define the weight</p>
+<p><span class="math display">\[
+g(\phi_j) = \frac{1}{\sqrt{1 + \frac{3 q^2 \phi_j^2}{\pi^2}}}.
+\]</span></p>
+<p>Opponents with large <span class="math inline">\(\phi_j\)</span> (high uncertainty) receive smaller weight.</p>
+<p>Step 2 (Expected score per game)</p>
+<p>For each opponent <span class="math inline">\(j\)</span>, define the expected score for player <span class="math inline">\(A\)</span> as</p>
+<p><span class="math display">\[
+E_j
+= \frac{1}{1 + 10^{-g(\phi_j)(r_A - r_j)/400}}.
+\]</span></p>
+<p>Step 3 (Estimated variance term)</p>
+<p>Define</p>
+<p><span class="math display">\[
+d^2
+= \left[
+q^2 \sum_{j=1}^m g(\phi_j)^2\, E_j(1 - E_j)
+\right]^{-1}.
+\]</span></p>
+<p>Step 4 (Rating update)</p>
+<p>Update player <span class="math inline">\(A\)</span>’s rating by</p>
+<p><span class="math display">\[
+r_A'
+= r_A
++ \frac{q}{\frac{1}{(\phi_A^{\ast})^2} + \frac{1}{d^2}}
+\sum_{j=1}^m g(\phi_j)\, (s_j - E_j).
+\]</span></p>
+<p>Step 5 (RD update)</p>
+<p>Update player <span class="math inline">\(A\)</span>’s RD by</p>
+<p><span class="math display">\[
+\phi_A'
+= \sqrt{
+\left(
+\frac{1}{(\phi_A^{\ast})^2} + \frac{1}{d^2}
+\right)^{-1}
+}.
+\]</span></p>
+<p>Implementation scope</p>
 <ul>
 <li>Implement <strong>Glicko (1999)</strong>, not Glicko-2.</li>
-<li>Include RD inflation during periods of inactivity.</li>
-<li>Use standard parameter values from the original paper.</li>
+<li>Use rating-period updates (batch within-period games, then update once).</li>
+<li>Include RD inflation via <span class="math inline">\(\phi^{\ast}\)</span> and cap RD at <span class="math inline">\(350\)</span>.</li>
+<li>Use <span class="math inline">\(q = \ln(10)/400\)</span> and the functions <span class="math inline">\(g(\cdot)\)</span>, <span class="math inline">\(E_j\)</span>, <span class="math inline">\(d^2\)</span> above.</li>
+<li>Choose <span class="math inline">\(c\)</span> using the guidance in the paper: select <span class="math inline">\(c\)</span> so RD grows from a “typical” active-player RD to near <span class="math inline">\(350\)</span> over a chosen number of inactive rating periods.</li>
 </ul>
-<p>Conceptual interpretation for beginners:</p>
+<p>Conceptual interpretation (for beginners)</p>
 <ul>
-<li>Elo uses a fixed learning rate.</li>
-<li>Glicko uses an adaptive learning rate controlled by RD.</li>
+<li>Elo uses a fixed step size <span class="math inline">\(K\)</span>.</li>
+<li>Glicko uses an adaptive step size.</li>
+<li>Larger <span class="math inline">\(\phi_A^{\ast}\)</span> implies larger updates to <span class="math inline">\(r_A\)</span>; smaller <span class="math inline">\(\phi_A^{\ast}\)</span> implies smaller updates.</li>
 </ul>
-<p>Required tests:</p>
+<p>Required tests</p>
 <ul>
-<li>RD decreases as a player plays more games.</li>
-<li>RD increases during inactivity.</li>
-<li>Rating updates shrink as RD becomes small.</li>
+<li>RD contraction: holding opponents fixed, <span class="math inline">\(\phi_A' &lt; \phi_A^{\ast}\)</span> when <span class="math inline">\(m \ge 1\)</span> (i.e., playing provides information).</li>
+<li>RD inflation: if <span class="math inline">\(t\)</span> increases (more inactivity), then <span class="math inline">\(\phi_A^{\ast}\)</span> increases until capped at <span class="math inline">\(350\)</span>.</li>
+<li>Shrinking updates: for fixed results, <span class="math inline">\(|r_A' - r_A|\)</span> decreases as <span class="math inline">\(\phi_A^{\ast}\)</span> decreases.</li>
 </ul>
-<p>At the end of this phase, Elo and Glicko updates should be interchangeable modules with identical inputs and outputs (except for RD).</p>
+<p>Interchangeable module requirement</p>
+<p>Define a common match record format and a common update interface.</p>
+<ul>
+<li>Inputs: list of games for the rating period with fields (player_id, opponent_id, outcome), plus current player states.</li>
+<li>Outputs:
+<ul>
+<li>Elo: updated ratings.</li>
+<li>Glicko: updated ratings and updated RDs.</li>
+</ul></li>
+</ul>
+<p>The calling code should not need to know which system is used, aside from whether RD is tracked.</p>
 </section>
 </section>
 <section id="phase-2-simulating-match-data" class="level2" data-number="4.4">
