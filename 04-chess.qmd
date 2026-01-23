@@ -25,10 +25,11 @@ deliverables at each stage.
 Before writing any modeling code, set up a reproducible project
 structure.
 
-Recommended directory layout:
+Suppose your project name is `chess-ranking`, its directory layout
+would enentually looks like:
 
 ```
-project-root/
+chess-ranking
   README.md
   _quarto.yml
   src/
@@ -55,66 +56,196 @@ Key principles:
 
 ## Phase 1: Implementing the Rating Systems
 
-This phase focuses on correctness and clarity, not speed or realism.
+
+This phase focuses on correctness and clarity rather than computational
+efficiency or realism. The goal is to implement each rating system in a
+transparent and verifiable way.
+
 
 ### Elo Rating System
 
-The Elo system updates player ratings after each game according to
+
+
+In the Elo rating system, each player is assigned a real-valued rating.
+Consider a match between player A and player B. Let $R_A$ and $R_B$ denote
+their ratings before the match.
+
+After the match, player A’s rating is updated according to
 
 $$
 R_A' = R_A + K (S_A - E_A),
 $$
 
-where \(S_A\) is the observed outcome and \(E_A\) is the expected win
-probability.
+where:
+
+- $R_A'$ is player A’s updated rating,
+- $K > 0$ is a fixed tuning parameter controlling the size of updates,
+- $S_A$ is the observed score for player A,
+- $E_A$ is the expected score for player A given the two ratings.
+
+The observed score $S_A$ is defined as
+- $S_A = 1$ if player A wins,
+- $S_A = 0$ if player A loses.
+(We ignore ties for now.)
+
+
+The expected score $E_A$ is defined by
+
+$$
+E_A = \frac{1}{1 + 10^{(R_B - R_A)/400}}.
+$$
+
+The update for player B is defined analogously, with
+$S_B = 1 - S_A$ and $E_B = 1 - E_A$.
 
 Implementation tasks:
 
-- Write a function computing the expected score
-  $$
-  E_A = \frac{1}{1 + 10^{(R_B - R_A)/400}}.
-  $$
-- Write a function that updates two players’ ratings after a match.
-- Use a fixed value of \(K\) (e.g., \(K = 32\)) for all players.
+- Write a function that computes the expected score $E_A$ given $R_A$ and
+  $R_B$.
+- Write a function that updates the ratings of two players after a single
+  match.
+- Use a fixed value of $K$ (for example, $K = 32$) for all players.
 
 Required tests:
 
 - Symmetry: swapping players A and B swaps the updated ratings.
-- Zero-sum property: rating changes for the two players sum to zero.
-- Sanity check: when a much stronger player wins, the update is small.
+- Zero-sum property: $(R_A' - R_A) + (R_B' - R_B) = 0$.
+- Sanity check: when a much higher-rated player defeats a much lower-rated
+  player, the rating update is small.
 
-The Elo implementation should be short, readable, and fully tested.
-
+The final Elo implementation should be short, readable, and fully tested.
 
 
 ### Glicko Rating System
 
-The Glicko system extends Elo by tracking uncertainty in each player’s
-rating.
+The Glicko (1999) system extends Elo by tracking uncertainty in each
+player’s rating. Each player $i$ is represented by
 
-Each player has:
-- a rating \(r\)
-- a rating deviation (RD), denoted \(\phi\)
+- $r_i$: rating (real-valued, on the Elo-like scale),
+- $\phi_i$: rating deviation (RD), with $\phi_i \ge 0$.
 
-Implementation scope:
+Interpretation: $\phi_i$ is a standard-deviation-like uncertainty measure;
+smaller $\phi_i$ implies higher confidence in $r_i$. 
 
-- Implement **Glicko (1999)**, not Glicko-2.
-- Include RD inflation during periods of inactivity.
-- Use standard parameter values from the original paper.
+The system updates ratings in discrete rating periods. Within a rating
+period, each player may play $m$ games. Updates are applied once per period.
 
-Conceptual interpretation for beginners:
+Notation for a rating period for a focal player $A$:
 
-- Elo uses a fixed learning rate.
-- Glicko uses an adaptive learning rate controlled by RD.
+- Pre-period state: $(r_A, \phi_A)$.
+- Opponents indexed by $j = 1, \dots, m$ with pre-period states
+  $(r_j, \phi_j)$.
+- Outcomes: $s_j \in \{0, 1\}$ is the score of player $A$ against opponent
+  $j$ (win $=1$, loss $=0$). (Draws can be added later with $s_j=1/2$.)
+- Constant: $q = \ln(10)/400$.
 
-Required tests:
+Step 0 (RD inflation for inactivity)
 
-- RD decreases as a player plays more games.
-- RD increases during inactivity.
-- Rating updates shrink as RD becomes small.
+Let $\phi_A^{\ast}$ denote the inflated RD at the start of the rating
+period (before using current results). If $t$ rating periods have elapsed
+since player $A$ last competed, inflate by
 
-At the end of this phase, Elo and Glicko updates should be interchangeable
-modules with identical inputs and outputs (except for RD).
+$$
+\phi_A^{\ast} = \min\left(\sqrt{\phi_A^2 + c^2 t},\ 350\right),
+$$
+
+where $c > 0$ is a system constant and $350$ is the conventional RD cap
+(also used as the RD for an unrated player).
+
+Step 1 (Opponent-weighting function)
+
+For each opponent $j$, define the weight
+
+$$
+g(\phi_j) = \frac{1}{\sqrt{1 + \frac{3 q^2 \phi_j^2}{\pi^2}}}.
+$$
+
+Opponents with large $\phi_j$ (high uncertainty) receive smaller weight.
+
+Step 2 (Expected score per game)
+
+For each opponent $j$, define the expected score for player $A$ as
+
+$$
+E_j
+= \frac{1}{1 + 10^{-g(\phi_j)(r_A - r_j)/400}}.
+$$
+
+Step 3 (Estimated variance term)
+
+Define
+
+$$
+d^2
+= \left[
+q^2 \sum_{j=1}^m g(\phi_j)^2\, E_j(1 - E_j)
+\right]^{-1}.
+$$
+
+Step 4 (Rating update)
+
+Update player $A$’s rating by
+
+$$
+r_A'
+= r_A
++ \frac{q}{\frac{1}{(\phi_A^{\ast})^2} + \frac{1}{d^2}}
+\sum_{j=1}^m g(\phi_j)\, (s_j - E_j).
+$$
+
+Step 5 (RD update)
+
+Update player $A$’s RD by
+
+$$
+\phi_A'
+= \sqrt{
+\left(
+\frac{1}{(\phi_A^{\ast})^2} + \frac{1}{d^2}
+\right)^{-1}
+}.
+$$
+
+Implementation scope
+
+- Implement **Glicko (1999)**, not Glicko-2. 
+- Use rating-period updates (batch within-period games, then update once).
+- Include RD inflation via $\phi^{\ast}$ and cap RD at $350$.
+- Use $q = \ln(10)/400$ and the functions $g(\cdot)$, $E_j$, $d^2$ above.
+- Choose $c$ using the guidance in the paper: select $c$ so RD grows from a
+  “typical” active-player RD to near $350$ over a chosen number of inactive
+  rating periods.
+
+Conceptual interpretation (for beginners)
+
+- Elo uses a fixed step size $K$.
+- Glicko uses an adaptive step size.
+- Larger $\phi_A^{\ast}$ implies larger updates to $r_A$; smaller
+  $\phi_A^{\ast}$ implies smaller updates.
+
+Required tests
+
+- RD contraction: holding opponents fixed, $\phi_A' < \phi_A^{\ast}$ when
+  $m \ge 1$ (i.e., playing provides information).
+- RD inflation: if $t$ increases (more inactivity), then $\phi_A^{\ast}$
+  increases until capped at $350$.
+- Shrinking updates: for fixed results, $|r_A' - r_A|$ decreases as
+  $\phi_A^{\ast}$ decreases.
+
+Interchangeable module requirement
+
+Define a common match record format and a common update interface.
+
+- Inputs: list of games for the rating period with fields
+  (player_id, opponent_id, outcome), plus current player states.
+- Outputs:
+  - Elo: updated ratings.
+  - Glicko: updated ratings and updated RDs.
+
+The calling code should not need to know which system is used, aside from
+whether RD is tracked.
+
+
 
 
 
