@@ -54,266 +54,116 @@ creative writing. By the end of this chapter, you should be able to set
 up a complete project, make changes in a controlled way, and produce
 work that can be reliably revisited, reused, and shared.
 
+In the rest of this chapter, tools are introduced in the order you need
+them in a real workflow: command line first, then a language, then Quarto,
+then Git, then an editor, and finally GitHub.
 
-## Git: Version Control for Reproducible Projects
+## The Command Line Is the Foundation
 
-### Why Git?
+This chapter assumes you have already learned the basics of the command
+line (also called the shell) earlier in the book. The command line is the
+foundation for the entire tooling workflow, because it is the same on any
+computer and it works with any editor.
 
-Version control is a foundational skill for data science because it treats
-your work as a living project with a complete history. Git lets you track
-every change you make, recover from mistakes, and collaborate without
-overwriting anyone’s work. Unlike saving multiple file versions by hand
-(e.g., `project_final_v12_REAL`), Git provides a precise, automatic timeline
-of your edits. This makes your work reproducible, auditable, and shareable,
-which are essential habits for scientific computing and data science
-projects.
+### Why the command line still matters
 
-Git is used to manage data science projects as evolving artifacts rather than one-time snapshots. Analyses typically change as
-data are cleaned, models are revised, and interpretations improve. A Git
-repository should contain only the files needed to understand, reproduce,
-and extend a project---nothing more.
+For many beginners, the command line feels old-fashioned compared to
+graphical menus. In practice, it remains central to technical work for
+several reasons.
 
-### Installing Git
+- **Speed.** Typing commands is often faster than navigating menus.
+  Autocompletion means you rarely type full filenames or commands.
+- **Precision.** A command specifies exactly which program and which
+  files are used. There is no ambiguity about what happened.
+- **Reproducibility.** Commands can be written down, copied, and rerun.
+  Mouse clicks cannot be reliably reproduced.
+- **Universality.** The same commands work in a regular terminal, on a
+  remote server, or inside an editor such as VSCodium.
+- **Professional practice.** In movies and television, technical experts
+  are almost always shown typing commands rather than clicking icons.
+  This reflects reality: serious technical work rewards tools that favor
+  speed, precision, and repeatability.
 
-Git must be installed before it can be used. Use the method appropriate
-for your system.
+Throughout this chapter, you will repeatedly do three things:
 
-* **Windows (PowerShell):**
+- Navigate into a project folder
+- Run a program (Git, Quarto, Python/R/Julia)
+- Check what happened (files created, versions, error messages)
 
-```powershell
-winget install --id Git.Git -e
-```
-
-This installs Git together with **Git Bash**, a terminal environment used
-throughout this book. Do not run `winget` inside Git Bash.
-
-* **macOS (Homebrew):**
-
-```bash
-brew install git
-```
-
-* **Debian / Ubuntu Linux (including WSL):**
+When you install a tool, you should also verify it from the command line.
+A typical verification pattern is:
 
 ```bash
-sudo apt update
-sudo apt install git
+toolname --version
 ```
 
-After installation, configure Git once so your work is properly attributed:
 
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "your@email.com"
-```
-
-Verify that Git is installed and configured correctly:
+For example:
 
 ```bash
 git --version
-git config --list
+quarto --version
+python --version
+R --version
+julia --version
 ```
 
-### Essential Git Commands
+You do not need to memorize commands. The goal is to build the habit of
+checking what is installed and what version you are using.
 
-Git is most effective when you stage files deliberately and keep the
-repository clean. The following commands form the core of everyday Git
-usage in data science projects.
+## The Workflow Before the Tools (A Conceptual Preview)
 
-* `git init` initializes a repository in a project folder.
-* `git status` shows which files have changed.
-* `git add <file>` stages selected files to be recorded.
-* `git commit -m "message"` saves a snapshot of staged changes.
-* `git diff` displays differences between versions.
-* `git push` sends committed changes to a remote repository, such as one hosted on GitHub.
-* `git pull` retrieves updates from a remote repository, such as one hosted on GitHub.
+Before installing anything, it helps to see the full workflow at a high
+level. Reproducible data science is not one tool. It is a small system of
+tools that work together.
 
-These two commands are where Git connects to an online platform. A common
-example of such a platform is GitHub, which serves as a shared location
-for backing up work and collaborating on projects. The next section focuses
-on GitHub itself and how it is used in our workflow.
+A typical workflow looks like this:
 
+- Write a Quarto file (`.qmd`) that contains text and code
+- Run the code using your chosen language (Python, R, or Julia)
+- Render the Quarto file into an output document (usually HTML)
+- Use Git to record snapshots of your work (commits)
+- Use GitHub to share the work and collaborate
 
-Avoid using `git add .` as a default habit. It often stages generated
-files, temporary outputs, or other unintended content. Staging files
-explicitly helps keep repositories small, readable, and reproducible.
+The transcript below is a preview. Do not try to run it yet. You will
+install the tools and run these commands later, step by step.
 
-### Basic Workflow
+```text
+# create a project folder
+mkdir my-project
+cd my-project
 
-Git works best when your project is organized as a single folder containing
-scripts, Quarto files, and documentation. A typical workflow follows a
-simple cycle: edit files, inspect what changed, stage selected files, and
-commit them with a short message explaining what was done.
+# write a Quarto file (in an editor)
+# then render it
+quarto render analysis/report.qmd
 
-```bash
-cd ds4hs
+# record your work with Git
 git init
-git status
-git add README.md
-git add analysis.qmd
-git commit -m "initial project structure"
-```
+mkdir analysis
+notepad analysis/report.qmd
 
-Git can also connect your local project to a remote repository hosted
-online. This idea is introduced above when discussing `git push` and
-`git pull`, and it is developed in detail in the next section, which
-focuses on GitHub as a concrete example of an online hosting platform.
+git add analysis/report.qmd
+git commit -m "First report"
 
-
-### Good Practices for Git
-
-Good Git usage is less about memorizing commands and more about developing
-clean, repeatable habits. The following practices are especially important
-for reproducible data science projects:
-
-* **Keep the repository clean.** Track only files that are needed to
-  understand, reproduce, and extend the project. Avoid committing
-  generated files, rendered outputs, large raw datasets, or temporary
-  artifacts unless they are explicitly required.
-
-* **Stage files deliberately.** Add files explicitly rather than staging
-  everything at once. This helps prevent accidental inclusion of
-  unnecessary or generated content.
-
-* **Commit small, logical changes.** Each commit should represent a
-  coherent step in the project, making the history easier to read and
-  reason about.
-
-* **Write informative commit messages.** A short message explaining what
-  changed and why is more valuable than a vague description.
-
-* **Use `.gitignore` consistently.** The `.gitignore` file is the primary
-  mechanism for keeping a repository clean over time. It tells Git which
-  files should never be tracked, such as temporary outputs, cache
-  directories, and system-specific files.
-
-
-## GitHub: Hosting and Collaboration for Git Projects
-
-### What GitHub Is and Why It Matters
-
-GitHub is an online platform that hosts Git repositories. Git manages
-project history on your computer, while GitHub stores a synchronized copy
-online. GitHub adds four capabilities that local Git alone does not
-provide.
-
-* Backup: a remote copy protects against local hardware failure.
-* Work anywhere: the same repository can be used on multiple machines;
-  you can work offline and synchronize later.
-* Collaboration: multiple contributors can work safely without
-  overwriting each other.
-* Review: changes can be inspected and discussed before they are merged.
-
-Once a local repository is connected to GitHub, only two commands are
-needed for routine synchronization.
-
-* `git push` uploads committed local changes to GitHub.
-* `git pull` downloads changes from GitHub and integrates them locally.
-
-### Authentication on GitHub (SSH)
-
-GitHub requires authentication before it accepts `git push`. A common
-method is SSH key authentication.
-
-SSH uses a key pair.
-
-* Private key: stays on your computer and must never be shared.
-* Public key: added to your GitHub account to identify your computer.
-
-Generate a key pair locally.
-
-```bash
-ssh-keygen -t ed25519 -C "your_email@example.com"
-```
-The key pair will be stored in the `.ssh` folder in your home directory.
-
-
-Display the public key.
-
-```bash
-cat ~/.ssh/id_ed25519.pub
-```
-
-Copy the public key to your clipboard.
-
-* macOS (Terminal):
-
-```bash
-pbcopy < ~/.ssh/id_ed25519.pub
-```
-
-* Windows (Git Bash):
-
-```bash
-cat ~/.ssh/id_ed25519.pub | clip
-```
-
-* Windows (PowerShell):
-
-```powershell
-Get-Content $env:USERPROFILE\.ssh\id_ed25519.pub | clip
-```
-
-* Linux / WSL:
-
-```bash
-sudo apt update
-sudo apt install xclip
-xclip -selection clipboard < ~/.ssh/id_ed25519.pub
-```
-
-Add the public key on GitHub.
-
-* Profile menu --- Settings
-* SSH and GPG keys --- New SSH key
-* Paste the key and save
-
-Test the connection.
-
-```bash
-ssh -T git@github.com
-```
-
-For up-to-date authentication, one may ask an AI assistant for help
-for your operating system. For example:
-
-* "How do I set up SSH keys for GitHub on Windows using Git Bash and
-  verify that `git push` works?"
-
-### Creating and Publishing a New Repository
-
-This workflow applies only if you already have a local Git repository.
-If not, create one first with `git init`.
-
-First, create a new empty repository on GitHub (do not initialize it
-with a README). Then connect your local repository to GitHub.
-
-```bash
-git remote add origin git@github.com:yourname/example-repo.git
-git branch -M main
+# share your work on GitHub (after setup)
+git remote add origin <url>
 git push -u origin main
 ```
 
-Here, `yourname` is your GitHub username and `example-repo` is the
-repository name you chose on GitHub.
+If you understand the purpose of each line in this transcript by the end
+of the chapter, you have learned the core tooling workflow.
 
-### Cloning an Existing Repository
+## Gate 1: Choose a Programming Language and Set Up Its Environment
 
-Cloning is used when the repository already exists on GitHub.
-Suppose that `someone` is the GitHub username or organization that owns
-a repository called `project`. To clone this repository to your
-own computer, first `cd` to the folder where you want put the repository
-and then:
+In this book, you will write code in one programming language.
+Choose exactly one language to start (Python, R, or Julia), and follow the
+installation instructions for that language only. You can always learn a
+second language later.
 
-```bash
-git clone git@github.com:someone/project.git
-```
+This gate has one goal: you should be able to run a short piece of code
+from the command line.
 
-Cloning creates a new local directory containing the full project
-history.
-
-
-## Python
+### Python
 
 Python is the most widely used programming language in modern data
 science and an excellent first language for beginners. Its clean,
@@ -334,7 +184,7 @@ also an excellent language, especially for statistics, Python will be
 the default language in this book, with R treated as an optional
 companion.
 
-### Installing Python (Python 3.12)
+#### Installing Python (Python 3.12)
 
 We will use **Python 3.12**. At the time of writing, this version is
 supported by major scientific and machine-learning libraries, including
@@ -399,7 +249,7 @@ Python 3.12.x
 
 If this command fails, resolve the installation before continuing.
 
-### Creating a virtual environment
+#### Creating a virtual environment
 
 Virtual environments should be created in a deliberate and consistent
 location. We recommend creating a dedicated directory in your home
@@ -450,7 +300,7 @@ To leave the environment, run:
 deactivate
 ```
 
-### A short Python warm-up
+#### A short Python warm-up
 
 Before moving on, you should be comfortable with:
 
@@ -489,7 +339,8 @@ foundation to introduce a reproducible data science workflow.
 <!-- * Modify the sample plot code to change colors, labels, or data. -->
 <!-- * Add a short paragraph in your Quarto file describing what you -->
 <!-- learned. -->
-## R
+
+### R
 
 R is a programming language designed for statistical computing and
 graphics. It is widely used in statistics, biostatistics, and the parts
@@ -510,7 +361,7 @@ carefully: the R version and the set of R packages used by the project.
 The installation steps below install R, and the environment steps show
 how to record and restore project-specific package versions.
 
-### Installing R (R 4.5)
+#### Installing R (R 4.5)
 
 Choose the instructions for your operating system.
 
@@ -571,7 +422,7 @@ If your distribution provides an older R than you need, install from the
 CRAN-maintained Ubuntu repository and follow the current instructions in
 the CRAN "Ubuntu Packages For R" guide.
 
-### Creating a project library with renv
+#### Creating a project library with renv
 
 R packages are installed into libraries, which are directories on disk.
 If you install packages globally, different projects can silently share
@@ -618,7 +469,7 @@ In a Git repository, commit `renv.lock` and the `renv/` infrastructure
 files created by `renv`. Do not commit the installed package binaries in
 `renv/library/` unless you have a specific reason to do so.
 
-### A short R warm-up
+#### A short R warm-up
 
 Before moving on, you should be comfortable with:
 
@@ -636,7 +487,7 @@ objects, data structures, and graphics. As you work, practice using
 After completing this warm-up, you should be ready to write small R
 scripts and to render Quarto documents using R as the execution engine.
 
-## Julia
+### Julia
 
 Julia is a programming language designed for numerical and scientific
 computing. It combines a high-level, expressive syntax with performance
@@ -658,7 +509,7 @@ designed with this in mind: its built-in package manager records full
 dependency graphs for each project, making environment management a
 first-class feature rather than an add-on.
 
-### Installing Julia (1.x series)
+#### Installing Julia (1.x series)
 
 Choose the instructions for your operating system.
 
@@ -707,7 +558,7 @@ julia --version
 If `julia` is not found, check that the directory containing the Julia
 binary is on your PATH.
 
-### Project environments with Julia's package manager
+#### Project environments with Julia's package manager
 
 Julia uses project environments to isolate dependencies. Each project
 is associated with a `Project.toml` file that lists direct dependencies
@@ -755,7 +606,7 @@ In a Git repository, commit both `Project.toml` and `Manifest.toml`.
 These files play the same role as `requirements.txt` or `renv.lock` in
 other languages, but with stricter guarantees about reproducibility.
 
-### A short Julia warm-up
+#### A short Julia warm-up
 
 Before moving on, you should be comfortable with:
 
@@ -772,8 +623,10 @@ Julia scripts and use Julia as an execution engine in Quarto documents
 when a project benefits from Julia's performance and numerical
 strengths.
 
+## Gate 2: Quarto (Reproducible Documents for Real Data Science)
 
-## Quarto: Reproducible Documents for Real Data Science
+Now that you can run code in your chosen language, you can use Quarto
+to combine code, text, and results in one reproducible document.
 
 ### Why Quarto?
 
@@ -905,7 +758,7 @@ Create a new file named `my_first.qmd` with the following header:
 
 ```yaml
 ---
-title: "My First Quarto Notebook"
+title: "my-first-quarto-notebook"
 format: html
 ---
 ```
@@ -942,24 +795,149 @@ quarto render my_first.qmd
 This produces an HTML file that contains the text, code, and generated
 output.
 
-### Exercises
+## Gate 3: Git (Local Version Control for Reproducible Projects)
 
-* Create a new `.qmd` file titled *My First Quarto Notebook*.
-* Add a YAML header specifying an HTML output format.
-* Write one paragraph describing the purpose of the notebook.
-* Add a Python code chunk that generates a figure.
-* Render the document to HTML from the command line.
-* Modify the code, re-render, and confirm that the output updates
-  automatically.
-* Delete the rendered HTML file and regenerate it from the `.qmd`
-  source.
+Git comes after you can run code and render a document, because Git
+is most useful when it records real work: your source files and the
+outputs you choose to keep.
 
-These steps reinforce the core idea of reproducibility: results are
-always generated from source, not copied or pasted.
+### Why Git?
 
-## Visual Studio Code: An Integrated Development Environment
+Version control is a foundational skill for data science because it treats
+your work as a living project with a complete history. Git lets you track
+every change you make, recover from mistakes, and collaborate without
+overwriting anyone’s work. Unlike saving multiple file versions by hand
+(e.g., `project_final_v12_REAL`), Git provides a precise, automatic timeline
+of your edits. This makes your work reproducible, auditable, and shareable,
+which are essential habits for scientific computing and data science
+projects.
 
-### What an IDE Is and Why VS Code
+Git is used to manage data science projects as evolving artifacts rather than one-time snapshots. Analyses typically change as
+data are cleaned, models are revised, and interpretations improve. A Git
+repository should contain only the files needed to understand, reproduce,
+and extend a project---nothing more.
+
+### Installing Git
+
+Git must be installed before it can be used. Use the method appropriate
+for your system.
+
+* **Windows (PowerShell):**
+
+```powershell
+winget install --id Git.Git -e
+```
+
+This installs Git together with **Git Bash**, a terminal environment used
+throughout this book. Do not run `winget` inside Git Bash.
+
+* **macOS (Homebrew):**
+
+```bash
+brew install git
+```
+
+* **Debian / Ubuntu Linux (including WSL):**
+
+```bash
+sudo apt update
+sudo apt install git
+```
+
+After installation, configure Git once so your work is properly attributed:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
+```
+
+Verify that Git is installed and configured correctly:
+
+```bash
+git --version
+git config --list
+```
+
+### Essential Git Commands
+
+Git is most effective when you stage files deliberately and keep the
+repository clean. The following commands form the core of everyday Git
+usage in data science projects.
+
+* `git init` initializes a repository in a project folder.
+* `git status` shows which files have changed.
+* `git add <file>` stages selected files to be recorded.
+* `git commit -m "message"` saves a snapshot of staged changes.
+* `git diff` displays differences between versions.
+* `git push` sends committed changes to a remote repository, such as one hosted on GitHub.
+* `git pull` retrieves updates from a remote repository, such as one hosted on GitHub.
+
+These two commands are where Git connects to an online platform. A common
+example of such a platform is GitHub, which serves as a shared location
+for backing up work and collaborating on projects. The next section focuses
+on GitHub itself and how it is used in our workflow.
+
+
+Avoid using `git add .` as a default habit. It often stages generated
+files, temporary outputs, or other unintended content. Staging files
+explicitly helps keep repositories small, readable, and reproducible.
+
+### Basic Workflow
+
+Git works best when your project is organized as a single folder containing
+scripts, Quarto files, and documentation. A typical workflow follows a
+simple cycle: edit files, inspect what changed, stage selected files, and
+commit them with a short message explaining what was done.
+
+```bash
+cd my-project
+git init
+git status
+git add README.md
+git add analysis.qmd
+git commit -m "initial project structure"
+```
+
+Git can also connect your local project to a remote repository hosted
+online. This idea is introduced above when discussing `git push` and
+`git pull`, and it is developed in detail in the next section, which
+focuses on GitHub as a concrete example of an online hosting platform.
+
+
+### Good Practices for Git
+
+Good Git usage is less about memorizing commands and more about developing
+clean, repeatable habits. The following practices are especially important
+for reproducible data science projects:
+
+* **Keep the repository clean.** Track only files that are needed to
+  understand, reproduce, and extend the project. Avoid committing
+  generated files, rendered outputs, large raw datasets, or temporary
+  artifacts unless they are explicitly required.
+
+* **Stage files deliberately.** Add files explicitly rather than staging
+  everything at once. This helps prevent accidental inclusion of
+  unnecessary or generated content.
+
+* **Commit small, logical changes.** Each commit should represent a
+  coherent step in the project, making the history easier to read and
+  reason about.
+
+* **Write informative commit messages.** A short message explaining what
+  changed and why is more valuable than a vague description.
+
+* **Use `.gitignore` consistently.** The `.gitignore` file is the primary
+  mechanism for keeping a repository clean over time. It tells Git which
+  files should never be tracked, such as temporary outputs, cache
+  directories, and system-specific files.
+
+## Gate 4: VSCodium (or VS Code): An Integrated Development Environment
+
+By this point, you can already do everything you need from the command
+line. An editor/IDE does not replace the command line. It makes common
+tasks easier by putting editing and a terminal in the same place.
+
+### What an IDE Is and Why VSCodium (or VS Code)
 
 An Integrated Development Environment (IDE) brings together tools for
 editing files, running code, and organizing projects in a single place.
@@ -967,7 +945,10 @@ Unlike simple editors such as Notepad or TextEdit, an IDE understands
 project structure, highlights syntax, reports errors, and integrates
 with version control and command-line tools.
 
-VS Code serves as a coordinating environment for this workflow:
+VSCodium serves as a coordinating environment for this workflow.
+
+If you already use Visual Studio Code (VS Code), you can continue using it.
+For the purposes of this book, VSCodium and VS Code behave the same.
 
 * Unified editor for text, code, and documents
 * Integrated terminal for Git, Python, R, Julia, and Quarto
@@ -985,16 +966,18 @@ system.
 
 Windows
 
-Download the System Installer (64-bit) from
-[https://code.visualstudio.com](https://code.visualstudio.com)
-and follow the default installation steps.
+Install VSCodium using winget:
+
+```bash
+winget install -e --id VSCodium.VSCodium
+```
 
 macOS
 
 Download from the same website, or install via Homebrew:
 
 ```bash
-brew install --cask visual-studio-code
+brew install --cask vscodium
 ```
 
 Linux
@@ -1083,18 +1066,137 @@ Markdown and Quarto documents.
 * Enable autosave and consider format-on-save for consistency.
 * Keep all work inside your project directory, not on the desktop.
 
-### Exercises
+## Gate 5: GitHub (Hosting and Collaboration for Git Projects)
 
-* Open your project folder in VS Code using *File --- Open Folder*.
-* Open the integrated terminal and confirm `git --version` works.
-* Verify the version of your chosen language.
-* Create a new Markdown file and write a short paragraph.
-* Install one language extension and the Quarto extension.
-* Run `ls` in the terminal and verify that it lists your project files.
+This section assumes you already know the basics of Git on your own
+computer. GitHub adds sharing and collaboration on top of local Git.
+
+### What GitHub Is and Why It Matters
+
+GitHub is an online platform that hosts Git repositories. Git manages
+project history on your computer, while GitHub stores a synchronized copy
+online. GitHub adds four capabilities that local Git alone does not
+provide.
+
+* Backup: a remote copy protects against local hardware failure.
+* Work anywhere: the same repository can be used on multiple machines;
+  you can work offline and synchronize later.
+* Collaboration: multiple contributors can work safely without
+  overwriting each other.
+* Review: changes can be inspected and discussed before they are merged.
+
+Once a local repository is connected to GitHub, only two commands are
+needed for routine synchronization.
+
+* `git push` uploads committed local changes to GitHub.
+* `git pull` downloads changes from GitHub and integrates them locally.
+
+### Authentication on GitHub (SSH)
+
+GitHub requires authentication before it accepts `git push`. A common
+method is SSH key authentication.
+
+SSH uses a key pair.
+
+* Private key: stays on your computer and must never be shared.
+* Public key: added to your GitHub account to identify your computer.
+
+Generate a key pair locally.
+
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+The key pair will be stored in the `.ssh` folder in your home directory.
 
 
+Display the public key.
 
-## First Data Science Project: Putting All Together
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+Copy the public key to your clipboard.
+
+* macOS (Terminal):
+
+```bash
+pbcopy < ~/.ssh/id_ed25519.pub
+```
+
+* Windows (Git Bash):
+
+```bash
+cat ~/.ssh/id_ed25519.pub | clip
+```
+
+* Windows (PowerShell):
+
+```powershell
+Get-Content $env:USERPROFILE\.ssh\id_ed25519.pub | clip
+```
+
+* Linux / WSL:
+
+```bash
+sudo apt update
+sudo apt install xclip
+xclip -selection clipboard < ~/.ssh/id_ed25519.pub
+```
+
+Add the public key on GitHub.
+
+* Profile menu --- Settings
+* SSH and GPG keys --- New SSH key
+* Paste the key and save
+
+Test the connection.
+
+```bash
+ssh -T git@github.com
+```
+
+For up-to-date authentication, one may ask an AI assistant for help
+for your operating system. For example:
+
+* "How do I set up SSH keys for GitHub on Windows using Git Bash and
+  verify that `git push` works?"
+
+### Creating and Publishing a New Repository
+
+This workflow applies only if you already have a local Git repository.
+If not, create one first with `git init`.
+
+First, create a new empty repository on GitHub (do not initialize it
+with a README). Then connect your local repository to GitHub.
+
+```bash
+git remote add origin git@github.com:yourname/example-repo.git
+git branch -M main
+git push -u origin main
+```
+
+Here, `yourname` is your GitHub username and `example-repo` is the
+repository name you chose on GitHub.
+
+### Cloning an Existing Repository
+
+Cloning is used when the repository already exists on GitHub.
+Suppose that `someone` is the GitHub username or organization that owns
+a repository called `project`. To clone this repository to your
+own computer, first `cd` to the folder where you want put the repository
+and then:
+
+```bash
+git clone git@github.com:someone/project.git
+```
+
+Cloning creates a new local directory containing the full project
+history.
+
+## first-data-science-project: Putting It All Together
+
+This project section is a guided recap. You will reuse the same tools
+from the earlier gates, in the same order.
 
 This chapter integrates everything from Part I—command line, VS Code,
 Git, GitHub, Quarto, and Python/R—into a single, coherent project
@@ -1125,8 +1227,7 @@ heavy cleaning.
 
 A clean folder structure helps keep the project reproducible and
 organized. Students use the command line to create folders and set up
-a
-Git repository.
+a Git repository.
 
 Recommended structure:
 
@@ -1138,12 +1239,13 @@ Recommended structure:
 Key steps:
 
 - Use the command line to create the folder and subfolders  
-  *(mkdir ds4hs-project, cd ds4hs-project, mkdir data analysis
+  *(mkdir my-project, cd my-project, mkdir data analysis
 figures)*
 - Initialize Git with  
   `git init`
 - Make the first commit with  
-  `git add .` and `git commit -m "Initial project structure"`
+  `git add README.md` and
+  `git commit -m "Initial project structure"`
 
 Students should verify that Git is tracking the project by running
 `git status` and confirming the working tree is clean.
@@ -1183,24 +1285,51 @@ public
 Options include:
 
 - Push the project to GitHub with  
-  `git add .`, `git commit`, and `git push`
+  `git add README.md analysis/project.qmd`, `git commit`, and `git push`
 - Share the rendered HTML via a GitHub repository
 - Optionally, enable GitHub Pages so the report becomes a public website
   at
-  `https://username.github.io/ds4hs-project`
+  `https://username.github.io/my-project`
 
 This final step completes the full data science cycle: version
-control,
-reproducible notebook, and public sharing.
+control, reproducible notebook, and public sharing.
 
-### Exercises
+<!-- ## Exercises -->
 
-- Choose one dataset from the list above (or another small dataset that
-  interests you). Add it to the `data/` folder.
-- Build the full folder structure using only the command line.
-- Initialize a Git repository and make at least two commits: one for the
-  structure and one for adding your dataset.
-- Create a Quarto notebook that loads the data and produces at least two
-  visualizations.
-- Push your finished project to GitHub and share the link with your
-  class.
+<!-- - * Create a new Quarto document and write a few Python lines that -\-> -->
+<!-- - define -\-> -->
+<!-- -   variables, lists, and dictionaries. -\-> -->
+<!-- - * Install Python and verify your installation with `python --version`. -\-> -->
+<!-- - * Read a small CSV file into a pandas DataFrame and plot one column. -\-> -->
+<!-- - * Modify the sample plot code to change colors, labels, or data. -\-> -->
+<!-- - * Add a short paragraph in your Quarto file describing what you -\-> -->
+<!-- - learned. -\-> -->
+<!-- - starting R from the command line, -->
+<!-- - running one-line commands with `R -e`, -->
+<!-- - writing and running scripts with `Rscript`, -->
+<!-- - using vectors, lists, and data frames, -->
+<!-- - loading packages and reading help pages. -->
+<!-- - starting Julia from the command line, -->
+<!-- - using the Julia REPL and its help system, -->
+<!-- - activating and instantiating project environments, -->
+<!-- - working with arrays, dictionaries, and tables, -->
+<!-- - loading packages with `using` and `import`. -->
+<!-- - Create a new `.qmd` file titled *My First Quarto Notebook*. -->
+<!-- - Add a YAML header specifying an HTML output format. -->
+<!-- - Write one paragraph describing the purpose of the notebook. -->
+<!-- - Add a Python code chunk that generates a figure. -->
+<!-- - Render the document to HTML from the command line. -->
+<!-- - Modify the code, re-render, and confirm that the output updates -->
+<!-- - Delete the rendered HTML file and regenerate it from the `.qmd` -->
+<!-- - Open your project folder in VS Code using *File --- Open Folder*. -->
+<!-- - Open the integrated terminal and confirm `git --version` works. -->
+<!-- - Verify the version of your chosen language. -->
+<!-- - Create a new Markdown file and write a short paragraph. -->
+<!-- - Install one language extension and the Quarto extension. -->
+<!-- - Run `ls` in the terminal and verify that it lists your project files. -->
+<!-- - Choose one dataset from the list above (or another small dataset that -->
+<!-- - Build the full folder structure using only the command line. -->
+<!-- - Initialize a Git repository and make at least two commits: one for the -->
+<!-- - Create a Quarto notebook that loads the data and produces at least two -->
+<!-- - Push your finished project to GitHub and share the link with your -->
+
