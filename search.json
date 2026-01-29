@@ -208,5 +208,115 @@
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Right Tools for Data Science Projects</span>"
     ]
+  },
+  {
+    "objectID": "04-chess.html",
+    "href": "04-chess.html",
+    "title": "4  Simulation-Based Comparison of Elo and Glicko",
+    "section": "",
+    "text": "4.1 Overview and Learning Goals\nThis chapter describes a complete, reproducible data science project designed to compare the Elo and Glicko rating systems using simulation. The project is intentionally scoped so that it is feasible for beginner researchers (e.g., high school students) while still addressing questions that are relevant in the research literature.\nThe goals of the chapter are:\nThe chapter proceeds as a step-by-step roadmap, with clearly defined deliverables at each stage.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Simulation-Based Comparison of Elo and Glicko</span>"
+    ]
+  },
+  {
+    "objectID": "04-chess.html#overview-and-learning-goals",
+    "href": "04-chess.html#overview-and-learning-goals",
+    "title": "4  Simulation-Based Comparison of Elo and Glicko",
+    "section": "",
+    "text": "To understand Elo and Glicko as statistical learning algorithms.\nTo design controlled simulations with known ground truth.\nTo evaluate rating systems using principled metrics.\nTo practice reproducible computational research.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Simulation-Based Comparison of Elo and Glicko</span>"
+    ]
+  },
+  {
+    "objectID": "04-chess.html#project-structure-and-reproducibility",
+    "href": "04-chess.html#project-structure-and-reproducibility",
+    "title": "4  Simulation-Based Comparison of Elo and Glicko",
+    "section": "4.2 Project Structure and Reproducibility",
+    "text": "4.2 Project Structure and Reproducibility\nBefore writing any modeling code, set up a reproducible project structure.\nSuppose your project name is chess-ranking, its directory layout would enentually looks like:\nchess-ranking\n  README.md\n  _quarto.yml\n  src/\n    elo.py\n    glicko.py\n    simulator.py\n    update_pipeline.py\n    evaluation.py\n  tests/\n    test_elo.py\n    test_glicko.py\n  results/\n  reports/\nKey principles:\n\nAll randomness must be controlled by explicit random seeds.\nAll numerical constants (e.g., Elo K-factor) should be defined in one place.\nRunning the full pipeline should produce the same results every time.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Simulation-Based Comparison of Elo and Glicko</span>"
+    ]
+  },
+  {
+    "objectID": "04-chess.html#phase-1-implementing-the-rating-systems",
+    "href": "04-chess.html#phase-1-implementing-the-rating-systems",
+    "title": "4  Simulation-Based Comparison of Elo and Glicko",
+    "section": "4.3 Phase 1: Implementing the Rating Systems",
+    "text": "4.3 Phase 1: Implementing the Rating Systems\nThis phase focuses on correctness and clarity rather than computational efficiency or realism. The goal is to implement each rating system in a transparent and verifiable way.\n\n4.3.1 Elo Rating System\nIn the Elo rating system, each player is assigned a real-valued rating. Consider a match between player A and player B. Let \\(R_A\\) and \\(R_B\\) denote their ratings before the match.\nAfter the match, player A’s rating is updated according to\n\\[\nR_A' = R_A + K (S_A - E_A),\n\\]\nwhere:\n\n\\(R_A'\\) is player A’s updated rating,\n\\(K &gt; 0\\) is a fixed tuning parameter controlling the size of updates,\n\\(S_A\\) is the observed score for player A,\n\\(E_A\\) is the expected score for player A given the two ratings.\n\nThe observed score \\(S_A\\) is defined as - \\(S_A = 1\\) if player A wins, - \\(S_A = 0\\) if player A loses. (We ignore ties for now.)\nThe expected score \\(E_A\\) is defined by\n\\[\nE_A = \\frac{1}{1 + 10^{(R_B - R_A)/400}}.\n\\]\nThe update for player B is defined analogously, with \\(S_B = 1 - S_A\\) and \\(E_B = 1 - E_A\\).\nImplementation tasks:\n\nWrite a function that computes the expected score \\(E_A\\) given \\(R_A\\) and \\(R_B\\).\nWrite a function that updates the ratings of two players after a single match.\nUse a fixed value of \\(K\\) (for example, \\(K = 32\\)) for all players.\n\nRequired tests:\n\nSymmetry: swapping players A and B swaps the updated ratings.\nZero-sum property: \\((R_A' - R_A) + (R_B' - R_B) = 0\\).\nSanity check: when a much higher-rated player defeats a much lower-rated player, the rating update is small.\n\nThe final Elo implementation should be short, readable, and fully tested.\n\n\n4.3.2 Glicko Rating System\nThe Glicko (1999) system extends Elo by tracking uncertainty in each player’s rating. Each player \\(i\\) is represented by\n\n\\(r_i\\): rating (real-valued, on the Elo-like scale),\n\\(\\phi_i\\): rating deviation (RD), with \\(\\phi_i \\ge 0\\).\n\nInterpretation: \\(\\phi_i\\) is a standard-deviation-like uncertainty measure; smaller \\(\\phi_i\\) implies higher confidence in \\(r_i\\).\nThe system updates ratings in discrete rating periods. Within a rating period, each player may play \\(m\\) games. Updates are applied once per period.\nNotation for a rating period for a focal player \\(A\\):\n\nPre-period state: \\((r_A, \\phi_A)\\).\nOpponents indexed by \\(j = 1, \\dots, m\\) with pre-period states \\((r_j, \\phi_j)\\).\nOutcomes: \\(s_j \\in \\{0, 1\\}\\) is the score of player \\(A\\) against opponent \\(j\\) (win \\(=1\\), loss \\(=0\\)). (Draws can be added later with \\(s_j=1/2\\).)\nConstant: \\(q = \\ln(10)/400\\).\n\nStep 0 (RD inflation for inactivity)\nLet \\(\\phi_A^{\\ast}\\) denote the inflated RD at the start of the rating period (before using current results). If \\(t\\) rating periods have elapsed since player \\(A\\) last competed, inflate by\n\\[\n\\phi_A^{\\ast} = \\min\\left(\\sqrt{\\phi_A^2 + c^2 t},\\ 350\\right),\n\\]\nwhere \\(c &gt; 0\\) is a system constant and \\(350\\) is the conventional RD cap (also used as the RD for an unrated player).\nStep 1 (Opponent-weighting function)\nFor each opponent \\(j\\), define the weight\n\\[\ng(\\phi_j) = \\frac{1}{\\sqrt{1 + \\frac{3 q^2 \\phi_j^2}{\\pi^2}}}.\n\\]\nOpponents with large \\(\\phi_j\\) (high uncertainty) receive smaller weight.\nStep 2 (Expected score per game)\nFor each opponent \\(j\\), define the expected score for player \\(A\\) as\n\\[\nE_j\n= \\frac{1}{1 + 10^{-g(\\phi_j)(r_A - r_j)/400}}.\n\\]\nStep 3 (Estimated variance term)\nDefine\n\\[\nd^2\n= \\left[\nq^2 \\sum_{j=1}^m g(\\phi_j)^2\\, E_j(1 - E_j)\n\\right]^{-1}.\n\\]\nStep 4 (Rating update)\nUpdate player \\(A\\)’s rating by\n\\[\nr_A'\n= r_A\n+ \\frac{q}{\\frac{1}{(\\phi_A^{\\ast})^2} + \\frac{1}{d^2}}\n\\sum_{j=1}^m g(\\phi_j)\\, (s_j - E_j).\n\\]\nStep 5 (RD update)\nUpdate player \\(A\\)’s RD by\n\\[\n\\phi_A'\n= \\sqrt{\n\\left(\n\\frac{1}{(\\phi_A^{\\ast})^2} + \\frac{1}{d^2}\n\\right)^{-1}\n}.\n\\]\nImplementation scope\n\nImplement Glicko (1999), not Glicko-2.\nUse rating-period updates (batch within-period games, then update once).\nInclude RD inflation via \\(\\phi^{\\ast}\\) and cap RD at \\(350\\).\nUse \\(q = \\ln(10)/400\\) and the functions \\(g(\\cdot)\\), \\(E_j\\), \\(d^2\\) above.\nChoose \\(c\\) using the guidance in the paper: select \\(c\\) so RD grows from a “typical” active-player RD to near \\(350\\) over a chosen number of inactive rating periods.\n\nConceptual interpretation (for beginners)\n\nElo uses a fixed step size \\(K\\).\nGlicko uses an adaptive step size.\nLarger \\(\\phi_A^{\\ast}\\) implies larger updates to \\(r_A\\); smaller \\(\\phi_A^{\\ast}\\) implies smaller updates.\n\nRequired tests\n\nRD contraction: holding opponents fixed, \\(\\phi_A' &lt; \\phi_A^{\\ast}\\) when \\(m \\ge 1\\) (i.e., playing provides information).\nRD inflation: if \\(t\\) increases (more inactivity), then \\(\\phi_A^{\\ast}\\) increases until capped at \\(350\\).\nShrinking updates: for fixed results, \\(|r_A' - r_A|\\) decreases as \\(\\phi_A^{\\ast}\\) decreases.\n\nInterchangeable module requirement\nDefine a common match record format and a common update interface.\n\nInputs: list of games for the rating period with fields (player_id, opponent_id, outcome), plus current player states.\nOutputs:\n\nElo: updated ratings.\nGlicko: updated ratings and updated RDs.\n\n\nThe calling code should not need to know which system is used, aside from whether RD is tracked.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Simulation-Based Comparison of Elo and Glicko</span>"
+    ]
+  },
+  {
+    "objectID": "04-chess.html#phase-2-simulating-match-data",
+    "href": "04-chess.html#phase-2-simulating-match-data",
+    "title": "4  Simulation-Based Comparison of Elo and Glicko",
+    "section": "4.4 Phase 2: Simulating Match Data",
+    "text": "4.4 Phase 2: Simulating Match Data\nSimulation allows us to evaluate rating systems against known truth.\n\n4.4.1 Latent Skill Model\nAssign each player a true (unobserved) skill value:\n[ _i (0, 1). ]\nMatch outcomes are generated probabilistically:\n[ (i j) = (_i - _j), (x) = . ]\nOnly the win/loss outcome is observed by the rating system.\n\n\n4.4.2 Experimental Design Switches\nThe simulator should support three independent design features.\n\n4.4.2.1 Cold-Start\n\nPlayers enter the system with no prior games.\nSome players play only a small number of early matches.\nGoal: study early-game behavior and convergence speed.\n\n\n\n4.4.2.2 Inactivity\n\nEach player is assigned an activity rate.\nTime gaps between matches are explicitly simulated.\nGoal: study how ratings behave after long periods without games.\n\n\n\n4.4.2.3 Matchmaking Bias\n\nOpponents are not selected uniformly at random.\nExamples:\n\nSimilar-skill matchmaking.\nStratified leagues.\n\nGoal: study rating bias induced by non-random schedules.\n\nThe simulator should output a single match log containing: - time index - player IDs - match outcome - true skills (for evaluation only)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Simulation-Based Comparison of Elo and Glicko</span>"
+    ]
+  },
+  {
+    "objectID": "04-chess.html#phase-3-rating-update-pipeline",
+    "href": "04-chess.html#phase-3-rating-update-pipeline",
+    "title": "4  Simulation-Based Comparison of Elo and Glicko",
+    "section": "4.5 Phase 3: Rating Update Pipeline",
+    "text": "4.5 Phase 3: Rating Update Pipeline\nUsing the simulated match log:\n\nInitialize all player ratings.\nProcess matches in chronological order.\nUpdate ratings using:\n\nElo\nGlicko\n\nStore rating histories over time.\n\nThe output should be a panel-style dataset containing, for each player and time point: - estimated rating - rating deviation (for Glicko) - number of games played\nThis dataset is the input for all evaluation steps.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Simulation-Based Comparison of Elo and Glicko</span>"
+    ]
+  },
+  {
+    "objectID": "04-chess.html#phase-4-evaluation-metrics",
+    "href": "04-chess.html#phase-4-evaluation-metrics",
+    "title": "4  Simulation-Based Comparison of Elo and Glicko",
+    "section": "4.6 Phase 4: Evaluation Metrics",
+    "text": "4.6 Phase 4: Evaluation Metrics\nEvaluation must be defined before inspecting results.\n\n4.6.1 Predictive Accuracy\nUse proper scoring rules:\n\nLog loss: [ - . ]\nBrier score: [ (y - )^2. ]\n\nPredictions should be computed using ratings before each match.\n\n\n4.6.2 Skill Recovery\nBecause true skills are known in simulation:\n\nCompute correlation between estimated ratings and ().\nCompute mean absolute error after rescaling ratings to the skill scale.\n\nThese metrics quantify how well each system recovers latent skill.\n\n\n4.6.3 Stability and Uncertainty\nKey diagnostics:\n\nRating volatility by player activity level.\nFor Glicko: RD as a function of time since last match.\n\nThese diagnostics test whether uncertainty behaves as intended.\n\n\n4.6.4 Fairness Under Matchmaking Bias\nEvaluate error and rank bias by true-skill deciles.\nQuestions of interest:\n\nAre weaker players systematically over- or under-rated?\nDoes biased scheduling distort rank order?",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Simulation-Based Comparison of Elo and Glicko</span>"
+    ]
+  },
+  {
+    "objectID": "04-chess.html#phase-5-repeated-experiments-and-uncertainty",
+    "href": "04-chess.html#phase-5-repeated-experiments-and-uncertainty",
+    "title": "4  Simulation-Based Comparison of Elo and Glicko",
+    "section": "4.7 Phase 5: Repeated Experiments and Uncertainty",
+    "text": "4.7 Phase 5: Repeated Experiments and Uncertainty\nAll results should be averaged over multiple simulation runs with different random seeds.\nRecommended outputs:\n\nMean performance metrics with standard errors.\nSensitivity plots across design parameters.\nSummary tables comparing Elo and Glicko.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Simulation-Based Comparison of Elo and Glicko</span>"
+    ]
+  },
+  {
+    "objectID": "04-chess.html#reporting-and-interpretation",
+    "href": "04-chess.html#reporting-and-interpretation",
+    "title": "4  Simulation-Based Comparison of Elo and Glicko",
+    "section": "4.8 Reporting and Interpretation",
+    "text": "4.8 Reporting and Interpretation\nThe final report should include:\n\nExplicit assumptions and design choices.\nClear separation between results and interpretation.\nDiscussion of limitations (e.g., simplified skill model).\nReproducibility instructions.\n\nThe emphasis should be on clarity and insight, not on algorithmic novelty.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Simulation-Based Comparison of Elo and Glicko</span>"
+    ]
+  },
+  {
+    "objectID": "04-chess.html#conceptual-takeaways",
+    "href": "04-chess.html#conceptual-takeaways",
+    "title": "4  Simulation-Based Comparison of Elo and Glicko",
+    "section": "4.9 Conceptual Takeaways",
+    "text": "4.9 Conceptual Takeaways\nThis project illustrates several core ideas in data science:\n\nRatings as online statistical estimators.\nBias–variance tradeoffs in learning systems.\nThe role of uncertainty in sequential decision-making.\nHow design choices (e.g., matchmaking) affect inference.\n\nBy controlling the data-generating process, students can see these ideas clearly and connect theory to practice.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Simulation-Based Comparison of Elo and Glicko</span>"
+    ]
+  },
+  {
+    "objectID": "04-chess.html#exercises",
+    "href": "04-chess.html#exercises",
+    "title": "4  Simulation-Based Comparison of Elo and Glicko",
+    "section": "4.10 Exercises",
+    "text": "4.10 Exercises\n\nPhase 1\n\nSet up a GitHub repository to store this project.\nClones it to an appropriate location on your computer.\nAdd a src folder, and in it, add a elo.py file.\nIn the elo.py file, write two functions, one to update the current ranking, and the other to compute the win probability.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Simulation-Based Comparison of Elo and Glicko</span>"
+    ]
   }
 ]
