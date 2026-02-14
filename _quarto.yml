@@ -12,9 +12,13 @@ book:
   
   chapters:
     - index.qmd
-    - 01-intro.qmd
-    - 02-computer.qmd
-    - 03-tools.qmd
+    - 01-intro.qmd 
+    - part: "Part 1: Preparing the Tools"
+      chapters:
+        - 02-computer.qmd
+        - 03-tools.qmd
+
+    # - 04-chess.qmd
     - references.bib
 
 csl: apa.csl
