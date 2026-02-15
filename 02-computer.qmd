@@ -1,4 +1,4 @@
-# Your Computer as a Tool for Discovery
+# Your Computer as a Tool for Discovery {#sec-computer}
 
 ## Introduction
 
@@ -9,7 +9,7 @@ you ask questions, test ideas, and make new discoveries. Thinking of the
 computer as a programmable machine opens a new way of working: your results
 become something you can recreate, improve, and share.
 
-In Chapter 1, we discussed graphical user interfaces (GUIs). GUIs are
+In @sec-intro, we discussed graphical user interfaces (GUIs). GUIs are
 convenient because they hide complexity. You click a button and something
 happens. But when steps are hidden, it becomes harder to explain exactly what
 was done. In data science, hidden steps create risk. If you cannot describe

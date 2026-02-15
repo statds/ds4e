@@ -1,4 +1,4 @@
-# Introduction
+# Introduction {#sec-intro}
 
 Data science is the practice of learning from data. In simple terms,
 it means using information to answer questions and make better

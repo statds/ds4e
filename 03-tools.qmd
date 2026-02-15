@@ -1,10 +1,10 @@
-# Right Tools for Data Science Projects
+# Right Tools for Data Science Projects {#sec-tools}
 
 ## Introduction
 
 This chapter introduces the tools required to carry out reproducible data
 science projects in this course. A reproducible project is one in which the
-full analysis --- data inputs, code, narrative, and results --- can be rerun
+full analysis---data inputs, code, narrative, and results---can be rerun
 by someone else, or by the same analyst at a later time, with the same
 outcomes. Reproducibility is therefore a property of an entire project rather
 than of any single tool. The goal of this chapter is not to teach tools in
