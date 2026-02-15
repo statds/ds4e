@@ -12,7 +12,7 @@ students—can begin doing real data science today.
 The goal of this book is to show you what data science actually looks
 like in practice. It focuses not on memorizing formulas, but on
 learning how to set up your computer correctly, organize your work,
-use modern tools such as the command line, Git, VS Code, and Quarto,
+use modern tools such as the command line, Git, VSCodium, and Quarto,
 and build reproducible analyses from day one. These skills form the
 foundation of professional data science, and developing them early
 will allow you to create insights that matter.

@@ -26,7 +26,7 @@ collection of software. Git records the history of a project and makes changes
 explicit. GitHub provides a shared location for storing, submitting, and
 reviewing projects. Quarto allows code, text, and results to live in a single
 executable document. Python, R, or Julia provides the computational engine for
-data analysis. VS Code serves as a coordinating environment that brings these
+data analysis. VS Codium serves as a coordinating environment that brings these
 tools together in daily work. Each tool plays a distinct role, and
 reproducibility emerges from their interaction.
 
@@ -684,7 +684,7 @@ that Quarto is correctly installed.
 
 **Editor support (optional)**
 
-Quarto works entirely from the command line. If you use VS Code, you may
+Quarto works entirely from the command line. If you use VSCodium, you may
 optionally install the **Quarto** extension for syntax highlighting and
 convenience features. This is not required for rendering documents.
 
@@ -931,42 +931,96 @@ for reproducible data science projects:
   files should never be tracked, such as temporary outputs, cache
   directories, and system-specific files.
 
-## Gate 4: VSCodium (or VS Code): An Integrated Development Environment
+## Gate 4: VSCodium: An Integrated Development Environment
 
 By this point, you can already do everything you need from the command
-line. An editor/IDE does not replace the command line. It makes common
-tasks easier by putting editing and a terminal in the same place.
+line. An IDE does not replace the command line. It strengthens your
+workflow by combining editing, execution, and project organization in
+one environment.
 
-### What an IDE Is and Why VSCodium (or VS Code)
+### An IDE Is a Unified Workspace
 
-An Integrated Development Environment (IDE) brings together tools for
-editing files, running code, and organizing projects in a single place.
-Unlike simple editors such as Notepad or TextEdit, an IDE understands
-project structure, highlights syntax, reports errors, and integrates
-with version control and command-line tools.
+An Integrated Development Environment (IDE) is a unified workspace for
+writing code, running programs, and managing projects.
 
-VSCodium serves as a coordinating environment for this workflow.
+Instead of switching between a text editor, a terminal window, and a
+file browser, you work in one coordinated system. An IDE typically
+provides:
 
-If you already use Visual Studio Code (VS Code), you can continue using it.
-For the purposes of this book, VSCodium and VS Code behave the same.
+* Syntax highlighting (color-coding parts of code for readability)
+* Real-time error detection while you type
+* Integrated terminals
+* Project-wide search and navigation
+* Version control integration (such as Git)
 
-* Unified editor for text, code, and documents
-* Integrated terminal for Git, Python, R, Julia, and Quarto
-* Built-in file explorer and project navigation
-* Extension system for language and tool support
-* Native Git integration for version-controlled work
+The goal is not convenience alone. The goal is structured, reproducible
+work.
 
-These features support a project-based, reproducible workflow rather
-than scattered scripts and files.
+Check-in question:
+
+If you can already use the command line, why might working in a unified
+environment reduce mistakes?
+
+### Why This Book Uses VSCodium
+
+This book uses VSCodium because it is fully open-source software.
+
+Two closely related editors exist:
+
+* Visual Studio Code (distributed by Microsoft)
+* VSCodium (community-built from the same open-source code)
+
+Visual Studio Code is based on open-source code. However, the official
+Microsoft build includes additional proprietary components such as
+telemetry (automatic usage reporting) and Microsoft-specific licensing.
+
+VSCodium is built from the same public source code but removes
+proprietary components and telemetry. It is distributed under fully
+open-source licenses.
+
+Throughout this book, we choose open-source tools whenever possible.
+Open-source software makes its source code publicly available. Anyone
+can inspect it, modify it, and redistribute it under its license.
+
+This matters for three reasons:
+
+1. Transparency — the code can be examined.
+2. Reproducibility — the tools remain accessible.
+3. Longevity — projects do not depend on a single vendor.
+
+If you already use Visual Studio Code, you may continue using it. For
+the workflow in this book, both behave the same.
+
+### VSCodium Supports Multiple Languages and Terminals
+
+VSCodium is not just a text editor. It is a multi-language development
+environment.
+
+You can:
+
+* Edit Python, R, Julia, Markdown, and Quarto files
+* Open multiple terminals at the same time
+* Run different shells in different terminals
+* Work in several programming environments simultaneously
+
+For example, you might:
+
+* Run Python in one terminal
+* Run R in another
+* Use Git in a third
+* Edit a Quarto document side-by-side with your analysis script
+
+All within one window.
+
+This reduces context switching and keeps your project organized.
 
 ### Installation
 
-Install Visual Studio Code using the method appropriate for your
-system.
+Install VSCodium using the method appropriate for your system.
 
 Windows
 
-Install VSCodium using winget:
+Install using winget:
 
 ```bash
 winget install -e --id VSCodium.VSCodium
@@ -974,7 +1028,7 @@ winget install -e --id VSCodium.VSCodium
 
 macOS
 
-Download from the same website, or install via Homebrew:
+Install via Homebrew:
 
 ```bash
 brew install --cask vscodium
@@ -983,10 +1037,10 @@ brew install --cask vscodium
 Linux
 
 Install using your distribution's package manager or the official
-packages provided on the VS Code website.
+packages provided on the VSCodium website.
 
-After installation, launch VS Code and open the integrated terminal
-(*View --- Terminal*). Confirm that it can see the tools you installed
+After installation, launch VSCodium and open the integrated terminal
+(View --- Terminal). Confirm that it can access the tools you installed
 earlier:
 
 ```bash
@@ -1002,69 +1056,79 @@ R --version        # if using R
 julia --version    # if using Julia
 ```
 
-If these commands run successfully, VS Code is correctly connected to
-your existing setup.
+If these commands run successfully, VSCodium is correctly connected to
+your system.
 
-### Extensions
+### Extensions Connect Languages to the Editor
 
-VS Code functionality is extended through extensions. Install a small,
-focused set that supports reproducible data science work. Use the
-Extensions icon in the sidebar or open the command palette
-(Ctrl/Cmd + Shift + P) and choose *Extensions: Install Extensions*.
+Extensions allow VSCodium to understand specific languages and tools.
 
-Core extensions (recommended for everyone)
+Install only what you need. A focused setup is easier to maintain.
 
-* Quarto --- Authoring, previewing, and rendering Quarto documents.
-* GitLens --- Enhanced Git history, blame, and comparison tools.
+Core extensions (recommended for everyone):
 
-Language-specific extensions (install the one you need)
+* Quarto — Authoring and rendering Quarto documents
+* GitLens — Enhanced Git history and comparison tools
 
-* Python --- Editing, linting, debugging, and notebook support for
-  Python.
-* R --- Editing and execution support for R scripts.
-* Julia --- Language support for Julia, including code execution.
+Language-specific extensions (choose one):
 
-These extensions do not install Python, R, Julia, Git, or Quarto. They
-only connect VS Code to tools you already installed.
+* Python — Editing, linting, debugging, notebook support
+* R — Script editing and execution support
+* Julia — Language support and code execution
 
-### Integrated Terminal and Shell Choice
+Important:
 
-VS Code includes a built-in terminal so you can run command-line tools
-inside the editor. This keeps editing and execution in one place. Open
-the terminal with *View --- Terminal* or Ctrl+` (Control + backtick).
+Extensions do not install Python, R, Julia, Git, or Quarto. They connect
+VSCodium to tools already installed on your system.
 
-On Windows, it is often preferable to use Git Bash so that commands
-match those used in Unix-like environments. After installing Git for
-Windows, open the command palette, choose *Preferences: Open User
-Settings (JSON)*, and add:
+### The Integrated Terminal Is Part of the Workflow
+
+The integrated terminal turns VSCodium into a full command-line
+workspace.
+
+Open it with View --- Terminal or Ctrl+` (Control + backtick).
+
+You can open multiple terminals and select different shells for each
+one. This allows you to:
+
+* Run Git commands
+* Execute Python, R, or Julia scripts
+* Render Quarto documents
+* Navigate your project directory
+
+On Windows, using Git Bash often makes commands consistent with
+Unix-like systems. After installing Git for Windows, open the command
+palette, choose Preferences: Open User Settings (JSON), and add:
 
 ```json
 "terminal.integrated.defaultProfile.windows": "Git Bash"
 ```
 
-Restart the terminal. You can now run commands such as `cd`, `ls`,
-`git status`, and `quarto render` directly inside VS Code.
+Restart the terminal after saving.
 
-### Working with Projects in VS Code
+### Working with Projects, Not Individual Files
 
-A core habit in VS Code is opening folders rather than individual
-files. When you open a folder, VS Code treats it as a project: it
-tracks files, recognizes structure, and enables Git integration.
+In VSCodium, you should open folders, not individual files.
 
-Use *File --- Open Folder* and select your project directory (for
-example, `ds4e/`). The sidebar then shows your files, Git status, and
-search tools in one place. The command palette provides fast access to
-nearly all VS Code features and reduces reliance on menus. VS Code also
-supports split editors for side-by-side viewing and works well for
-Markdown and Quarto documents.
+When you open a folder, VSCodium treats it as a project. It tracks file
+structure, enables Git integration, and supports project-wide search.
+
+Use File --- Open Folder and select your project directory (for
+example, `ds4e/`).
+
+This reinforces an important habit:
+
+Data science is organized around projects, not isolated scripts.
 
 ### Good Practices
 
-* Always open a project folder rather than individual files.
-* Keep all work in plain text: scripts, notes, and Quarto documents.
-* Use the integrated terminal for Git, language, and Quarto commands.
-* Enable autosave and consider format-on-save for consistency.
-* Keep all work inside your project directory, not on the desktop.
+* Always open a project folder rather than a single file
+* Keep all work in plain text (scripts, notes, Quarto documents)
+* Use integrated terminals for Git and language commands
+* Keep all files inside your project directory
+* Avoid storing active work on the desktop
+
+These habits support clarity, organization, and reproducibility.
 
 ## Gate 5: GitHub (Hosting and Collaboration for Git Projects)
 
@@ -1198,7 +1262,7 @@ history.
 This project section is a guided recap. You will reuse the same tools
 from the earlier gates, in the same order.
 
-This chapter integrates everything from Part I—command line, VS Code,
+This chapter integrates everything from Part I—command line, VSCodium,
 Git, GitHub, Quarto, and Python/R—into a single, coherent project
 workflow. The goal is to let students experience how real data science
 work is done: create a clean folder, version it with Git, write a
@@ -1266,11 +1330,11 @@ include:
 
 A minimal workflow:
 
-1. Create `analysis/project.qmd` in VS Code.
+1. Create `analysis/project.qmd` in VSCodium.
 2. Add a YAML header with a title, author, and format.
 3. Insert code chunks to load the dataset and inspect its structure.
 4. Generate plots and save outputs to the `figures/` folder.
-5. Render the notebook to HTML using the VS Code Quarto extension.
+5. Render the notebook to HTML using the VS Codium Quarto extension.
 
 Students should keep text and code in one place—not separate
 PowerPoints, Word files, or screenshots. Quarto ensures everything is
@@ -1321,7 +1385,7 @@ control, reproducible notebook, and public sharing.
 <!-- - Render the document to HTML from the command line. -->
 <!-- - Modify the code, re-render, and confirm that the output updates -->
 <!-- - Delete the rendered HTML file and regenerate it from the `.qmd` -->
-<!-- - Open your project folder in VS Code using *File --- Open Folder*. -->
+<!-- - Open your project folder in VS Codium using *File --- Open Folder*. -->
 <!-- - Open the integrated terminal and confirm `git --version` works. -->
 <!-- - Verify the version of your chosen language. -->
 <!-- - Create a new Markdown file and write a short paragraph. -->

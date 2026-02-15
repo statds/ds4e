@@ -395,7 +395,7 @@ is clearer too.
 The command line can also start programs and check whether your tools are
 installed correctly. Examples include:
 
-* `code .` — open the current folder in VS Code
+* `codium .` — open the current folder in VSCodium
 * `git --version` — check that Git is installed
 * `python --version` — check your Python installation
 * `R --version` — confirm that R is available
@@ -434,10 +434,10 @@ future projects.
   Move up one level with `cd ..`.
   Return to the previous directory using `cd -`.
 
-* **Open a Project Folder in VS Code**
-  From inside the `my_project` directory, open the project in VS Code by running
+* **Open a Project Folder in VSCodium**
+  From inside the `my_project` directory, open the project in VSCodium by running
   `code .`
-  (If necessary, enable the “code” command in VS Code.)
+  (If necessary, enable the “code” command in VSCodium.)
 
 * **Create a Small Project Template**
   Inside `my_project`, create a folder named `mini_project`.
@@ -484,8 +484,8 @@ Mastery grows from repeated small, precise actions.
    Use `ls` to confirm that the folders were created. Practice moving between
    them with `cd`, `cd ..`, and `cd -`.
 
-1. From inside the `my_project` directory, open the project in VS Code by running
-   `code .`. In the VS Code terminal, run `ls -R` to display the full
+1. From inside the `my_project` directory, open the project in VSCodium by running
+   `code .`. In the VSCodium terminal, run `ls -R` to display the full
    directory structure.
 
 1. Inside `my_project`, create a folder named `mini_project` with subfolders

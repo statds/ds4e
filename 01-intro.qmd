@@ -382,7 +382,7 @@ Part I of this book focuses on building your foundation:
 - using the command line
 - navigating your computer
 - creating projects with clean structure
-- using VS Code as your editing home
+- using VSCodium as your editing home
 - tracking your work with Git
 - writing analyses with Quarto
 - learning your first programming language (Python)
