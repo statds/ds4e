@@ -12,51 +12,91 @@
   {
     "objectID": "01-intro.html",
     "href": "01-intro.html",
-    "title": "1  What Is Data Science?",
+    "title": "1  Introduction",
     "section": "",
-    "text": "1.1 Data Science Is About Asking Questions\nData science is the practice of learning from data. It brings together three pillars—computation, statistics, and domain knowledge—to create insights that help us understand, predict, and improve the world around us. You have already seen data science in action many times without noticing it.\nThis chapter introduces what data science is and what it is not, setting the stage for the hands-on tools you will learn in Part I.\nEvery data science project begins with a question.\nWhy has traffic increased on my school’s street?\nDo certain neighborhoods file more noise complaints?\nWhich players contributed most to a team’s winning season?\nData science helps translate these questions into something we can analyze, measure, and explain.",
+    "text": "1.1 What Is Data?\nData science is the practice of learning from data. In simple terms, it means using information to answer questions and make better decisions. It brings together three pillars—computation, statistics, and domain knowledge—to discover patterns and evidence that help us understand, predict, and improve the world around us. You have already seen data science in action many times without noticing it.\nThis chapter introduces what data science is and what it is not, setting the stage for the hands-on tools you will learn in Part I.\nData are pieces of recorded information.\nThey can be:\nSome data are structured, meaning they are organized in a clear and consistent format. Often this format is a table with rows and columns, like a spreadsheet or database table. Structured data are easy for computers to sort, filter, and analyze.\nOther data are unstructured, meaning they do not come neatly organized. A long paragraph of text, a photograph, or an audio recording are all examples of unstructured data. They still contain information—but that information may need to be transformed into a more organized format before certain types of analysis are possible.\nIt is important to note that data do not have to fit into rows and columns to be real data. Images, videos, and text can be analyzed directly using specialized tools. However, many common statistical methods work most easily when data are arranged in a structured format.\nTo see this more clearly, imagine a small table about students in a class:\nEach row is an observation (one student).\nEach column is a variable (a recorded characteristic).\nWhen information is organized like this, a computer can sort it, analyze it, and visualize it efficiently.\nHere is that same table created in Python.\nimport pandas as pd\n\n# create a small structured dataset\nstudents = pd.DataFrame({\n    \"Name\": [\"Alex\", \"Jordan\", \"Sam\"],\n    \"Grade\": [88, 92, 75],\n    \"Favorite_Subject\": [\"Math\", \"History\", \"Biology\"]\n})\n\nstudents\n\n\n\n\n\n\n\n\nName\nGrade\nFavorite_Subject\n\n\n\n\n0\nAlex\n88\nMath\n\n\n1\nJordan\n92\nHistory\n\n\n2\nSam\n75\nBiology\nNow the information is structured data that a computer can analyze directly.\nIf instead we had written:\n“Alex scored 88 and likes Math. Jordan scored 92 and likes History…”\nthat would still be data—but it would not be organized in a consistent structure. Before we could apply many standard statistical tools, we would likely reorganize it into a table.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Data Science?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
-    "objectID": "01-intro.html#data-science-uses-tools-not-just-math",
-    "href": "01-intro.html#data-science-uses-tools-not-just-math",
-    "title": "1  What Is Data Science?",
-    "section": "1.2 Data Science Uses Tools, Not Just Math",
-    "text": "1.2 Data Science Uses Tools, Not Just Math\nWhile math is important for deeper understanding, data scientists spend much of their time using tools—command line, Git, VS Code, Quarto, and programming languages such as Python or R. These tools help you:\n\nload and clean data\norganize your work\nbuild reproducible workflows\ncreate visualizations\nshare results with others\n\nThis book starts with tools because tools give you the power to actually do data science. Once you know how to work with your computer the way data scientists do, everything else becomes easier.",
+    "objectID": "01-intro.html#what-is-data",
+    "href": "01-intro.html#what-is-data",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "numbers (test scores, temperatures, distances)\ncategories (favorite food, school subject, city name)\ntext (reviews, comments, tweets)\nimages or sounds\n\n\n\n\n\n\n\n\nName\nGrade\nFavorite_Subject\n\n\n\n\nAlex\n88\nMath\n\n\nJordan\n92\nHistory\n\n\nSam\n75\nBiology\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteCheck-in Question\n\n\n\nCan you think of an example of data that would be difficult to fit into rows and columns?",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Data Science?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "01-intro.html#data-science-begins-with-questions",
+    "href": "01-intro.html#data-science-begins-with-questions",
+    "title": "1  Introduction",
+    "section": "1.2 Data Science Begins with Questions",
+    "text": "1.2 Data Science Begins with Questions\nEvery data science project begins with a question.\nWhy has traffic increased on my school’s street?\nDo certain neighborhoods file more noise complaints?\nWhich players contributed most to a team’s winning season?\nBut not every question works well for data science. Good data science questions are specific and measurable. That means we can connect them directly to data.\nFor example:\nVague question:\nWhy are students stressed?\nMore precise question:\nHow many hours do students report studying per week, and how does that relate to reported stress levels?\nThe second question can be answered with collected data. The first one is too broad without further definition.\nWe can even simulate small data to make the question concrete.\n\nimport numpy as np\nnp.random.seed(42)\n\nhours_studying = np.random.randint(1, 6, size=10)\nstress_level = np.random.randint(1, 6, size=10)\n\nlist(zip(hours_studying, stress_level))\n\n[(np.int64(4), np.int64(4)),\n (np.int64(5), np.int64(3)),\n (np.int64(3), np.int64(5)),\n (np.int64(5), np.int64(2)),\n (np.int64(5), np.int64(4)),\n (np.int64(2), np.int64(2)),\n (np.int64(3), np.int64(4)),\n (np.int64(3), np.int64(5)),\n (np.int64(3), np.int64(1)),\n (np.int64(5), np.int64(4))]\n\n\nThis simple example generates pairs of numbers: (hours studying, stress level). Now we could measure whether higher study time is associated with higher stress.\nData science helps translate everyday curiosity into clear, answerable questions. Once a question becomes measurable, we can analyze it, test ideas, and draw conclusions based on evidence.\n\n\n\n\n\n\nNoteCheck-in Question\n\n\n\nCan you think of a question about your school that could be rewritten to make it measurable?",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "01-intro.html#data-science-uses-tools",
+    "href": "01-intro.html#data-science-uses-tools",
+    "title": "1  Introduction",
+    "section": "1.3 Data Science Uses Tools",
+    "text": "1.3 Data Science Uses Tools\nData science is not only about ideas. It is also about building systems that allow you to work carefully and efficiently.\nWhile mathematics and statistics help us reason about data, data scientists spend much of their time using computational tools. These tools allow us to load data, clean it, analyze it, and communicate results in a clear and repeatable way.\nSome of the most important tools you will learn include:\n\nthe command line — a text-based way to control your computer\nGit — a system for tracking changes in your files\nan IDE (Integrated Development Environment) — a program for writing, organizing, and running code\nQuarto — a publishing system that combines code and explanation\na programming language such as Python\n\nEach tool has a specific role.\nThe command line allows you to navigate folders, create files, and run programs without clicking through menus. This makes your work faster and easier to automate.\nGit records every change you make to a project. If you make a mistake, you can return to an earlier version. If you collaborate with others, Git keeps everyone’s work organized.\nAn IDE (Integrated Development Environment) is more than a simple text editor. It allows you to write code, run programs, manage files, and debug errors in one place. Many different IDEs exist, including free and open-source options. The important idea is not the brand of software, but the workflow it supports.\nQuarto allows you to write explanations and code in the same document. When you render the file, Quarto runs the code and inserts the results directly into your report. This connects your reasoning and your computation in one reproducible workflow.\nYou may already be familiar with graphical user interfaces (GUIs), where you click buttons and select options from menus. GUIs are useful for quick exploration and one-time tasks. However, steps performed only by clicking are often difficult to document precisely.\nFor this reason, professional data scientists prefer writing code. Code records every instruction explicitly. That makes analyses easier to verify, repeat, and improve.\nFor example, here is a small calculation written in Python:\n\nnumbers = [3, 7, 10]\nsum(numbers)\n\n20\n\n\nInstead of calculating by hand or clicking through menus, you write the instruction once and let the computer execute it exactly.\nThese tools work together. The command line manages your environment. Git tracks your changes. Your IDE organizes and runs your code. Quarto publishes your results. Python performs the computation.\nLearning these tools gives you the ability to actually do data science, not just talk about it.\n\n\n\n\n\n\nNoteGUI vs. Code\n\n\n\nGraphical user interfaces (GUIs) allow you to click buttons and choose options from menus. They are helpful for quick exploration and small tasks.\nHowever, when you perform steps only by clicking, those steps may not be recorded in a clear, repeatable way. If someone asks, “Exactly what did you do?”, it can be difficult to answer precisely.\nCode works differently. Every instruction is written down. That means the computer — and other people — can rerun the exact same steps.\nIn data science, we prefer tools that make our work transparent and reproducible.\n\n\n\n\n\n\n\n\nNoteCheck-in Question\n\n\n\nWhy might writing code be more reliable than performing calculations by hand or clicking through menus, especially for large datasets?",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
     "objectID": "01-intro.html#data-science-is-reproducible",
     "href": "01-intro.html#data-science-is-reproducible",
-    "title": "1  What Is Data Science?",
-    "section": "1.3 Data Science Is Reproducible",
-    "text": "1.3 Data Science Is Reproducible\nA key idea in this book is reproducibility. A reproducible workflow is one where:\n\nyour analysis is neatly organized\nevery step is documented\nresults can be reproduced exactly by you or anyone else\n\nThis is why you will learn Quarto for writing reports and Git for version control. These skills turn your projects into something professional, even as a beginner.",
+    "title": "1  Introduction",
+    "section": "1.4 Data Science Is Reproducible",
+    "text": "1.4 Data Science Is Reproducible\nReproducibility is a core principle of data science. It means that someone else, or even you in the future, can run the same analysis and obtain the same results.\nIn professional settings, results must be verifiable. If a report claims that average test scores increased by 5 points, others should be able to examine the data and confirm the calculation. Without reproducibility, findings are difficult to trust.\nImagine finishing a project and coming back to it six months later. Would you remember:\n\nwhere the data came from?\nwhat cleaning steps you applied?\nwhich commands produced your final results?\n\nIf the answer is no, the work is not reproducible.\nA reproducible workflow is one where:\n\nyour files are neatly organized\nevery step is written as code (not done by clicking)\nresults can be generated again automatically\nchanges are tracked over time\n\nFor example, suppose you calculate the average test score.\n\nscores = [88, 92, 75]\nsum(scores) / len(scores)\n\n85.0\n\n\nIf that calculation lives inside your script, anyone can rerun it. But if you computed it on a calculator and only wrote down the final number, no one can verify how you obtained it.\nReproducibility protects you from mistakes. If something looks wrong, you can rerun everything from the beginning. It also builds trust. Others can inspect your code and confirm your results.\nThis is why data scientists rely on tools such as:\n\nthe command line to control their environment\nGit to track changes\nQuarto to combine code and explanation in one document\n\nTogether, these tools allow an entire project to be rebuilt from scratch using documented steps.\n\n\n\n\n\n\nNoteCheck-in Question\n\n\n\nIf a classmate wanted to reproduce your project, what files would they need? Would a screenshot of your results be enough?",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Data Science?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
     "objectID": "01-intro.html#data-science-is-interdisciplinary",
     "href": "01-intro.html#data-science-is-interdisciplinary",
-    "title": "1  What Is Data Science?",
-    "section": "1.4 Data Science Is Interdisciplinary",
-    "text": "1.4 Data Science Is Interdisciplinary\nTo answer real-world questions, you combine:\n\ncomputing — writing code to process data\nstatistics — measuring uncertainty and learning patterns\ndomain knowledge — understanding the context: climate, health, sports, education, city systems, and many others\n\nNone of these pillars works alone. Together they create meaningful insights.",
+    "title": "1  Introduction",
+    "section": "1.5 Data Science Is Interdisciplinary",
+    "text": "1.5 Data Science Is Interdisciplinary\nData science is interdisciplinary. That means it combines knowledge from multiple fields rather than relying on just one.\nTo answer real-world questions, data scientists bring together three main pillars:\n\ncomputing — writing code to process and manage data\nstatistics — measuring variation and uncertainty\ndomain knowledge — understanding the real-world context\n\nEach pillar plays a different role.\nComputing allows us to handle large datasets efficiently. Without code, it would be nearly impossible to analyze millions of records.\nStatistics helps us reason carefully about patterns. It teaches us how to distinguish real signals from random variation. Without statistics, we might mistake coincidence for evidence.\nDomain knowledge provides context. Data do not explain themselves. If you are analyzing hospital data, you need basic knowledge of health care systems. If you are studying sports performance, you need to understand the rules of the game.\nConsider an example. Suppose a city wants to predict flooding.\n\nComputing allows us to process rainfall data and elevation maps.\nStatistics helps us estimate the probability of flooding.\nDomain knowledge tells us how drainage systems and local geography influence water flow.\n\nIf any one pillar is missing, the analysis becomes weaker.\nComputing without statistics may produce precise but misleading numbers. Statistics without computing may be too slow to apply at scale. Both without domain knowledge may lead to unrealistic conclusions.\nData science works best when these three areas support each other.\n\n\n\n\n\n\nNoteCheck-in Question\n\n\n\nThink of a problem you care about (sports, music, climate, school policy). What kind of domain knowledge would you need to analyze it properly?",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Data Science?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "01-intro.html#what-data-science-is-not",
+    "href": "01-intro.html#what-data-science-is-not",
+    "title": "1  Introduction",
+    "section": "1.6 What Data Science Is Not",
+    "text": "1.6 What Data Science Is Not\nData science is not a shortcut around mathematics and statistics. When students try to rely only on software without understanding probability, variation, or logical reasoning, they often produce results that look polished but are unreliable. A model can generate precise numbers, yet those numbers may rest on weak assumptions. Strong quantitative training does not make work complicated for its own sake; it prevents false confidence.\nData science is also not an exercise in writing code for its own sake. A well-written program can process enormous amounts of data, but speed does not guarantee truth. If the underlying logic is flawed, computing simply amplifies the mistake. Learning to program well means learning to think carefully about algorithms, structure, and consequences.\nMost importantly, data science is not magic. No method can extract reliable information from pure noise. Humans are naturally drawn to patterns, even when they occur by chance. Without statistical discipline, it is easy to mistake randomness for discovery. History is full of examples where weak evidence led to strong claims, causing confusion or harm. Responsible data science requires skepticism, patience, and respect for limits.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
     "objectID": "01-intro.html#what-you-will-learn-next",
     "href": "01-intro.html#what-you-will-learn-next",
-    "title": "1  What Is Data Science?",
-    "section": "1.5 What You Will Learn Next",
-    "text": "1.5 What You Will Learn Next\nPart I of this book focuses on building your foundation:\n\nusing the command line\nnavigating your computer\ncreating projects with clean structure\nusing VS Code as your editing home\ntracking your work with Git\nwriting analyses with Quarto\nlearning your first programming language (Python)\n\nBy the end of Part I, you will have built your first complete data science project: a real report, with real data, that you can publish or share.\nPart II takes you through case studies in health, environment, sports, and other areas—helping you discover patterns in real datasets and understand how data science works in practice.\nData science is not something you learn in one day. It is a craft you build over time. This book gives you the tools and the mindset to begin that journey the right way.",
+    "title": "1  Introduction",
+    "section": "1.7 What You Will Learn Next",
+    "text": "1.7 What You Will Learn Next\nPart I of this book focuses on building your foundation:\n\nusing the command line\nnavigating your computer\ncreating projects with clean structure\nusing VS Code as your editing home\ntracking your work with Git\nwriting analyses with Quarto\nlearning your first programming language (Python)\n\nBy the end of Part I, you will have built your first complete data science project: a real report, with real data, that you can publish or share.\nPart II takes you through case studies in health, environment, sports, and other areas—helping you discover patterns in real datasets and understand how data science works in practice.\nData science is not something you learn in one day. It is a craft you build over time. This book gives you the tools and the mindset to begin that journey the right way.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>What Is Data Science?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "01-intro.html#exercises",
+    "href": "01-intro.html#exercises",
+    "title": "1  Introduction",
+    "section": "1.8 Exercises",
+    "text": "1.8 Exercises\nThese questions are designed to help you think more carefully about the ideas in this chapter. Write short answers unless instructed otherwise.\n\nIn your own words, define data science. What are its three main pillars?\nGive one example of structured data and one example of unstructured data from your daily life.\nRewrite the following vague question so that it becomes measurable:\n“Are students happy at our school?”\nExplain why clicking through menus in a GUI might make an analysis harder to reproduce.\nImagine you conducted a small survey of 10 classmates about how many hours they sleep each night.\n\nWhat would be one possible variable?\n\nWhat would be one observation?\n\nWhy is reproducibility important in professional settings? Give one practical reason.\nChoose a real-world topic you care about (sports, music, climate, social media, school policy, etc.).\n\nPropose one clear, measurable data science question.\n\nIdentify what kind of domain knowledge you would need.\n\nOptional CLI Warm-Up.\n\nOpen your terminal.\n\nType:\npwd\nWhat does this command display?\nNow type:\nls\nWhat do you see?\nIn one sentence, explain how using the command line differs from clicking through folders.\n\nMini-Project Preview.\n\nWrite one clear, measurable question you would like to answer.\n\nDescribe what data you would need.\n\nExplain how you would organize those data in a table.\n\nWhy would reproducibility matter for this project?",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {

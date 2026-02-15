@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; What Is Data Science? – Data Science for Everyone</title>
+<title>1&nbsp; Introduction – Data Science for Everyone</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,10 +20,45 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -70,6 +105,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -83,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What Is Data Science?</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -117,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-intro.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What Is Data Science?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -153,11 +191,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-science-is-about-asking-questions" id="toc-data-science-is-about-asking-questions" class="nav-link active" data-scroll-target="#data-science-is-about-asking-questions"><span class="header-section-number">1.1</span> Data Science Is About Asking Questions</a></li>
-  <li><a href="#data-science-uses-tools-not-just-math" id="toc-data-science-uses-tools-not-just-math" class="nav-link" data-scroll-target="#data-science-uses-tools-not-just-math"><span class="header-section-number">1.2</span> Data Science Uses Tools, Not Just Math</a></li>
-  <li><a href="#data-science-is-reproducible" id="toc-data-science-is-reproducible" class="nav-link" data-scroll-target="#data-science-is-reproducible"><span class="header-section-number">1.3</span> Data Science Is Reproducible</a></li>
-  <li><a href="#data-science-is-interdisciplinary" id="toc-data-science-is-interdisciplinary" class="nav-link" data-scroll-target="#data-science-is-interdisciplinary"><span class="header-section-number">1.4</span> Data Science Is Interdisciplinary</a></li>
-  <li><a href="#what-you-will-learn-next" id="toc-what-you-will-learn-next" class="nav-link" data-scroll-target="#what-you-will-learn-next"><span class="header-section-number">1.5</span> What You Will Learn Next</a></li>
+  <li><a href="#what-is-data" id="toc-what-is-data" class="nav-link active" data-scroll-target="#what-is-data"><span class="header-section-number">1.1</span> What Is Data?</a></li>
+  <li><a href="#data-science-begins-with-questions" id="toc-data-science-begins-with-questions" class="nav-link" data-scroll-target="#data-science-begins-with-questions"><span class="header-section-number">1.2</span> Data Science Begins with Questions</a></li>
+  <li><a href="#data-science-uses-tools" id="toc-data-science-uses-tools" class="nav-link" data-scroll-target="#data-science-uses-tools"><span class="header-section-number">1.3</span> Data Science Uses Tools</a></li>
+  <li><a href="#data-science-is-reproducible" id="toc-data-science-is-reproducible" class="nav-link" data-scroll-target="#data-science-is-reproducible"><span class="header-section-number">1.4</span> Data Science Is Reproducible</a></li>
+  <li><a href="#data-science-is-interdisciplinary" id="toc-data-science-is-interdisciplinary" class="nav-link" data-scroll-target="#data-science-is-interdisciplinary"><span class="header-section-number">1.5</span> Data Science Is Interdisciplinary</a></li>
+  <li><a href="#what-data-science-is-not" id="toc-what-data-science-is-not" class="nav-link" data-scroll-target="#what-data-science-is-not"><span class="header-section-number">1.6</span> What Data Science Is Not</a></li>
+  <li><a href="#what-you-will-learn-next" id="toc-what-you-will-learn-next" class="nav-link" data-scroll-target="#what-you-will-learn-next"><span class="header-section-number">1.7</span> What You Will Learn Next</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">1.8</span> Exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -166,7 +207,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What Is Data Science?</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
 </div>
 
 
@@ -183,55 +224,328 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Data science is the practice of learning from data. It brings together three pillars—computation, statistics, and domain knowledge—to create insights that help us understand, predict, and improve the world around us. You have already seen data science in action many times without noticing it.</p>
+<p>Data science is the practice of learning from data. In simple terms, it means using information to answer questions and make better decisions. It brings together three pillars—computation, statistics, and domain knowledge—to discover patterns and evidence that help us understand, predict, and improve the world around us. You have already seen data science in action many times without noticing it.</p>
 <ul>
 <li>When your music app recommends a new artist, data science is working.</li>
 <li>When a weather app predicts tomorrow’s temperature, data science is working.</li>
 <li>When a city publishes flooding complaints or bus-delay patterns, data science helps make sense of them.</li>
 </ul>
 <p>This chapter introduces what data science is and what it is not, setting the stage for the hands-on tools you will learn in Part I.</p>
-<section id="data-science-is-about-asking-questions" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="data-science-is-about-asking-questions"><span class="header-section-number">1.1</span> Data Science Is About Asking Questions</h2>
+<section id="what-is-data" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-data"><span class="header-section-number">1.1</span> What Is Data?</h2>
+<p>Data are pieces of recorded information.</p>
+<p>They can be:</p>
+<ul>
+<li>numbers (test scores, temperatures, distances)</li>
+<li>categories (favorite food, school subject, city name)</li>
+<li>text (reviews, comments, tweets)</li>
+<li>images or sounds</li>
+</ul>
+<p>Some data are <strong>structured</strong>, meaning they are organized in a clear and consistent format. Often this format is a table with rows and columns, like a spreadsheet or database table. Structured data are easy for computers to sort, filter, and analyze.</p>
+<p>Other data are <strong>unstructured</strong>, meaning they do not come neatly organized. A long paragraph of text, a photograph, or an audio recording are all examples of unstructured data. They still contain information—but that information may need to be transformed into a more organized format before certain types of analysis are possible.</p>
+<p>It is important to note that data do not <em>have</em> to fit into rows and columns to be real data. Images, videos, and text can be analyzed directly using specialized tools. However, many common statistical methods work most easily when data are arranged in a structured format.</p>
+<p>To see this more clearly, imagine a small table about students in a class:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Name</th>
+<th style="text-align: right;">Grade</th>
+<th style="text-align: center;">Favorite_Subject</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Alex</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: center;">Math</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Jordan</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: center;">History</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sam</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: center;">Biology</td>
+</tr>
+</tbody>
+</table>
+<p>Each row is an <strong>observation</strong> (one student).<br>
+Each column is a <strong>variable</strong> (a recorded characteristic).</p>
+<p>When information is organized like this, a computer can sort it, analyze it, and visualize it efficiently.</p>
+<p>Here is that same table created in Python.</p>
+<div id="612c47b6" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create a small structured dataset</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>students <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Name"</span>: [<span class="st">"Alex"</span>, <span class="st">"Jordan"</span>, <span class="st">"Sam"</span>],</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Grade"</span>: [<span class="dv">88</span>, <span class="dv">92</span>, <span class="dv">75</span>],</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Favorite_Subject"</span>: [<span class="st">"Math"</span>, <span class="st">"History"</span>, <span class="st">"Biology"</span>]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>students</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Name</th>
+<th data-quarto-table-cell-role="th">Grade</th>
+<th data-quarto-table-cell-role="th">Favorite_Subject</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Alex</td>
+<td>88</td>
+<td>Math</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Jordan</td>
+<td>92</td>
+<td>History</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Sam</td>
+<td>75</td>
+<td>Biology</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Now the information is structured data that a computer can analyze directly.</p>
+<p>If instead we had written:</p>
+<p>“Alex scored 88 and likes Math. Jordan scored 92 and likes History…”</p>
+<p>that would still be data—but it would not be organized in a consistent structure. Before we could apply many standard statistical tools, we would likely reorganize it into a table.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check-in Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Can you think of an example of data that would be difficult to fit into rows and columns?</p>
+</div>
+</div>
+</section>
+<section id="data-science-begins-with-questions" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="data-science-begins-with-questions"><span class="header-section-number">1.2</span> Data Science Begins with Questions</h2>
 <p>Every data science project begins with a question.</p>
 <p>Why has traffic increased on my school’s street?<br>
 Do certain neighborhoods file more noise complaints?<br>
 Which players contributed most to a team’s winning season?</p>
-<p>Data science helps translate these questions into something we can analyze, measure, and explain.</p>
+<p>But not every question works well for data science. Good data science questions are <strong>specific and measurable</strong>. That means we can connect them directly to data.</p>
+<p>For example:</p>
+<p>Vague question:<br>
+Why are students stressed?</p>
+<p>More precise question:<br>
+How many hours do students report studying per week, and how does that relate to reported stress levels?</p>
+<p>The second question can be answered with collected data. The first one is too broad without further definition.</p>
+<p>We can even simulate small data to make the question concrete.</p>
+<div id="d43cfa16" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>hours_studying <span class="op">=</span> np.random.randint(<span class="dv">1</span>, <span class="dv">6</span>, size<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>stress_level <span class="op">=</span> np.random.randint(<span class="dv">1</span>, <span class="dv">6</span>, size<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(<span class="bu">zip</span>(hours_studying, stress_level))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>[(np.int64(4), np.int64(4)),
+ (np.int64(5), np.int64(3)),
+ (np.int64(3), np.int64(5)),
+ (np.int64(5), np.int64(2)),
+ (np.int64(5), np.int64(4)),
+ (np.int64(2), np.int64(2)),
+ (np.int64(3), np.int64(4)),
+ (np.int64(3), np.int64(5)),
+ (np.int64(3), np.int64(1)),
+ (np.int64(5), np.int64(4))]</code></pre>
+</div>
+</div>
+<p>This simple example generates pairs of numbers: (hours studying, stress level). Now we could measure whether higher study time is associated with higher stress.</p>
+<p>Data science helps translate everyday curiosity into clear, answerable questions. Once a question becomes measurable, we can analyze it, test ideas, and draw conclusions based on evidence.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check-in Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Can you think of a question about your school that could be rewritten to make it measurable?</p>
+</div>
+</div>
 </section>
-<section id="data-science-uses-tools-not-just-math" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="data-science-uses-tools-not-just-math"><span class="header-section-number">1.2</span> Data Science Uses Tools, Not Just Math</h2>
-<p>While math is important for deeper understanding, data scientists spend much of their time using tools—command line, Git, VS Code, Quarto, and programming languages such as Python or R. These tools help you:</p>
+<section id="data-science-uses-tools" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="data-science-uses-tools"><span class="header-section-number">1.3</span> Data Science Uses Tools</h2>
+<p>Data science is not only about ideas. It is also about building systems that allow you to work carefully and efficiently.</p>
+<p>While mathematics and statistics help us reason about data, data scientists spend much of their time using computational tools. These tools allow us to load data, clean it, analyze it, and communicate results in a clear and repeatable way.</p>
+<p>Some of the most important tools you will learn include:</p>
 <ul>
-<li>load and clean data</li>
-<li>organize your work</li>
-<li>build reproducible workflows</li>
-<li>create visualizations</li>
-<li>share results with others</li>
+<li>the <strong>command line</strong> — a text-based way to control your computer</li>
+<li><strong>Git</strong> — a system for tracking changes in your files</li>
+<li>an <strong>IDE (Integrated Development Environment)</strong> — a program for writing, organizing, and running code</li>
+<li><strong>Quarto</strong> — a publishing system that combines code and explanation</li>
+<li>a programming language such as <strong>Python</strong></li>
 </ul>
-<p>This book starts with tools because tools give you the power to actually <em>do</em> data science. Once you know how to work with your computer the way data scientists do, everything else becomes easier.</p>
+<p>Each tool has a specific role.</p>
+<p>The command line allows you to navigate folders, create files, and run programs without clicking through menus. This makes your work faster and easier to automate.</p>
+<p>Git records every change you make to a project. If you make a mistake, you can return to an earlier version. If you collaborate with others, Git keeps everyone’s work organized.</p>
+<p>An IDE (Integrated Development Environment) is more than a simple text editor. It allows you to write code, run programs, manage files, and debug errors in one place. Many different IDEs exist, including free and open-source options. The important idea is not the brand of software, but the workflow it supports.</p>
+<p>Quarto allows you to write explanations and code in the same document. When you render the file, Quarto runs the code and inserts the results directly into your report. This connects your reasoning and your computation in one reproducible workflow.</p>
+<p>You may already be familiar with graphical user interfaces (GUIs), where you click buttons and select options from menus. GUIs are useful for quick exploration and one-time tasks. However, steps performed only by clicking are often difficult to document precisely.</p>
+<p>For this reason, professional data scientists prefer writing code. Code records every instruction explicitly. That makes analyses easier to verify, repeat, and improve.</p>
+<p>For example, here is a small calculation written in Python:</p>
+<div id="e2a51208" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">10</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(numbers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>20</code></pre>
+</div>
+</div>
+<p>Instead of calculating by hand or clicking through menus, you write the instruction once and let the computer execute it exactly.</p>
+<p>These tools work together. The command line manages your environment. Git tracks your changes. Your IDE organizes and runs your code. Quarto publishes your results. Python performs the computation.</p>
+<p>Learning these tools gives you the ability to actually <em>do</em> data science, not just talk about it.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>GUI vs.&nbsp;Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Graphical user interfaces (GUIs) allow you to click buttons and choose options from menus. They are helpful for quick exploration and small tasks.</p>
+<p>However, when you perform steps only by clicking, those steps may not be recorded in a clear, repeatable way. If someone asks, “Exactly what did you do?”, it can be difficult to answer precisely.</p>
+<p>Code works differently. Every instruction is written down. That means the computer — and other people — can rerun the exact same steps.</p>
+<p>In data science, we prefer tools that make our work transparent and reproducible.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check-in Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Why might writing code be more reliable than performing calculations by hand or clicking through menus, especially for large datasets?</p>
+</div>
+</div>
 </section>
-<section id="data-science-is-reproducible" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="data-science-is-reproducible"><span class="header-section-number">1.3</span> Data Science Is Reproducible</h2>
-<p>A key idea in this book is reproducibility. A reproducible workflow is one where:</p>
+<section id="data-science-is-reproducible" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="data-science-is-reproducible"><span class="header-section-number">1.4</span> Data Science Is Reproducible</h2>
+<p>Reproducibility is a core principle of data science. It means that someone else, or even you in the future, can run the same analysis and obtain the same results.</p>
+<p>In professional settings, results must be verifiable. If a report claims that average test scores increased by 5 points, others should be able to examine the data and confirm the calculation. Without reproducibility, findings are difficult to trust.</p>
+<p>Imagine finishing a project and coming back to it six months later. Would you remember:</p>
 <ul>
-<li>your analysis is neatly organized</li>
-<li>every step is documented</li>
-<li>results can be reproduced exactly by you or anyone else</li>
+<li>where the data came from?</li>
+<li>what cleaning steps you applied?</li>
+<li>which commands produced your final results?</li>
 </ul>
-<p>This is why you will learn Quarto for writing reports and Git for version control. These skills turn your projects into something professional, even as a beginner.</p>
-</section>
-<section id="data-science-is-interdisciplinary" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="data-science-is-interdisciplinary"><span class="header-section-number">1.4</span> Data Science Is Interdisciplinary</h2>
-<p>To answer real-world questions, you combine:</p>
+<p>If the answer is no, the work is not reproducible.</p>
+<p>A reproducible workflow is one where:</p>
 <ul>
-<li><strong>computing</strong> — writing code to process data</li>
-<li><strong>statistics</strong> — measuring uncertainty and learning patterns</li>
-<li><strong>domain knowledge</strong> — understanding the context: climate, health, sports, education, city systems, and many others</li>
+<li>your files are neatly organized</li>
+<li>every step is written as code (not done by clicking)</li>
+<li>results can be generated again automatically</li>
+<li>changes are tracked over time</li>
 </ul>
-<p>None of these pillars works alone. Together they create meaningful insights.</p>
+<p>For example, suppose you calculate the average test score.</p>
+<div id="965b759f" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> [<span class="dv">88</span>, <span class="dv">92</span>, <span class="dv">75</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(scores) <span class="op">/</span> <span class="bu">len</span>(scores)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>85.0</code></pre>
+</div>
+</div>
+<p>If that calculation lives inside your script, anyone can rerun it. But if you computed it on a calculator and only wrote down the final number, no one can verify how you obtained it.</p>
+<p>Reproducibility protects you from mistakes. If something looks wrong, you can rerun everything from the beginning. It also builds trust. Others can inspect your code and confirm your results.</p>
+<p>This is why data scientists rely on tools such as:</p>
+<ul>
+<li>the command line to control their environment</li>
+<li>Git to track changes</li>
+<li>Quarto to combine code and explanation in one document</li>
+</ul>
+<p>Together, these tools allow an entire project to be rebuilt from scratch using documented steps.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check-in Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If a classmate wanted to reproduce your project, what files would they need? Would a screenshot of your results be enough?</p>
+</div>
+</div>
 </section>
-<section id="what-you-will-learn-next" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="what-you-will-learn-next"><span class="header-section-number">1.5</span> What You Will Learn Next</h2>
+<section id="data-science-is-interdisciplinary" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="data-science-is-interdisciplinary"><span class="header-section-number">1.5</span> Data Science Is Interdisciplinary</h2>
+<p>Data science is interdisciplinary. That means it combines knowledge from multiple fields rather than relying on just one.</p>
+<p>To answer real-world questions, data scientists bring together three main pillars:</p>
+<ul>
+<li><strong>computing</strong> — writing code to process and manage data</li>
+<li><strong>statistics</strong> — measuring variation and uncertainty</li>
+<li><strong>domain knowledge</strong> — understanding the real-world context</li>
+</ul>
+<p>Each pillar plays a different role.</p>
+<p>Computing allows us to handle large datasets efficiently. Without code, it would be nearly impossible to analyze millions of records.</p>
+<p>Statistics helps us reason carefully about patterns. It teaches us how to distinguish real signals from random variation. Without statistics, we might mistake coincidence for evidence.</p>
+<p>Domain knowledge provides context. Data do not explain themselves. If you are analyzing hospital data, you need basic knowledge of health care systems. If you are studying sports performance, you need to understand the rules of the game.</p>
+<p>Consider an example. Suppose a city wants to predict flooding.</p>
+<ul>
+<li>Computing allows us to process rainfall data and elevation maps.</li>
+<li>Statistics helps us estimate the probability of flooding.</li>
+<li>Domain knowledge tells us how drainage systems and local geography influence water flow.</li>
+</ul>
+<p>If any one pillar is missing, the analysis becomes weaker.</p>
+<p>Computing without statistics may produce precise but misleading numbers. Statistics without computing may be too slow to apply at scale. Both without domain knowledge may lead to unrealistic conclusions.</p>
+<p>Data science works best when these three areas support each other.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check-in Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Think of a problem you care about (sports, music, climate, school policy). What kind of domain knowledge would you need to analyze it properly?</p>
+</div>
+</div>
+</section>
+<section id="what-data-science-is-not" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="what-data-science-is-not"><span class="header-section-number">1.6</span> What Data Science Is Not</h2>
+<p>Data science is not a shortcut around mathematics and statistics. When students try to rely only on software without understanding probability, variation, or logical reasoning, they often produce results that look polished but are unreliable. A model can generate precise numbers, yet those numbers may rest on weak assumptions. Strong quantitative training does not make work complicated for its own sake; it prevents false confidence.</p>
+<p>Data science is also not an exercise in writing code for its own sake. A well-written program can process enormous amounts of data, but speed does not guarantee truth. If the underlying logic is flawed, computing simply amplifies the mistake. Learning to program well means learning to think carefully about algorithms, structure, and consequences.</p>
+<p>Most importantly, data science is not magic. No method can extract reliable information from pure noise. Humans are naturally drawn to patterns, even when they occur by chance. Without statistical discipline, it is easy to mistake randomness for discovery. History is full of examples where weak evidence led to strong claims, causing confusion or harm. Responsible data science requires skepticism, patience, and respect for limits.</p>
+</section>
+<section id="what-you-will-learn-next" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="what-you-will-learn-next"><span class="header-section-number">1.7</span> What You Will Learn Next</h2>
 <p>Part I of this book focuses on building your foundation:</p>
 <ul>
 <li>using the command line</li>
@@ -245,6 +559,52 @@ Which players contributed most to a team’s winning season?</p>
 <p>By the end of Part I, you will have built your first complete data science project: a real report, with real data, that you can publish or share.</p>
 <p>Part II takes you through case studies in health, environment, sports, and other areas—helping you discover patterns in real datasets and understand how data science works in practice.</p>
 <p>Data science is not something you learn in one day. It is a craft you build over time. This book gives you the tools and the mindset to begin that journey the right way.</p>
+</section>
+<section id="exercises" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.8</span> Exercises</h2>
+<p>These questions are designed to help you think more carefully about the ideas in this chapter. Write short answers unless instructed otherwise.</p>
+<ol type="1">
+<li><p>In your own words, define <strong>data science</strong>. What are its three main pillars?</p></li>
+<li><p>Give one example of <strong>structured data</strong> and one example of <strong>unstructured data</strong> from your daily life.</p></li>
+<li><p>Rewrite the following vague question so that it becomes measurable:</p>
+<p>“Are students happy at our school?”</p></li>
+<li><p>Explain why clicking through menus in a GUI might make an analysis harder to reproduce.</p></li>
+<li><p>Imagine you conducted a small survey of 10 classmates about how many hours they sleep each night.</p>
+<ol type="a">
+<li>What would be one possible variable?<br>
+</li>
+<li>What would be one observation?</li>
+</ol></li>
+<li><p>Why is reproducibility important in professional settings? Give one practical reason.</p></li>
+<li><p>Choose a real-world topic you care about (sports, music, climate, social media, school policy, etc.).</p>
+<ol type="a">
+<li>Propose one clear, measurable data science question.<br>
+</li>
+<li>Identify what kind of domain knowledge you would need.</li>
+</ol></li>
+<li><p>Optional CLI Warm-Up.</p>
+<ol type="a">
+<li><p>Open your terminal.<br>
+</p></li>
+<li><p>Type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>What does this command display?</p></li>
+<li><p>Now type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>What do you see?</p></li>
+<li><p>In one sentence, explain how using the command line differs from clicking through folders.</p></li>
+</ol></li>
+<li><p>Mini-Project Preview.</p>
+<ol type="a">
+<li>Write one clear, measurable question you would like to answer.<br>
+</li>
+<li>Describe what data you would need.<br>
+</li>
+<li>Explain how you would organize those data in a table.<br>
+</li>
+<li>Why would reproducibility matter for this project?</li>
+</ol></li>
+</ol>
 
 
 </section>
