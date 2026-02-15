@@ -234,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#creating-and-publishing-a-new-repository" id="toc-creating-and-publishing-a-new-repository" class="nav-link" data-scroll-target="#creating-and-publishing-a-new-repository"><span class="header-section-number">3.8.3</span> Creating and Publishing a New Repository</a></li>
   <li><a href="#cloning-an-existing-repository" id="toc-cloning-an-existing-repository" class="nav-link" data-scroll-target="#cloning-an-existing-repository"><span class="header-section-number">3.8.4</span> Cloning an Existing Repository</a></li>
   </ul></li>
-  <li><a href="#first-data-science-project-putting-it-all-together" id="toc-first-data-science-project-putting-it-all-together" class="nav-link" data-scroll-target="#first-data-science-project-putting-it-all-together"><span class="header-section-number">3.9</span> first-data-science-project: Putting It All Together</a>
+  <li><a href="#first-data-science-project-putting-them-all-together" id="toc-first-data-science-project-putting-them-all-together" class="nav-link" data-scroll-target="#first-data-science-project-putting-them-all-together"><span class="header-section-number">3.9</span> First Data Science Project: Putting Them All Together</a>
   <ul class="collapse">
   <li><a href="#choosing-a-simple-meaningful-dataset" id="toc-choosing-a-simple-meaningful-dataset" class="nav-link" data-scroll-target="#choosing-a-simple-meaningful-dataset"><span class="header-section-number">3.9.1</span> Choosing a Simple, Meaningful Dataset</a></li>
   <li><a href="#setting-up-the-project-folder" id="toc-setting-up-the-project-folder" class="nav-link" data-scroll-target="#setting-up-the-project-folder"><span class="header-section-number">3.9.2</span> Setting Up the Project Folder</a></li>
@@ -898,60 +898,35 @@ quarto render my_first.qmd</code></pre>
 <p>Cloning creates a new local directory containing the full project history.</p>
 </section>
 </section>
-<section id="first-data-science-project-putting-it-all-together" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="first-data-science-project-putting-it-all-together"><span class="header-section-number">3.9</span> first-data-science-project: Putting It All Together</h2>
+<section id="first-data-science-project-putting-them-all-together" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="first-data-science-project-putting-them-all-together"><span class="header-section-number">3.9</span> First Data Science Project: Putting Them All Together</h2>
 <p>This project section is a guided recap. You will reuse the same tools from the earlier gates, in the same order.</p>
 <p>This chapter integrates everything from Part I—command line, VSCodium, Git, GitHub, Quarto, and Python/R—into a single, coherent project workflow. The goal is to let students experience how real data science work is done: create a clean folder, version it with Git, write a reproducible Quarto file, and share the final analysis.</p>
 <section id="choosing-a-simple-meaningful-dataset" class="level3" data-number="3.9.1">
 <h3 data-number="3.9.1" class="anchored" data-anchor-id="choosing-a-simple-meaningful-dataset"><span class="header-section-number">3.9.1</span> Choosing a Simple, Meaningful Dataset</h3>
-<p>The first step in any project is choosing a dataset that is small, clean, and intrinsically interesting. Students should select something they care about so they remain motivated while practicing the workflow. Good examples include:</p>
-<ul>
-<li>NYC 311 complaint counts for a single neighborhood</li>
-<li>School lunch nutrition data from USDA open data</li>
-<li>A small sports dataset (NBA scores, soccer goals, WNBA box scores)</li>
-<li>Trends in daily steps from a personal fitness tracker</li>
-<li>Any two-column CSV they record themselves (date + measurement)</li>
-</ul>
+<p>The first step in any project is choosing a dataset that is small, clean, and intrinsically interesting. Students should select something they care about so they remain motivated while practicing the workflow.</p>
+<p>Good examples include:<br>
+- NYC 311 complaint counts for a single neighborhood - School lunch nutrition data from USDA open data - A small sports dataset (NBA scores, soccer goals, WNBA box scores) - Trends in daily steps from a personal fitness tracker - Any two-column CSV they record themselves (date + measurement)</p>
 <p>Best practice is to avoid large, messy datasets for this first project. Students should aim to complete end-to-end analysis, not get stuck in heavy cleaning.</p>
 </section>
 <section id="setting-up-the-project-folder" class="level3" data-number="3.9.2">
 <h3 data-number="3.9.2" class="anchored" data-anchor-id="setting-up-the-project-folder"><span class="header-section-number">3.9.2</span> Setting Up the Project Folder</h3>
 <p>A clean folder structure helps keep the project reproducible and organized. Students use the command line to create folders and set up a Git repository.</p>
-<p>Recommended structure:</p>
-<ul>
-<li><code>data/</code> — raw datasets in CSV or JSON</li>
-<li><code>analysis/</code> — Quarto notebooks</li>
-<li><code>figures/</code> — automatically generated plots</li>
-<li><code>README.md</code> — short description of the project</li>
-</ul>
-<p>Key steps:</p>
-<ul>
-<li>Use the command line to create the folder and subfolders<br>
-<em>(mkdir my-project, cd my-project, mkdir data analysis figures)</em></li>
-<li>Initialize Git with<br>
-<code>git init</code></li>
-<li>Make the first commit with<br>
-<code>git add README.md</code> and <code>git commit -m "Initial project structure"</code></li>
-</ul>
+<p>Recommended structure:<br>
+- <code>data/</code> — raw datasets in CSV or JSON - <code>analysis/</code> — Quarto notebooks - <code>figures/</code> — automatically generated plots - <code>README.md</code> — short description of the project</p>
+<p>Key steps:<br>
+- Use the command line to create the folder and subfolders<br>
+<em>(mkdir my-project, cd my-project, mkdir data analysis figures)</em> - Initialize Git with<br>
+<code>git init</code> - Make the first commit with<br>
+<code>git add README.md</code> and <code>git commit -m "Initial project structure"</code></p>
 <p>Students should verify that Git is tracking the project by running <code>git status</code> and confirming the working tree is clean.</p>
 </section>
 <section id="writing-a-full-quarto-analysis" class="level3" data-number="3.9.3">
 <h3 data-number="3.9.3" class="anchored" data-anchor-id="writing-a-full-quarto-analysis"><span class="header-section-number">3.9.3</span> Writing a Full Quarto Analysis</h3>
-<p>The core of the project is a reproducible Quarto notebook that explains the data, code, and conclusions in one document. The notebook should include:</p>
-<ul>
-<li>A clear statement of the question (e.g., “How do 311 noise complaints differ between weekdays and weekends?”)</li>
-<li>Code to import the dataset</li>
-<li>Two or three meaningful visualizations (bar plots, line plots, scatterplots, histograms)</li>
-<li>Short summary paragraphs explaining the patterns</li>
-</ul>
-<p>A minimal workflow:</p>
-<ol type="1">
-<li>Create <code>analysis/project.qmd</code> in VSCodium.</li>
-<li>Add a YAML header with a title, author, and format.</li>
-<li>Insert code chunks to load the dataset and inspect its structure.</li>
-<li>Generate plots and save outputs to the <code>figures/</code> folder.</li>
-<li>Render the notebook to HTML using the VS Codium Quarto extension.</li>
-</ol>
+<p>The core of the project is a reproducible Quarto notebook that explains the data, code, and conclusions in one document. The notebook should include:<br>
+- A clear statement of the question (e.g., “How do 311 noise complaints differ between weekdays and weekends?”) - Code to import the dataset - Two or three meaningful visualizations (bar plots, line plots, scatterplots, histograms) - Short summary paragraphs explaining the patterns</p>
+<p>A minimal workflow:<br>
+1. Create <code>analysis/project.qmd</code> in VSCodium. 2. Add a YAML header with a title, author, and format. 3. Insert code chunks to load the dataset and inspect its structure. 4. Generate plots and save outputs to the <code>figures/</code> folder. 5. Render the notebook to HTML using the VS Codium Quarto extension.</p>
 <p>Students should keep text and code in one place—not separate PowerPoints, Word files, or screenshots. Quarto ensures everything is reproducible.</p>
 </section>
 <section id="publishing-or-sharing-work" class="level3" data-number="3.9.4">

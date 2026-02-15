@@ -319,19 +319,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Because computers use binary, many simple-looking decimals <strong>cannot</strong> be stored exactly. For example, the decimal number 0.1 turns into a long repeating pattern in binary. The computer stores a very close approximation instead of the exact value. When you combine many such numbers, the tiny differences can show up as small rounding errors.</p>
 <p>You may have seen examples where a language reports that <code>0.1 + 0.2</code> is <code>0.30000000000000004</code> instead of exactly <code>0.3</code>. This is not a bug in Python or R. It is a consequence of how floating-point numbers are stored in hardware. Data scientists work with this by rounding results for display and by avoiding direct equality checks with decimals.</p>
 <p>Below is a simple demonstration in Python.</p>
-<div id="9c369b2d" class="cell" data-execution_count="1">
+<div id="77937d7c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="op">==</span> <span class="fl">0.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>False</code></pre>
 </div>
 </div>
-<div id="794551f2" class="cell" data-execution_count="2">
+<div id="576c5114" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>0.30000000000000004</code></pre>
 </div>
 </div>
-<div id="3ad95f02" class="cell" data-execution_count="3">
+<div id="4f6bd039" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(<span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span>, <span class="dv">10</span>) <span class="op">==</span> <span class="fl">0.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>True</code></pre>
@@ -348,13 +348,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Floating-point numbers are not the only source of surprises. Integers can also behave in unexpected ways when they are stored using a fixed number of bits.</p>
 <p>In many systems, integers are stored with a fixed width, such as 8 bits, 16 bits, 32 bits, or 64 bits. When a number becomes too large to fit in that fixed space, it wraps around. This is called <strong>integer overflow</strong>.</p>
 <p>Python’s built-in <code>int</code> type can grow automatically. However, many data science libraries use fixed-size integers for efficiency.</p>
-<div id="c90709d7" class="cell" data-execution_count="4">
+<div id="47224d3c" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.int8(<span class="dv">127</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>x, x <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/cq/5ysgnwfn7c3g0h46xyzvpj800000gn/T/ipykernel_13990/3977345532.py:4: RuntimeWarning: overflow encountered in scalar add
+<pre><code>/var/folders/cq/5ysgnwfn7c3g0h46xyzvpj800000gn/T/ipykernel_14261/3977345532.py:4: RuntimeWarning: overflow encountered in scalar add
   x, x + 1</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="4">
