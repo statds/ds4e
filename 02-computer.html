@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -159,7 +194,10 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#installing-software-from-the-command-line" id="toc-installing-software-from-the-command-line" class="nav-link" data-scroll-target="#installing-software-from-the-command-line"><span class="header-section-number">2.3.1</span> Installing Software from the Command Line</a></li>
   </ul></li>
-  <li><a href="#how-computers-represent-numbers" id="toc-how-computers-represent-numbers" class="nav-link" data-scroll-target="#how-computers-represent-numbers"><span class="header-section-number">2.4</span> How Computers Represent Numbers</a></li>
+  <li><a href="#how-computers-represent-numbers" id="toc-how-computers-represent-numbers" class="nav-link" data-scroll-target="#how-computers-represent-numbers"><span class="header-section-number">2.4</span> How Computers Represent Numbers</a>
+  <ul class="collapse">
+  <li><a href="#integer-overflow" id="toc-integer-overflow" class="nav-link" data-scroll-target="#integer-overflow"><span class="header-section-number">2.4.1</span> Integer overflow</a></li>
+  </ul></li>
   <li><a href="#the-command-line-speaking-your-computers-language" id="toc-the-command-line-speaking-your-computers-language" class="nav-link" data-scroll-target="#the-command-line-speaking-your-computers-language"><span class="header-section-number">2.5</span> The Command Line: Speaking Your Computer’s Language</a>
   <ul class="collapse">
   <li><a href="#instructing-your-computer-through-command-line" id="toc-instructing-your-computer-through-command-line" class="nav-link" data-scroll-target="#instructing-your-computer-through-command-line"><span class="header-section-number">2.5.1</span> Instructing Your Computer through Command Line</a></li>
@@ -197,9 +235,12 @@ ul.task-list li input[type="checkbox"] {
 <section id="introduction" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2.1</span> Introduction</h2>
 <p>Many people use computers only through apps, clicking buttons designed by someone else. Data science works differently. Instead of staying inside fixed menus, you will learn to give the computer precise instructions so it can help you ask questions, test ideas, and make new discoveries. Thinking of the computer as a programmable machine opens a new way of working: your results become something you can recreate, improve, and share.</p>
+<p>In Chapter 1, we discussed graphical user interfaces (GUIs). GUIs are convenient because they hide complexity. You click a button and something happens. But when steps are hidden, it becomes harder to explain exactly what was done. In data science, hidden steps create risk. If you cannot describe precisely what the computer did, you cannot fully trust the result.</p>
+<p>The command line is different. It does nothing unless you tell it to do something. It does not guess your intention. It does not silently fix your mistakes. It waits for instructions. That clarity may feel strict, but it is powerful. You are not at the mercy of the computer. You instruct it.</p>
 <p>A key step toward this mindset is understanding how a computer organizes information. Every file on your machine lives in a folder, and every folder has a path that tells the computer exactly where it is. Data scientists work directly with these paths because tools such as Python, R, Git, and Quarto all expect you to know where your work lives. When you understand the file system, you can tell your tools exactly which data to use and where to save your results.</p>
 <p>Much of data science relies on plain-text files. These include data files like <code>.csv</code>, scripts like <code>.py</code> or <code>.R</code>, and documents like <code>.qmd</code>. Plain text is transparent: you can open it anywhere, track changes, and process it automatically. This clarity is the reason modern analysis avoids mixing computation with formatting. In contrast, spreadsheets hide steps inside cells, and slides require manual updates each time your results change. They are useful for quick checks but cannot support serious analysis where every step must be clear.</p>
 <p>This leads to one of the most important ideas in data science: <em>reproducibility</em>. Your future self and anyone who reads your work should be able to start with your raw data and code and arrive at the same results. Reproducibility protects you from accidental mistakes, forgotten steps, and lost work. It turns your analysis into something reliable, explainable, and extendable. As you progress through this book, everything you do will be built with reproducibility in mind.</p>
+<p>Learning to use your computer this way requires an engineering mindset. You must be comfortable giving clear instructions, checking results, and accepting responsibility for what happens. That mindset begins here.</p>
 <p>This chapter sets the foundation for the tools that follow. Once you see your computer as a programmable partner rather than a collection of apps, learning the command line, version control, and reproducible documents becomes natural.</p>
 </section>
 <section id="whats-inside-your-computer" class="level2" data-number="2.2">
@@ -207,14 +248,10 @@ ul.task-list li input[type="checkbox"] {
 <p>Before we talk to the computer through the command line, it helps to know what is inside the box. You do not need to become a hardware expert, but a few ideas will make later chapters much easier to understand.</p>
 <p>At a high level, every computer used for data science has four key parts:</p>
 <ul>
-<li><p><strong>CPU (Central Processing Unit)</strong><br>
-The CPU is the “brain” of the computer. It follows instructions one step at a time and does the general-purpose work in your programs.</p></li>
-<li><p><strong>RAM (Random-Access Memory)</strong><br>
-RAM is the computer’s short-term memory. When you open a dataset in Python or R, it is copied into RAM so the CPU can work with it quickly. If you do not have enough RAM, large projects slow down or crash.</p></li>
-<li><p><strong>Storage (SSD or hard drive)</strong><br>
-Storage is the long-term memory. Your files, photos, code, and datasets live here even after you shut down the computer. Solid-state drives (SSD) are faster and more reliable than older spinning hard drives.</p></li>
-<li><p><strong>GPU (Graphics Processing Unit)</strong><br>
-The GPU started as a special chip for drawing graphics and games. Modern data science uses GPUs for huge math problems, such as training deep learning models, because they can do many simple calculations in parallel.</p></li>
+<li><p><strong>CPU (Central Processing Unit)</strong> The CPU is the “brain” of the computer. It follows instructions one step at a time and does the general-purpose work in your programs.</p></li>
+<li><p><strong>RAM (Random-Access Memory)</strong> RAM is the computer’s short-term memory. When you open a dataset in Python or R, it is copied into RAM so the CPU can work with it quickly. If you do not have enough RAM, large projects slow down or crash.</p></li>
+<li><p><strong>Storage (SSD or hard drive)</strong> Storage is the long-term memory. Your files, photos, code, and datasets live here even after you shut down the computer. Solid-state drives (SSD) are faster and more reliable than older spinning hard drives. An SSD has no moving parts, which makes it faster and less fragile than older drives.</p></li>
+<li><p><strong>GPU (Graphics Processing Unit)</strong> The GPU started as a special chip for drawing graphics and games. Modern data science uses GPUs for huge math problems, such as training deep learning models, because they can do many simple calculations in parallel.</p></li>
 </ul>
 <p>You can think of the CPU as a student solving math problems, RAM as the open notebook on the desk, storage as the backpack and bookshelf, and the GPU as a team of helpers who can all work on similar problems at the same time.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -223,7 +260,7 @@ The GPU started as a special chip for drawing graphics and games. Modern data sc
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>⭐ Advanced: How Much Is “Enough”?
+<span class="screen-reader-only">Note</span>Advanced: How Much Is “Enough”?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -238,25 +275,20 @@ The GPU started as a special chip for drawing graphics and games. Modern data sc
 <h2 data-number="2.3" class="anchored" data-anchor-id="operating-systems"><span class="header-section-number">2.3</span> Operating Systems</h2>
 <p>An <strong>operating system (OS)</strong> is the layer of software that connects your programs to the hardware. It controls files, devices, memory, and how programs run. The three main families you will see in data science are Windows, macOS, and Linux.</p>
 <ul>
-<li><p><strong>Linux</strong><br>
-Linux is the standard in professional data science and on almost all servers and cloud machines. It is predictable: nothing major happens behind your back. When you install software or change a setting, it stays that way until you change it again. The command line tools you learn in this book behave the same way on almost every Linux system.</p></li>
-<li><p><strong>macOS</strong><br>
-macOS is based on Unix, like Linux, and includes a built-in terminal that understands almost all the same commands. Many data scientists who use laptops choose macOS because it balances a friendly interface with powerful command line tools.</p></li>
-<li><p><strong>Windows</strong><br>
-Windows makes it easy to start, but it also tries to “help” by hiding file extensions, changing paths, and running background tools that can confuse reproducible work. Different parts of Windows sometimes disagree about how to name files or run commands. These shortcuts can be convenient for everyday use but can teach habits that do not transfer well to Linux or the cloud.</p></li>
+<li><p><strong>Linux</strong> Linux is the standard in professional data science and on almost all servers and cloud machines. It is predictable: nothing major happens behind your back. When you install software or change a setting, it stays that way until you change it again. The command line tools you learn in this book behave the same way on almost every Linux system.</p></li>
+<li><p><strong>macOS</strong> macOS is based on Unix, like Linux, and includes a built-in terminal that understands almost all the same commands. Many data scientists who use laptops choose macOS because it balances a friendly interface with powerful command line tools.</p></li>
+<li><p><strong>Windows</strong> Windows makes it easy to start, but it also tries to “help” by hiding file extensions, changing paths, and running background tools that can confuse reproducible work. Different parts of Windows sometimes disagree about how to name files or run commands. These shortcuts can be convenient for everyday use but can teach habits that do not transfer well to Linux or the cloud.</p></li>
 </ul>
 <p>In this book, we will prefer a <strong>Unix-style command line</strong> everywhere. On macOS and Linux, that means using the built-in Terminal app. On Windows, that means installing and using <strong>Git Bash</strong>, which brings a Unix-like terminal to Windows so that the same commands work on all three platforms.</p>
+<p>A predictable system is easier to master. A system that behaves exactly as instructed is easier to debug. In data science, predictability matters more than convenience.</p>
 <section id="installing-software-from-the-command-line" class="level3" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="installing-software-from-the-command-line"><span class="header-section-number">2.3.1</span> Installing Software from the Command Line</h3>
 <p>Data scientists often install tools using <strong>package managers</strong>, which are programs that download, install, and update software for you from the command line. This is faster, more repeatable, and easier to document than clicking through many installer windows.</p>
 <p>Here are the most common options:</p>
 <ul>
-<li><p><strong>Linux</strong><br>
-Each Linux distribution comes with its own package manager. For example: <code>apt</code> on Ubuntu, <code>dnf</code> on Fedora, and <code>pacman</code> on Arch. These tools let you install almost everything you need with a single command.</p></li>
-<li><p><strong>macOS</strong><br>
-On macOS, the most popular package manager is <strong>Homebrew</strong>. After installing Homebrew once, you can run commands like <code>brew install git</code> or <code>brew install python</code> to get new tools.</p></li>
-<li><p><strong>Windows</strong><br>
-On Windows 10 and 11, you can use <strong><code>winget</code></strong> from the command line to install software in Windows Shells (PowerShell or CMD). For example, yo can install Git Bash with <code>winget install Git.Git</code>. Git Bash is a Windows terminal that lets you use the same command-line tools and Git commands commonly used on Linux and macOS. However, <code>winget</code> is a Windows-only tool and should be run in PowerShell or Command Prompt, not in Git Bash.</p></li>
+<li><p><strong>Linux</strong> Each Linux distribution comes with its own package manager. For example: <code>apt</code> on Ubuntu, <code>dnf</code> on Fedora, and <code>pacman</code> on Arch. These tools let you install almost everything you need with a single command.</p></li>
+<li><p><strong>macOS</strong> On macOS, the most popular package manager is <strong>Homebrew</strong>. After installing Homebrew once, you can run commands like <code>brew install git</code> or <code>brew install python</code> to get new tools.</p></li>
+<li><p><strong>Windows</strong> On Windows 10 and 11, you can use <strong><code>winget</code></strong> from the command line to install software in Windows Shells (PowerShell or CMD). For example, yo can install Git Bash with <code>winget install Git.Git</code>. Git Bash is a Windows terminal that lets you use the same command-line tools and Git commands commonly used on Linux and macOS. However, <code>winget</code> is a Windows-only tool and should be run in PowerShell or Command Prompt, not in Git Bash.</p></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -264,7 +296,7 @@ On Windows 10 and 11, you can use <strong><code>winget</code></strong> from the 
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>⭐ Advanced: Other Options on Windows
+<span class="screen-reader-only">Note</span>Advanced: Other Options on Windows
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -281,26 +313,63 @@ On Windows 10 and 11, you can use <strong><code>winget</code></strong> from the 
 <p>Computers are built on <strong>binary</strong>, a number system that uses only zeros and ones. That design works well for storing whole numbers, but it creates some surprises when we work with decimals.</p>
 <p>There are two basic kinds of numbers you will see in data science:</p>
 <ul>
-<li><p><strong>Integers</strong> (…, -2, -1, 0, 1, 2, …)<br>
-These are whole numbers with no decimal part. Computers can store many integers exactly.</p></li>
-<li><p><strong>Floating-point numbers</strong> (like 0.1, 2.75, or -3.14)<br>
-These are used for decimals and measurements. Most real-valued data in science and statistics are stored as floating-point numbers.</p></li>
+<li><p><strong>Integers</strong> (…, -2, -1, 0, 1, 2, …) These are whole numbers with no decimal part. Computers can store many integers exactly.</p></li>
+<li><p><strong>Floating-point numbers</strong> (like 0.1, 2.75, or -3.14) These are used for decimals and measurements. Most real-valued data in science and statistics are stored as floating-point numbers.</p></li>
 </ul>
 <p>Because computers use binary, many simple-looking decimals <strong>cannot</strong> be stored exactly. For example, the decimal number 0.1 turns into a long repeating pattern in binary. The computer stores a very close approximation instead of the exact value. When you combine many such numbers, the tiny differences can show up as small rounding errors.</p>
 <p>You may have seen examples where a language reports that <code>0.1 + 0.2</code> is <code>0.30000000000000004</code> instead of exactly <code>0.3</code>. This is not a bug in Python or R. It is a consequence of how floating-point numbers are stored in hardware. Data scientists work with this by rounding results for display and by avoiding direct equality checks with decimals.</p>
+<p>Below is a simple demonstration in Python.</p>
+<div id="f8666239" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="op">==</span> <span class="fl">0.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>False</code></pre>
+</div>
+</div>
+<div id="b103f6db" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>0.30000000000000004</code></pre>
+</div>
+</div>
+<div id="d17b3126" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(<span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span>, <span class="dv">10</span>) <span class="op">==</span> <span class="fl">0.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>True</code></pre>
+</div>
+</div>
 <p>The key ideas to remember are:</p>
 <ul>
 <li>Some decimals cannot be represented exactly on a computer.</li>
 <li>Small rounding differences are normal in real-number calculations.</li>
 <li>We usually care about being “close enough” rather than perfectly exact.</li>
 </ul>
+<section id="integer-overflow" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="integer-overflow"><span class="header-section-number">2.4.1</span> Integer overflow</h3>
+<p>Floating-point numbers are not the only source of surprises. Integers can also behave in unexpected ways when they are stored using a fixed number of bits.</p>
+<p>In many systems, integers are stored with a fixed width, such as 8 bits, 16 bits, 32 bits, or 64 bits. When a number becomes too large to fit in that fixed space, it wraps around. This is called <strong>integer overflow</strong>.</p>
+<p>Python’s built-in <code>int</code> type can grow automatically. However, many data science libraries use fixed-size integers for efficiency.</p>
+<div id="566ab396" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.int8(<span class="dv">127</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>x, x <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/cq/5ysgnwfn7c3g0h46xyzvpj800000gn/T/ipykernel_12629/3977345532.py:4: RuntimeWarning: overflow encountered in scalar add
+  x, x + 1</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>(np.int8(127), np.int8(-128))</code></pre>
+</div>
+</div>
+<p>An 8-bit signed integer can store values from -128 to 127. When you add 1 to 127, the value wraps around. The program does not crash. It continues with a new value.</p>
+<p>Mastery means understanding not only commands, but limits.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>⭐ Advanced: Why This Matters in Data Science
+<span class="screen-reader-only">Note</span>Advanced: Why This Matters in Data Science
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -311,90 +380,77 @@ These are used for decimals and measurements. Most real-valued data in science a
 </div>
 </div>
 </section>
+</section>
 <section id="the-command-line-speaking-your-computers-language" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="the-command-line-speaking-your-computers-language"><span class="header-section-number">2.5</span> The Command Line: Speaking Your Computer’s Language</h2>
 <p>Most people use computers through windows, buttons, and icons. The command line offers a different approach: you type short instructions that the computer understands directly. This way of working gives you transparency, repeatability, and control that clicking cannot provide. Data science relies on these qualities because your work must be clear, sharable, and reproducible. On Windows, you will use Git Bash; on macOS or Linux, you will use the Terminal app.</p>
+<p>The command line does nothing on its own. It waits for you. That can feel uncomfortable at first. Some students are hesitant the first time they open a terminal window because there are no visible buttons to guide them. That reaction is normal. With practice, the clarity becomes empowering.</p>
 <section id="instructing-your-computer-through-command-line" class="level3" data-number="2.5.1">
 <h3 data-number="2.5.1" class="anchored" data-anchor-id="instructing-your-computer-through-command-line"><span class="header-section-number">2.5.1</span> Instructing Your Computer through Command Line</h3>
 <p>The command line is an interface where you communicate with the computer by typing commands. Each command performs one well-defined action. Because every action appears plainly on the screen, the command line makes your steps visible and traceable. This transparency helps you understand what you are doing, and it allows others to follow your work. In contrast, pointing and clicking through mouses leaves no reliable record. The command line also supports automation: a command that you type once can be saved in a script and reused whenever you need it. This repeatability is a cornerstone of reproducible data science.</p>
 <p>When you write commands in a script and save them in a file, the computer can repeat those steps exactly. If you make a mistake, you can correct the script and run it again. If a friend wants to understand your analysis, you can send them the script instead of trying to describe what you clicked. This practice of scripting is at the heart of reproducible data science.</p>
 <p>The command line also gives you access to tools that do not have a graphical interface at all. Many powerful utilities, including Git for version control and Quarto for reproducible documents, are designed to be run from the terminal. Learning the command line opens the door to these tools and lets you combine them in flexible ways.</p>
 <p>At first, the command line may feel slower than clicking. That feeling fades as you learn the basic commands. Eventually, you will be able to move through folders, manage files, and run complex workflows with just a few keystrokes. Small scripts you write today can become the building blocks for larger projects later.</p>
+<p>Becoming comfortable here is often a turning point. When you realize that you can direct the system precisely, you begin to see your computer not as a mystery, but as a tool you control.</p>
 </section>
 <section id="navigating-your-system" class="level3" data-number="2.5.2">
 <h3 data-number="2.5.2" class="anchored" data-anchor-id="navigating-your-system"><span class="header-section-number">2.5.2</span> Navigating Your System</h3>
 <p>When you open Git Bash or Terminal, you start in a <em>current working directory</em> — the folder where the computer assumes you want to work. The commands you type will use this folder unless you tell them otherwise. To use the command line effectively, you need to know where you are and how to move around.</p>
 <p>The key commands for navigation are:</p>
 <ul>
-<li><code>pwd</code> — print working directory (shows your current folder)<br>
-</li>
-<li><code>ls</code> — list files and folders in the current directory<br>
-</li>
+<li><code>pwd</code> — print working directory (shows your current folder)</li>
+<li><code>ls</code> — list files and folders in the current directory</li>
 <li><code>cd &lt;path&gt;</code> — change directory to the folder given by <code>&lt;path&gt;</code></li>
 </ul>
 <p>Paths come in two flavors:</p>
 <ul>
-<li><strong>Absolute paths</strong> start from the root of the file system and show the full route to a folder.<br>
-</li>
+<li><strong>Absolute paths</strong> start from the root of the file system and show the full route to a folder.</li>
 <li><strong>Relative paths</strong> start from your current location and describe how to get somewhere from there.</li>
 </ul>
 <p>For example, on a typical system your home directory might be something like <code>/Users/alex</code> on macOS or Linux, or <code>C:\Users\alex</code> on Windows. In Git Bash, the Windows path will appear in a Unix-style form such as <code>/c/Users/alex</code>. If you are in your home directory and you want to move to a subfolder called <code>projects</code>, you can run <code>cd projects</code>. If you are somewhere else and want to jump straight to your home directory, you can use <code>cd ~</code>.</p>
 <p>The <code>..</code> symbol means “the parent directory” — the folder that contains the one you are in:</p>
 <ul>
-<li><code>cd ..</code> moves you up one level.<br>
-</li>
+<li><code>cd ..</code> moves you up one level.</li>
 <li><code>cd ../..</code> moves you up two levels.</li>
 </ul>
 <p>The <code>.</code> symbol means “the current directory”. You will often see it when running programs that should use the current folder as their starting point.</p>
 <p>As you practice, pay attention to the prompt in your terminal. It often shows your current directory or at least the last part of the path. This small detail helps you keep track of where you are working.</p>
+<p>When you always know where you are in the file system, you reduce mistakes. Precision begins with location.</p>
 </section>
 <section id="managing-files-and-folders" class="level3" data-number="2.5.3">
 <h3 data-number="2.5.3" class="anchored" data-anchor-id="managing-files-and-folders"><span class="header-section-number">2.5.3</span> Managing Files and Folders</h3>
 <p>The command line also lets you create, move, and delete files and folders. At first, these actions may feel risky, but they quickly become a precise way to organize your projects.</p>
 <p>Common commands include:</p>
 <ul>
-<li><code>mkdir &lt;name&gt;</code> — create a new folder<br>
-</li>
-<li><code>touch &lt;filename&gt;</code> — create an empty file<br>
-</li>
-<li><code>rm &lt;filename&gt;</code> — remove a file<br>
-</li>
-<li><code>rm -r &lt;folder&gt;</code> — remove a folder and everything inside<br>
-</li>
-<li><code>cp &lt;source&gt; &lt;destination&gt;</code> — copy a file<br>
-</li>
+<li><code>mkdir &lt;name&gt;</code> — create a new folder</li>
+<li><code>touch &lt;filename&gt;</code> — create an empty file</li>
+<li><code>rm &lt;filename&gt;</code> — remove a file</li>
+<li><code>rm -r &lt;folder&gt;</code> — remove a folder and everything inside</li>
+<li><code>cp &lt;source&gt; &lt;destination&gt;</code> — copy a file</li>
 <li><code>mv &lt;old&gt; &lt;new&gt;</code> — rename or move a file</li>
 </ul>
+<p>Before removing anything, confirm your location with <code>pwd</code> and <code>ls</code>. The command line will execute exactly what you type.</p>
 <p>Clear and consistent naming makes your work easier to understand and avoids errors later, especially when your projects grow. Good naming practices for data science include:</p>
 <ul>
-<li><strong>Use lower case</strong> whenever possible (<code>data/</code>, not <code>Data/</code>).<br>
-</li>
-<li><strong>Avoid spaces</strong>, which cause trouble in the terminal (<code>raw_data</code>, not <code>raw data</code>).<br>
-</li>
-<li><strong>Use dashes or underscores</strong>, but pick one and stay consistent (<code>weather-data</code> or <code>weather_data</code>).<br>
-</li>
-<li><strong>Avoid special characters</strong> such as <code>!</code>, <code>?</code>, <code>*</code>, <code>#</code>, or <code>&amp;</code>.<br>
-</li>
-<li><strong>Prefer short, descriptive names</strong> (<code>scripts/</code>, <code>figures/</code>, <code>clean.py</code>).<br>
-</li>
-<li><strong>Organize by purpose</strong>, not by date alone. Use folders like <code>data/</code>, <code>scripts/</code>, <code>projects/</code>, and <code>output/</code>.<br>
-</li>
+<li><strong>Use lower case</strong> whenever possible (<code>data/</code>, not <code>Data/</code>).</li>
+<li><strong>Avoid spaces</strong>, which cause trouble in the terminal (<code>raw_data</code>, not <code>raw data</code>).</li>
+<li><strong>Use dashes or underscores</strong>, but pick one and stay consistent (<code>weather-data</code> or <code>weather_data</code>).</li>
+<li><strong>Avoid special characters</strong> such as <code>!</code>, <code>?</code>, <code>*</code>, <code>#</code>, or <code>&amp;</code>.</li>
+<li><strong>Prefer short, descriptive names</strong> (<code>scripts/</code>, <code>figures/</code>, <code>clean.py</code>).</li>
+<li><strong>Organize by purpose</strong>, not by date alone. Use folders like <code>data/</code>, <code>scripts/</code>, <code>projects/</code>, and <code>output/</code>.</li>
 <li><strong>Keep related files together</strong>, and avoid scattering pieces of the same project across unrelated locations.</li>
 </ul>
 <p>Good naming makes your work predictable—for you, your future self, and anyone you collaborate with. It also reduces mistakes when writing paths or running scripts from the terminal.</p>
+<p>Naming is part of mastery. When your file structure is clear, your thinking is clearer too.</p>
 </section>
 <section id="running-programs-from-the-terminal" class="level3" data-number="2.5.4">
 <h3 data-number="2.5.4" class="anchored" data-anchor-id="running-programs-from-the-terminal"><span class="header-section-number">2.5.4</span> Running Programs from the Terminal</h3>
 <p>The command line can also start programs and check whether your tools are installed correctly. Examples include:</p>
 <ul>
-<li><code>code .</code> — open the current folder in VS Code<br>
-</li>
-<li><code>git --version</code> — check that Git is installed<br>
-</li>
-<li><code>python --version</code> — check your Python installation<br>
-</li>
-<li><code>R --version</code> — confirm that R is available<br>
-</li>
+<li><code>code .</code> — open the current folder in VS Code</li>
+<li><code>git --version</code> — check that Git is installed</li>
+<li><code>python --version</code> — check your Python installation</li>
+<li><code>R --version</code> — confirm that R is available</li>
 <li><code>quarto check</code> — verify that Quarto is installed correctly</li>
 </ul>
 <p>Launching programs from the terminal reinforces the idea that your computer is programmable. It also prepares you for workflows where scripts and tools need to run together smoothly.</p>
@@ -403,62 +459,35 @@ These are used for decimals and measurements. Most real-valued data in science a
 <h3 data-number="2.5.5" class="anchored" data-anchor-id="mini-project-creating-your-first-data-science-workspace"><span class="header-section-number">2.5.5</span> Mini-Project: Creating Your First Data Science Workspace</h3>
 <p>To make these ideas concrete, you will now create a simple workspace for your future projects.</p>
 <ul>
-<li><p><strong>Open the Terminal</strong><br>
-On Windows, start Git Bash. On macOS or Linux, open the Terminal app.</p></li>
-<li><p><strong>Find Your Home Directory</strong><br>
-Run <code>pwd</code> to display your current working directory.<br>
-If you are not already in your home directory, move there using <code>cd ~</code>.</p></li>
-<li><p><strong>Make a <code>ds4hs</code> Folder</strong><br>
-Create a directory named <code>ds4hs</code> with <code>mkdir ds4hs</code>.<br>
-Move into it using <code>cd ds4hs</code>.<br>
-Confirm that you are in the right place by running <code>pwd</code>.</p></li>
-<li><p><strong>Add a Few Subfolders</strong><br>
-Inside <code>ds4hs</code>, create directories named <code>data</code>, <code>analysis</code>, and <code>figures</code>.<br>
-Check your work with <code>ls</code> to ensure they appear.</p></li>
-<li><p><strong>Practice Moving Around</strong><br>
-Change into the <code>data</code> directory with <code>cd data</code>.<br>
-Move back to <code>ds4hs</code> with <code>cd ..</code>.<br>
-Try moving directly to <code>figures</code> using <code>cd figures</code>.<br>
-Move up one level with <code>cd ..</code>.<br>
-Return to the previous directory using <code>cd -</code>.</p></li>
-<li><p><strong>Open a Project Folder in VS Code</strong><br>
-From inside the <code>ds4hs</code> directory, open the project in VS Code by running<br>
-<code>code .</code><br>
-(If necessary, enable the “code” command in VS Code.)</p></li>
-<li><p><strong>Create a Small Project Template</strong><br>
-Inside <code>ds4hs</code>, create a folder named <code>mini_project</code>.<br>
-Within it, create subfolders <code>data</code>, <code>analysis</code>, and <code>figures</code>.<br>
-Add an empty Quarto file using <code>touch analysis/analysis.qmd</code><br>
-and an empty CSV file using <code>touch data/example.csv</code>.<br>
-Use <code>ls -R</code> to display the full directory structure.</p></li>
+<li><p><strong>Open the Terminal</strong> On Windows, start Git Bash. On macOS or Linux, open the Terminal app.</p></li>
+<li><p><strong>Find Your Home Directory</strong> Run <code>pwd</code> to display your current working directory. If you are not already in your home directory, move there using <code>cd ~</code>.</p></li>
+<li><p><strong>Make a <code>my_project</code> Folder</strong> Create a directory named <code>my_project</code> with <code>mkdir my_project</code>. Move into it using <code>cd my_project</code>. Confirm that you are in the right place by running <code>pwd</code>.</p></li>
+<li><p><strong>Add a Few Subfolders</strong> Inside <code>my_project</code>, create directories named <code>data</code>, <code>analysis</code>, and <code>figures</code>. Check your work with <code>ls</code> to ensure they appear.</p></li>
+<li><p><strong>Practice Moving Around</strong> Change into the <code>data</code> directory with <code>cd data</code>. Move back to <code>my_project</code> with <code>cd ..</code>. Try moving directly to <code>figures</code> using <code>cd figures</code>. Move up one level with <code>cd ..</code>. Return to the previous directory using <code>cd -</code>.</p></li>
+<li><p><strong>Open a Project Folder in VS Code</strong> From inside the <code>my_project</code> directory, open the project in VS Code by running <code>code .</code> (If necessary, enable the “code” command in VS Code.)</p></li>
+<li><p><strong>Create a Small Project Template</strong> Inside <code>my_project</code>, create a folder named <code>mini_project</code>. Within it, create subfolders <code>data</code>, <code>analysis</code>, and <code>figures</code>. Add an empty Quarto file using <code>touch analysis/analysis.qmd</code> and an empty CSV file using <code>touch data/example.csv</code>. Use <code>ls -R</code> to display the full directory structure.</p></li>
 </ul>
+<p>Mastery grows from repeated small, precise actions.</p>
 </section>
 </section>
 <section id="exercises" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.6</span> Exercises</h2>
 <ol type="1">
-<li><p><strong>Check Your Location</strong><br>
-Open Git Bash or Terminal and run <code>pwd</code>.<br>
-Write down the full path and circle the folder you are currently in.</p></li>
-<li><p><strong>List Folder Contents</strong><br>
-Use <code>ls</code> to display the files and folders in your working directory.<br>
-Then run <code>ls -l</code> and note at least two new pieces of information you see compared with <code>ls</code>.</p></li>
-<li><p><strong>Create a Project Directory</strong><br>
-Navigate to your home directory using <code>cd ~</code>.<br>
-Create a folder named <code>ds4hs</code> with <code>mkdir ds4hs</code>.<br>
-Move into it with <code>cd ds4hs</code> and verify your location using <code>pwd</code>.</p></li>
-<li><p><strong>Build a Basic Folder Structure</strong><br>
-Inside <code>ds4hs</code>, create subfolders for <code>data</code>, <code>analysis</code>, and <code>figures</code>.<br>
-Use <code>ls</code> to confirm that the folders were created.<br>
-Practice moving between them with <code>cd</code>, <code>cd ..</code>, and <code>cd -</code>.</p></li>
-<li><p><strong>Open a Project Folder in VS Code</strong><br>
-From inside the <code>ds4hs</code> directory, open the project in VS Code by running<br>
-<code>code .</code><br>
-(If necessary, enable the <code>code</code> command in VS Code.)<br>
-In the VS Code terminal, run <code>ls -R</code> to display the full directory structure.</p></li>
+<li><p>Open Git Bash or Terminal and run <code>pwd</code>. Write down the full path and circle the folder you are currently in.</p></li>
+<li><p>Use <code>ls</code> to display the files and folders in your working directory. Then run <code>ls -l</code> and note at least two new pieces of information you see compared with <code>ls</code>.</p></li>
+<li><p>Navigate to your home directory using <code>cd ~</code>. Verify your location using <code>pwd</code>.</p></li>
+<li><p>Navigate to your Downloads folder and verify your location using <code>pwd</code>.</p>
+<p>On macOS or Linux:</p>
+<pre><code>cd ~/Downloads
+pwd</code></pre>
+<p>On Windows (PowerShell):</p>
+<pre><code>cd $HOME/Downloads
+pwd</code></pre></li>
+<li><p>Navigate to your home directory using <code>cd ~</code>. Create a folder named <code>my_project</code> with <code>mkdir my_project</code>. Move into it with <code>cd my_project</code> and verify your location using <code>pwd</code>.</p></li>
+<li><p>Inside <code>my_project</code>, create subfolders for <code>data</code>, <code>analysis</code>, and <code>figures</code>. Use <code>ls</code> to confirm that the folders were created. Practice moving between them with <code>cd</code>, <code>cd ..</code>, and <code>cd -</code>.</p></li>
+<li><p>From inside the <code>my_project</code> directory, open the project in VS Code by running <code>code .</code>. In the VS Code terminal, run <code>ls -R</code> to display the full directory structure.</p></li>
+<li><p>Inside <code>my_project</code>, create a folder named <code>mini_project</code> with subfolders <code>data</code>, <code>analysis</code>, and <code>figures</code>. Add an empty Quarto file using <code>touch analysis/analysis.qmd</code> and an empty CSV file using <code>touch data/example.csv</code>. Use <code>ls -R mini_project</code> to check that everything is in the right place.</p></li>
 </ol>
-<p><strong>⭐ Challenge (optional):</strong><br>
-Inside <code>ds4hs</code>, create a folder named <code>mini_project</code> with subfolders <code>data</code>, <code>analysis</code>, and <code>figures</code>. Add an empty Quarto file using <code>touch analysis/analysis.qmd</code> and an empty CSV file using <code>touch data/example.csv</code>. Use <code>ls -R mini_project</code> to check that everything is in the right place.</p>
 
 
 </section>
