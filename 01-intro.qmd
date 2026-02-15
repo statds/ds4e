@@ -2,8 +2,8 @@
 
 Data science is the practice of learning from data. In simple terms,
 it means using information to answer questions and make better
-decisions. It brings together three pillars—computation, statistics,
-and domain knowledge—to discover patterns and evidence that help us
+decisions. It brings together three pillars---computation, statistics,
+and domain knowledge---to discover patterns and evidence that help us
 understand, predict, and improve the world around us. You have already
 seen data science in action many times without noticing it.
 
@@ -35,7 +35,7 @@ computers to sort, filter, and analyze.
 Other data are **unstructured**, meaning they do not come neatly
 organized. A long paragraph of text, a photograph, or an audio
 recording are all examples of unstructured data. They still contain
-information—but that information may need to be transformed into a more
+information---but that information may need to be transformed into a more
 organized format before certain types of analysis are possible.
 
 It is important to note that data do not *have* to fit into rows and
@@ -80,7 +80,7 @@ If instead we had written:
 
 "Alex scored 88 and likes Math. Jordan scored 92 and likes History..."
 
-that would still be data—but it would not be organized in a consistent
+that would still be data---but it would not be organized in a consistent
 structure. Before we could apply many standard statistical tools, we
 would likely reorganize it into a table.
 
@@ -155,11 +155,11 @@ results in a clear and repeatable way.
 
 Some of the most important tools you will learn include:
 
-- the **command line** — a text-based way to control your computer
-- **Git** — a system for tracking changes in your files
-- an **IDE (Integrated Development Environment)** — a program for
+- the **command line** --- a text-based way to control your computer
+- **Git** --- a system for tracking changes in your files
+- an **IDE (Integrated Development Environment)** --- a program for
   writing, organizing, and running code
-- **Quarto** — a publishing system that combines code and explanation
+- **Quarto** --- a publishing system that combines code and explanation
 - a programming language such as **Python**
 
 Each tool has a specific role.
@@ -221,7 +221,7 @@ be recorded in a clear, repeatable way. If someone asks, “Exactly what
 did you do?”, it can be difficult to answer precisely.
 
 Code works differently. Every instruction is written down. That means
-the computer — and other people — can rerun the exact same steps.
+the computer --- and other people --- can rerun the exact same steps.
 
 In data science, we prefer tools that make our work transparent and
 reproducible.
@@ -302,9 +302,9 @@ from multiple fields rather than relying on just one.
 To answer real-world questions, data scientists bring together three
 main pillars:
 
-- **computing** — writing code to process and manage data
-- **statistics** — measuring variation and uncertainty
-- **domain knowledge** — understanding the real-world context
+- **computing** --- writing code to process and manage data
+- **statistics** --- measuring variation and uncertainty
+- **domain knowledge** --- understanding the real-world context
 
 Each pillar plays a different role.
 
@@ -392,7 +392,7 @@ science project: a real report, with real data, that you can publish or
 share.
 
 Part II takes you through case studies in health, environment, sports,
-and other areas—helping you discover patterns in real datasets and
+and other areas---helping you discover patterns in real datasets and
 understand how data science works in practice.
 
 Data science is not something you learn in one day. It is a craft you

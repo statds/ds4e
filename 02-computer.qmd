@@ -308,16 +308,16 @@ mystery, but as a tool you control.
 ### Navigating Your System
 
 When you open Git Bash or Terminal, you start in a *current working
-directory* — the folder where the computer assumes you want to work. The
+directory* --- the folder where the computer assumes you want to work. The
 commands you type will use this folder unless you tell them otherwise. To use
 the command line effectively, you need to know where you are and how to move
 around.
 
 The key commands for navigation are:
 
-* `pwd` — print working directory (shows your current folder)
-* `ls` — list files and folders in the current directory
-* `cd <path>` — change directory to the folder given by `<path>`
+* `pwd` --- print working directory (shows your current folder)
+* `ls` --- list files and folders in the current directory
+* `cd <path>` --- change directory to the folder given by `<path>`
 
 Paths come in two flavors:
 
@@ -333,7 +333,7 @@ Bash, the Windows path will appear in a Unix-style form such as
 subfolder called `projects`, you can run `cd projects`. If you are somewhere
 else and want to jump straight to your home directory, you can use `cd ~`.
 
-The `..` symbol means "the parent directory" — the folder that contains the
+The `..` symbol means "the parent directory" --- the folder that contains the
 one you are in:
 
 * `cd ..` moves you up one level.
@@ -357,12 +357,12 @@ organize your projects.
 
 Common commands include:
 
-* `mkdir <name>` — create a new folder
-* `touch <filename>` — create an empty file
-* `rm <filename>` — remove a file
-* `rm -r <folder>` — remove a folder and everything inside
-* `cp <source> <destination>` — copy a file
-* `mv <old> <new>` — rename or move a file
+* `mkdir <name>` --- create a new folder
+* `touch <filename>` --- create an empty file
+* `rm <filename>` --- remove a file
+* `rm -r <folder>` --- remove a folder and everything inside
+* `cp <source> <destination>` --- copy a file
+* `mv <old> <new>` --- rename or move a file
 
 Before removing anything, confirm your location with `pwd` and `ls`.
 The command line will execute exactly what you type.
@@ -383,7 +383,7 @@ data science include:
 * **Keep related files together**, and avoid scattering pieces of the same
   project across unrelated locations.
 
-Good naming makes your work predictable—for you, your future self, and anyone
+Good naming makes your work predictable---for you, your future self, and anyone
 you collaborate with. It also reduces mistakes when writing paths or running
 scripts from the terminal.
 
@@ -395,11 +395,11 @@ is clearer too.
 The command line can also start programs and check whether your tools are
 installed correctly. Examples include:
 
-* `codium .` — open the current folder in VSCodium
-* `git --version` — check that Git is installed
-* `python --version` — check your Python installation
-* `R --version` — confirm that R is available
-* `quarto check` — verify that Quarto is installed correctly
+* `codium .` --- open the current folder in VSCodium
+* `git --version` --- check that Git is installed
+* `python --version` --- check your Python installation
+* `R --version` --- confirm that R is available
+* `quarto check` --- verify that Quarto is installed correctly
 
 Launching programs from the terminal reinforces the idea that your computer
 is programmable. It also prepares you for workflows where scripts and tools

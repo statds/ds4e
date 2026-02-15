@@ -984,9 +984,9 @@ can inspect it, modify it, and redistribute it under its license.
 
 This matters for three reasons:
 
-1. Transparency — the code can be examined.
-2. Reproducibility — the tools remain accessible.
-3. Longevity — projects do not depend on a single vendor.
+1. Transparency --- the code can be examined.
+2. Reproducibility --- the tools remain accessible.
+3. Longevity --- projects do not depend on a single vendor.
 
 If you already use Visual Studio Code, you may continue using it. For
 the workflow in this book, both behave the same.
@@ -1067,14 +1067,14 @@ Install only what you need. A focused setup is easier to maintain.
 
 Core extensions (recommended for everyone):
 
-* Quarto — Authoring and rendering Quarto documents
-* GitLens — Enhanced Git history and comparison tools
+* Quarto --- Authoring and rendering Quarto documents
+* GitLens --- Enhanced Git history and comparison tools
 
 Language-specific extensions (choose one):
 
-* Python — Editing, linting, debugging, notebook support
-* R — Script editing and execution support
-* Julia — Language support and code execution
+* Python --- Editing, linting, debugging, notebook support
+* R --- Script editing and execution support
+* Julia --- Language support and code execution
 
 Important:
 
@@ -1257,13 +1257,13 @@ git clone git@github.com:someone/project.git
 Cloning creates a new local directory containing the full project
 history.
 
-## first-data-science-project: Putting It All Together
+## First Data Science Project: Putting Them All Together
 
 This project section is a guided recap. You will reuse the same tools
 from the earlier gates, in the same order.
 
-This chapter integrates everything from Part I—command line, VSCodium,
-Git, GitHub, Quarto, and Python/R—into a single, coherent project
+This chapter integrates everything from Part I---command line, VSCodium,
+Git, GitHub, Quarto, and Python/R---into a single, coherent project
 workflow. The goal is to let students experience how real data science
 work is done: create a clean folder, version it with Git, write a
 reproducible Quarto file, and share the final analysis.
@@ -1274,8 +1274,8 @@ The first step in any project is choosing a dataset that is small,
 clean, and intrinsically interesting. Students should select something
 they care about so they remain motivated while practicing the
 workflow.
-Good examples include:
 
+Good examples include:  
 - NYC 311 complaint counts for a single neighborhood
 - School lunch nutrition data from USDA open data
 - A small sports dataset (NBA scores, soccer goals, WNBA box scores)
@@ -1293,15 +1293,13 @@ A clean folder structure helps keep the project reproducible and
 organized. Students use the command line to create folders and set up
 a Git repository.
 
-Recommended structure:
+Recommended structure:  
+- `data/` --- raw datasets in CSV or JSON
+- `analysis/` --- Quarto notebooks
+- `figures/` --- automatically generated plots
+- `README.md` --- short description of the project
 
-- `data/` — raw datasets in CSV or JSON
-- `analysis/` — Quarto notebooks
-- `figures/` — automatically generated plots
-- `README.md` — short description of the project
-
-Key steps:
-
+Key steps:   
 - Use the command line to create the folder and subfolders  
   *(mkdir my-project, cd my-project, mkdir data analysis
 figures)*
@@ -1319,8 +1317,7 @@ Students should verify that Git is tracking the project by running
 The core of the project is a reproducible Quarto notebook that
 explains
 the data, code, and conclusions in one document. The notebook should
-include:
-
+include:  
 - A clear statement of the question (e.g., “How do 311 noise complaints
   differ between weekdays and weekends?”)
 - Code to import the dataset
@@ -1328,15 +1325,14 @@ include:
   scatterplots, histograms)
 - Short summary paragraphs explaining the patterns
 
-A minimal workflow:
-
+A minimal workflow:  
 1. Create `analysis/project.qmd` in VSCodium.
 2. Add a YAML header with a title, author, and format.
 3. Insert code chunks to load the dataset and inspect its structure.
 4. Generate plots and save outputs to the `figures/` folder.
 5. Render the notebook to HTML using the VS Codium Quarto extension.
 
-Students should keep text and code in one place—not separate
+Students should keep text and code in one place---not separate
 PowerPoints, Word files, or screenshots. Quarto ensures everything is
 reproducible.
 
