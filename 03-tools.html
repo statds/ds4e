@@ -216,14 +216,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#basic-workflow" id="toc-basic-workflow" class="nav-link" data-scroll-target="#basic-workflow"><span class="header-section-number">3.6.4</span> Basic Workflow</a></li>
   <li><a href="#good-practices-for-git" id="toc-good-practices-for-git" class="nav-link" data-scroll-target="#good-practices-for-git"><span class="header-section-number">3.6.5</span> Good Practices for Git</a></li>
   </ul></li>
-  <li><a href="#gate-4-vscodium-or-vs-code-an-integrated-development-environment" id="toc-gate-4-vscodium-or-vs-code-an-integrated-development-environment" class="nav-link" data-scroll-target="#gate-4-vscodium-or-vs-code-an-integrated-development-environment"><span class="header-section-number">3.7</span> Gate 4: VSCodium (or VS Code): An Integrated Development Environment</a>
+  <li><a href="#gate-4-vscodium-an-integrated-development-environment" id="toc-gate-4-vscodium-an-integrated-development-environment" class="nav-link" data-scroll-target="#gate-4-vscodium-an-integrated-development-environment"><span class="header-section-number">3.7</span> Gate 4: VSCodium: An Integrated Development Environment</a>
   <ul class="collapse">
-  <li><a href="#what-an-ide-is-and-why-vscodium-or-vs-code" id="toc-what-an-ide-is-and-why-vscodium-or-vs-code" class="nav-link" data-scroll-target="#what-an-ide-is-and-why-vscodium-or-vs-code"><span class="header-section-number">3.7.1</span> What an IDE Is and Why VSCodium (or VS Code)</a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">3.7.2</span> Installation</a></li>
-  <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions"><span class="header-section-number">3.7.3</span> Extensions</a></li>
-  <li><a href="#integrated-terminal-and-shell-choice" id="toc-integrated-terminal-and-shell-choice" class="nav-link" data-scroll-target="#integrated-terminal-and-shell-choice"><span class="header-section-number">3.7.4</span> Integrated Terminal and Shell Choice</a></li>
-  <li><a href="#working-with-projects-in-vs-code" id="toc-working-with-projects-in-vs-code" class="nav-link" data-scroll-target="#working-with-projects-in-vs-code"><span class="header-section-number">3.7.5</span> Working with Projects in VS Code</a></li>
-  <li><a href="#good-practices" id="toc-good-practices" class="nav-link" data-scroll-target="#good-practices"><span class="header-section-number">3.7.6</span> Good Practices</a></li>
+  <li><a href="#an-ide-is-a-unified-workspace" id="toc-an-ide-is-a-unified-workspace" class="nav-link" data-scroll-target="#an-ide-is-a-unified-workspace"><span class="header-section-number">3.7.1</span> An IDE Is a Unified Workspace</a></li>
+  <li><a href="#why-this-book-uses-vscodium" id="toc-why-this-book-uses-vscodium" class="nav-link" data-scroll-target="#why-this-book-uses-vscodium"><span class="header-section-number">3.7.2</span> Why This Book Uses VSCodium</a></li>
+  <li><a href="#vscodium-supports-multiple-languages-and-terminals" id="toc-vscodium-supports-multiple-languages-and-terminals" class="nav-link" data-scroll-target="#vscodium-supports-multiple-languages-and-terminals"><span class="header-section-number">3.7.3</span> VSCodium Supports Multiple Languages and Terminals</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">3.7.4</span> Installation</a></li>
+  <li><a href="#extensions-connect-languages-to-the-editor" id="toc-extensions-connect-languages-to-the-editor" class="nav-link" data-scroll-target="#extensions-connect-languages-to-the-editor"><span class="header-section-number">3.7.5</span> Extensions Connect Languages to the Editor</a></li>
+  <li><a href="#the-integrated-terminal-is-part-of-the-workflow" id="toc-the-integrated-terminal-is-part-of-the-workflow" class="nav-link" data-scroll-target="#the-integrated-terminal-is-part-of-the-workflow"><span class="header-section-number">3.7.6</span> The Integrated Terminal Is Part of the Workflow</a></li>
+  <li><a href="#working-with-projects-not-individual-files" id="toc-working-with-projects-not-individual-files" class="nav-link" data-scroll-target="#working-with-projects-not-individual-files"><span class="header-section-number">3.7.7</span> Working with Projects, Not Individual Files</a></li>
+  <li><a href="#good-practices" id="toc-good-practices" class="nav-link" data-scroll-target="#good-practices"><span class="header-section-number">3.7.8</span> Good Practices</a></li>
   </ul></li>
   <li><a href="#gate-5-github-hosting-and-collaboration-for-git-projects" id="toc-gate-5-github-hosting-and-collaboration-for-git-projects" class="nav-link" data-scroll-target="#gate-5-github-hosting-and-collaboration-for-git-projects"><span class="header-section-number">3.8</span> Gate 5: GitHub (Hosting and Collaboration for Git Projects)</a>
   <ul class="collapse">
@@ -268,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">3.1</span> Introduction</h2>
 <p>This chapter introduces the tools required to carry out reproducible data science projects in this course. A reproducible project is one in which the full analysis — data inputs, code, narrative, and results — can be rerun by someone else, or by the same analyst at a later time, with the same outcomes. Reproducibility is therefore a property of an entire project rather than of any single tool. The goal of this chapter is not to teach tools in isolation, but to explain how a small set of tools work together to support this project-level reproducibility.</p>
 <p>Without a structured workflow, data science work tends to become fragile. Files are renamed or overwritten, intermediate results are lost, and analysis steps are no longer clear even to the original author. These problems become more severe as projects grow in size or involve collaboration. In an academic setting, they also make it difficult to review, grade, or extend work. The tools introduced in this chapter are motivated by these common failure modes and are chosen to prevent them in a systematic way.</p>
-<p>The tools in this chapter form a coherent workflow rather than a loose collection of software. Git records the history of a project and makes changes explicit. GitHub provides a shared location for storing, submitting, and reviewing projects. Quarto allows code, text, and results to live in a single executable document. Python, R, or Julia provides the computational engine for data analysis. VS Code serves as a coordinating environment that brings these tools together in daily work. Each tool plays a distinct role, and reproducibility emerges from their interaction.</p>
+<p>The tools in this chapter form a coherent workflow rather than a loose collection of software. Git records the history of a project and makes changes explicit. GitHub provides a shared location for storing, submitting, and reviewing projects. Quarto allows code, text, and results to live in a single executable document. Python, R, or Julia provides the computational engine for data analysis. VS Codium serves as a coordinating environment that brings these tools together in daily work. Each tool plays a distinct role, and reproducibility emerges from their interaction.</p>
 <p>This chapter includes parallel setup sections for Python, R, and Julia. You only need to choose one language and follow that section. If you already know one of these languages, start there. Otherwise, Python, R, and Julia are all reasonable choices. Quarto can technically execute code cells written in different languages within the same document, but for clarity and consistency you are expected to work primarily in a single language. Once your chosen language is set up, you can skip the other language sections; the remainder of the book assumes a single-language workflow rather than switching between languages.</p>
 <p>All work produced using this setup is treated as a reproducible project. Files are organized in a clear directory structure, tracked with version control, and rendered into executable documents that combine narrative, code, and results. Screenshots, manually edited outputs, and undocumented analysis steps are not substitutes for this workflow. Once learned, this way of working is not limited to data science courses: the same tools can be used to manage assignments in other classes, maintain a research diary, write a blog, draft a novel, or even organize personal notes and creative writing. By the end of this chapter, you should be able to set up a complete project, make changes in a controlled way, and produce work that can be reliably revisited, reused, and shared.</p>
 <p>In the rest of this chapter, tools are introduced in the order you need them in a real workflow: command line first, then a language, then Quarto, then Git, then an editor, and finally GitHub.</p>
@@ -562,7 +564,7 @@ sudo apt install quarto</code></pre>
 <pre><code>quarto check</code></pre>
 <p>This command reports available engines (such as Python) and confirms that Quarto is correctly installed.</p>
 <p><strong>Editor support (optional)</strong></p>
-<p>Quarto works entirely from the command line. If you use VS Code, you may optionally install the <strong>Quarto</strong> extension for syntax highlighting and convenience features. This is not required for rendering documents.</p>
+<p>Quarto works entirely from the command line. If you use VSCodium, you may optionally install the <strong>Quarto</strong> extension for syntax highlighting and convenience features. This is not required for rendering documents.</p>
 </section>
 <section id="quarto-and-python-environments" class="level3" data-number="3.5.3">
 <h3 data-number="3.5.3" class="anchored" data-anchor-id="quarto-and-python-environments"><span class="header-section-number">3.5.3</span> Quarto and Python environments</h3>
@@ -687,80 +689,134 @@ quarto render my_first.qmd</code></pre>
 </ul>
 </section>
 </section>
-<section id="gate-4-vscodium-or-vs-code-an-integrated-development-environment" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="gate-4-vscodium-or-vs-code-an-integrated-development-environment"><span class="header-section-number">3.7</span> Gate 4: VSCodium (or VS Code): An Integrated Development Environment</h2>
-<p>By this point, you can already do everything you need from the command line. An editor/IDE does not replace the command line. It makes common tasks easier by putting editing and a terminal in the same place.</p>
-<section id="what-an-ide-is-and-why-vscodium-or-vs-code" class="level3" data-number="3.7.1">
-<h3 data-number="3.7.1" class="anchored" data-anchor-id="what-an-ide-is-and-why-vscodium-or-vs-code"><span class="header-section-number">3.7.1</span> What an IDE Is and Why VSCodium (or VS Code)</h3>
-<p>An Integrated Development Environment (IDE) brings together tools for editing files, running code, and organizing projects in a single place. Unlike simple editors such as Notepad or TextEdit, an IDE understands project structure, highlights syntax, reports errors, and integrates with version control and command-line tools.</p>
-<p>VSCodium serves as a coordinating environment for this workflow.</p>
-<p>If you already use Visual Studio Code (VS Code), you can continue using it. For the purposes of this book, VSCodium and VS Code behave the same.</p>
+<section id="gate-4-vscodium-an-integrated-development-environment" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="gate-4-vscodium-an-integrated-development-environment"><span class="header-section-number">3.7</span> Gate 4: VSCodium: An Integrated Development Environment</h2>
+<p>By this point, you can already do everything you need from the command line. An IDE does not replace the command line. It strengthens your workflow by combining editing, execution, and project organization in one environment.</p>
+<section id="an-ide-is-a-unified-workspace" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="an-ide-is-a-unified-workspace"><span class="header-section-number">3.7.1</span> An IDE Is a Unified Workspace</h3>
+<p>An Integrated Development Environment (IDE) is a unified workspace for writing code, running programs, and managing projects.</p>
+<p>Instead of switching between a text editor, a terminal window, and a file browser, you work in one coordinated system. An IDE typically provides:</p>
 <ul>
-<li>Unified editor for text, code, and documents</li>
-<li>Integrated terminal for Git, Python, R, Julia, and Quarto</li>
-<li>Built-in file explorer and project navigation</li>
-<li>Extension system for language and tool support</li>
-<li>Native Git integration for version-controlled work</li>
+<li>Syntax highlighting (color-coding parts of code for readability)</li>
+<li>Real-time error detection while you type</li>
+<li>Integrated terminals</li>
+<li>Project-wide search and navigation</li>
+<li>Version control integration (such as Git)</li>
 </ul>
-<p>These features support a project-based, reproducible workflow rather than scattered scripts and files.</p>
+<p>The goal is not convenience alone. The goal is structured, reproducible work.</p>
+<p>Check-in question:</p>
+<p>If you can already use the command line, why might working in a unified environment reduce mistakes?</p>
 </section>
-<section id="installation" class="level3" data-number="3.7.2">
-<h3 data-number="3.7.2" class="anchored" data-anchor-id="installation"><span class="header-section-number">3.7.2</span> Installation</h3>
-<p>Install Visual Studio Code using the method appropriate for your system.</p>
+<section id="why-this-book-uses-vscodium" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="why-this-book-uses-vscodium"><span class="header-section-number">3.7.2</span> Why This Book Uses VSCodium</h3>
+<p>This book uses VSCodium because it is fully open-source software.</p>
+<p>Two closely related editors exist:</p>
+<ul>
+<li>Visual Studio Code (distributed by Microsoft)</li>
+<li>VSCodium (community-built from the same open-source code)</li>
+</ul>
+<p>Visual Studio Code is based on open-source code. However, the official Microsoft build includes additional proprietary components such as telemetry (automatic usage reporting) and Microsoft-specific licensing.</p>
+<p>VSCodium is built from the same public source code but removes proprietary components and telemetry. It is distributed under fully open-source licenses.</p>
+<p>Throughout this book, we choose open-source tools whenever possible. Open-source software makes its source code publicly available. Anyone can inspect it, modify it, and redistribute it under its license.</p>
+<p>This matters for three reasons:</p>
+<ol type="1">
+<li>Transparency — the code can be examined.</li>
+<li>Reproducibility — the tools remain accessible.</li>
+<li>Longevity — projects do not depend on a single vendor.</li>
+</ol>
+<p>If you already use Visual Studio Code, you may continue using it. For the workflow in this book, both behave the same.</p>
+</section>
+<section id="vscodium-supports-multiple-languages-and-terminals" class="level3" data-number="3.7.3">
+<h3 data-number="3.7.3" class="anchored" data-anchor-id="vscodium-supports-multiple-languages-and-terminals"><span class="header-section-number">3.7.3</span> VSCodium Supports Multiple Languages and Terminals</h3>
+<p>VSCodium is not just a text editor. It is a multi-language development environment.</p>
+<p>You can:</p>
+<ul>
+<li>Edit Python, R, Julia, Markdown, and Quarto files</li>
+<li>Open multiple terminals at the same time</li>
+<li>Run different shells in different terminals</li>
+<li>Work in several programming environments simultaneously</li>
+</ul>
+<p>For example, you might:</p>
+<ul>
+<li>Run Python in one terminal</li>
+<li>Run R in another</li>
+<li>Use Git in a third</li>
+<li>Edit a Quarto document side-by-side with your analysis script</li>
+</ul>
+<p>All within one window.</p>
+<p>This reduces context switching and keeps your project organized.</p>
+</section>
+<section id="installation" class="level3" data-number="3.7.4">
+<h3 data-number="3.7.4" class="anchored" data-anchor-id="installation"><span class="header-section-number">3.7.4</span> Installation</h3>
+<p>Install VSCodium using the method appropriate for your system.</p>
 <p>Windows</p>
-<p>Install VSCodium using winget:</p>
+<p>Install using winget:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="ex">winget</span> install <span class="at">-e</span> <span class="at">--id</span> VSCodium.VSCodium</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>macOS</p>
-<p>Download from the same website, or install via Homebrew:</p>
+<p>Install via Homebrew:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> vscodium</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Linux</p>
-<p>Install using your distribution’s package manager or the official packages provided on the VS Code website.</p>
-<p>After installation, launch VS Code and open the integrated terminal (<em>View — Terminal</em>). Confirm that it can see the tools you installed earlier:</p>
+<p>Install using your distribution’s package manager or the official packages provided on the VSCodium website.</p>
+<p>After installation, launch VSCodium and open the integrated terminal (View — Terminal). Confirm that it can access the tools you installed earlier:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Also verify the language you chose to work with:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span>   <span class="co"># if using Python</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--version</span>        <span class="co"># if using R</span></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="ex">julia</span> <span class="at">--version</span>    <span class="co"># if using Julia</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If these commands run successfully, VS Code is correctly connected to your existing setup.</p>
+<p>If these commands run successfully, VSCodium is correctly connected to your system.</p>
 </section>
-<section id="extensions" class="level3" data-number="3.7.3">
-<h3 data-number="3.7.3" class="anchored" data-anchor-id="extensions"><span class="header-section-number">3.7.3</span> Extensions</h3>
-<p>VS Code functionality is extended through extensions. Install a small, focused set that supports reproducible data science work. Use the Extensions icon in the sidebar or open the command palette (Ctrl/Cmd + Shift + P) and choose <em>Extensions: Install Extensions</em>.</p>
-<p>Core extensions (recommended for everyone)</p>
+<section id="extensions-connect-languages-to-the-editor" class="level3" data-number="3.7.5">
+<h3 data-number="3.7.5" class="anchored" data-anchor-id="extensions-connect-languages-to-the-editor"><span class="header-section-number">3.7.5</span> Extensions Connect Languages to the Editor</h3>
+<p>Extensions allow VSCodium to understand specific languages and tools.</p>
+<p>Install only what you need. A focused setup is easier to maintain.</p>
+<p>Core extensions (recommended for everyone):</p>
 <ul>
-<li>Quarto — Authoring, previewing, and rendering Quarto documents.</li>
-<li>GitLens — Enhanced Git history, blame, and comparison tools.</li>
+<li>Quarto — Authoring and rendering Quarto documents</li>
+<li>GitLens — Enhanced Git history and comparison tools</li>
 </ul>
-<p>Language-specific extensions (install the one you need)</p>
+<p>Language-specific extensions (choose one):</p>
 <ul>
-<li>Python — Editing, linting, debugging, and notebook support for Python.</li>
-<li>R — Editing and execution support for R scripts.</li>
-<li>Julia — Language support for Julia, including code execution.</li>
+<li>Python — Editing, linting, debugging, notebook support</li>
+<li>R — Script editing and execution support</li>
+<li>Julia — Language support and code execution</li>
 </ul>
-<p>These extensions do not install Python, R, Julia, Git, or Quarto. They only connect VS Code to tools you already installed.</p>
+<p>Important:</p>
+<p>Extensions do not install Python, R, Julia, Git, or Quarto. They connect VSCodium to tools already installed on your system.</p>
 </section>
-<section id="integrated-terminal-and-shell-choice" class="level3" data-number="3.7.4">
-<h3 data-number="3.7.4" class="anchored" data-anchor-id="integrated-terminal-and-shell-choice"><span class="header-section-number">3.7.4</span> Integrated Terminal and Shell Choice</h3>
-<p>VS Code includes a built-in terminal so you can run command-line tools inside the editor. This keeps editing and execution in one place. Open the terminal with <em>View — Terminal</em> or Ctrl+` (Control + backtick).</p>
-<p>On Windows, it is often preferable to use Git Bash so that commands match those used in Unix-like environments. After installing Git for Windows, open the command palette, choose <em>Preferences: Open User Settings (JSON)</em>, and add:</p>
+<section id="the-integrated-terminal-is-part-of-the-workflow" class="level3" data-number="3.7.6">
+<h3 data-number="3.7.6" class="anchored" data-anchor-id="the-integrated-terminal-is-part-of-the-workflow"><span class="header-section-number">3.7.6</span> The Integrated Terminal Is Part of the Workflow</h3>
+<p>The integrated terminal turns VSCodium into a full command-line workspace.</p>
+<p>Open it with View — Terminal or Ctrl+` (Control + backtick).</p>
+<p>You can open multiple terminals and select different shells for each one. This allows you to:</p>
+<ul>
+<li>Run Git commands</li>
+<li>Execute Python, R, or Julia scripts</li>
+<li>Render Quarto documents</li>
+<li>Navigate your project directory</li>
+</ul>
+<p>On Windows, using Git Bash often makes commands consistent with Unix-like systems. After installing Git for Windows, open the command palette, choose Preferences: Open User Settings (JSON), and add:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="er">"terminal.integrated.defaultProfile.windows":</span> <span class="er">"Git</span> <span class="er">Bash"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Restart the terminal. You can now run commands such as <code>cd</code>, <code>ls</code>, <code>git status</code>, and <code>quarto render</code> directly inside VS Code.</p>
+<p>Restart the terminal after saving.</p>
 </section>
-<section id="working-with-projects-in-vs-code" class="level3" data-number="3.7.5">
-<h3 data-number="3.7.5" class="anchored" data-anchor-id="working-with-projects-in-vs-code"><span class="header-section-number">3.7.5</span> Working with Projects in VS Code</h3>
-<p>A core habit in VS Code is opening folders rather than individual files. When you open a folder, VS Code treats it as a project: it tracks files, recognizes structure, and enables Git integration.</p>
-<p>Use <em>File — Open Folder</em> and select your project directory (for example, <code>ds4e/</code>). The sidebar then shows your files, Git status, and search tools in one place. The command palette provides fast access to nearly all VS Code features and reduces reliance on menus. VS Code also supports split editors for side-by-side viewing and works well for Markdown and Quarto documents.</p>
+<section id="working-with-projects-not-individual-files" class="level3" data-number="3.7.7">
+<h3 data-number="3.7.7" class="anchored" data-anchor-id="working-with-projects-not-individual-files"><span class="header-section-number">3.7.7</span> Working with Projects, Not Individual Files</h3>
+<p>In VSCodium, you should open folders, not individual files.</p>
+<p>When you open a folder, VSCodium treats it as a project. It tracks file structure, enables Git integration, and supports project-wide search.</p>
+<p>Use File — Open Folder and select your project directory (for example, <code>ds4e/</code>).</p>
+<p>This reinforces an important habit:</p>
+<p>Data science is organized around projects, not isolated scripts.</p>
 </section>
-<section id="good-practices" class="level3" data-number="3.7.6">
-<h3 data-number="3.7.6" class="anchored" data-anchor-id="good-practices"><span class="header-section-number">3.7.6</span> Good Practices</h3>
+<section id="good-practices" class="level3" data-number="3.7.8">
+<h3 data-number="3.7.8" class="anchored" data-anchor-id="good-practices"><span class="header-section-number">3.7.8</span> Good Practices</h3>
 <ul>
-<li>Always open a project folder rather than individual files.</li>
-<li>Keep all work in plain text: scripts, notes, and Quarto documents.</li>
-<li>Use the integrated terminal for Git, language, and Quarto commands.</li>
-<li>Enable autosave and consider format-on-save for consistency.</li>
-<li>Keep all work inside your project directory, not on the desktop.</li>
+<li>Always open a project folder rather than a single file</li>
+<li>Keep all work in plain text (scripts, notes, Quarto documents)</li>
+<li>Use integrated terminals for Git and language commands</li>
+<li>Keep all files inside your project directory</li>
+<li>Avoid storing active work on the desktop</li>
 </ul>
+<p>These habits support clarity, organization, and reproducibility.</p>
 </section>
 </section>
 <section id="gate-5-github-hosting-and-collaboration-for-git-projects" class="level2" data-number="3.8">
@@ -845,7 +901,7 @@ quarto render my_first.qmd</code></pre>
 <section id="first-data-science-project-putting-it-all-together" class="level2" data-number="3.9">
 <h2 data-number="3.9" class="anchored" data-anchor-id="first-data-science-project-putting-it-all-together"><span class="header-section-number">3.9</span> first-data-science-project: Putting It All Together</h2>
 <p>This project section is a guided recap. You will reuse the same tools from the earlier gates, in the same order.</p>
-<p>This chapter integrates everything from Part I—command line, VS Code, Git, GitHub, Quarto, and Python/R—into a single, coherent project workflow. The goal is to let students experience how real data science work is done: create a clean folder, version it with Git, write a reproducible Quarto file, and share the final analysis.</p>
+<p>This chapter integrates everything from Part I—command line, VSCodium, Git, GitHub, Quarto, and Python/R—into a single, coherent project workflow. The goal is to let students experience how real data science work is done: create a clean folder, version it with Git, write a reproducible Quarto file, and share the final analysis.</p>
 <section id="choosing-a-simple-meaningful-dataset" class="level3" data-number="3.9.1">
 <h3 data-number="3.9.1" class="anchored" data-anchor-id="choosing-a-simple-meaningful-dataset"><span class="header-section-number">3.9.1</span> Choosing a Simple, Meaningful Dataset</h3>
 <p>The first step in any project is choosing a dataset that is small, clean, and intrinsically interesting. Students should select something they care about so they remain motivated while practicing the workflow. Good examples include:</p>
@@ -890,11 +946,11 @@ quarto render my_first.qmd</code></pre>
 </ul>
 <p>A minimal workflow:</p>
 <ol type="1">
-<li>Create <code>analysis/project.qmd</code> in VS Code.</li>
+<li>Create <code>analysis/project.qmd</code> in VSCodium.</li>
 <li>Add a YAML header with a title, author, and format.</li>
 <li>Insert code chunks to load the dataset and inspect its structure.</li>
 <li>Generate plots and save outputs to the <code>figures/</code> folder.</li>
-<li>Render the notebook to HTML using the VS Code Quarto extension.</li>
+<li>Render the notebook to HTML using the VS Codium Quarto extension.</li>
 </ol>
 <p>Students should keep text and code in one place—not separate PowerPoints, Word files, or screenshots. Quarto ensures everything is reproducible.</p>
 </section>
@@ -935,7 +991,7 @@ quarto render my_first.qmd</code></pre>
 <!-- - Render the document to HTML from the command line. -->
 <!-- - Modify the code, re-render, and confirm that the output updates -->
 <!-- - Delete the rendered HTML file and regenerate it from the `.qmd` -->
-<!-- - Open your project folder in VS Code using *File --- Open Folder*. -->
+<!-- - Open your project folder in VS Codium using *File --- Open Folder*. -->
 <!-- - Open the integrated terminal and confirm `git --version` works. -->
 <!-- - Verify the version of your chosen language. -->
 <!-- - Create a new Markdown file and write a short paragraph. -->
