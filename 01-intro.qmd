@@ -1,10 +1,11 @@
-# What Is Data Science?
+# Introduction
 
-Data science is the practice of learning from data. It brings together
-three pillars—computation, statistics, and domain knowledge—to create
-insights that help us understand, predict, and improve the world around
-us. You have already seen data science in action many times without
-noticing it.
+Data science is the practice of learning from data. In simple terms,
+it means using information to answer questions and make better
+decisions. It brings together three pillars—computation, statistics,
+and domain knowledge—to discover patterns and evidence that help us
+understand, predict, and improve the world around us. You have already
+seen data science in action many times without noticing it.
 
 - When your music app recommends a new artist, data science is working.
 - When a weather app predicts tomorrow’s temperature, data science is
@@ -12,10 +13,86 @@ noticing it.
 - When a city publishes flooding complaints or bus-delay patterns, data
   science helps make sense of them.
 
-This chapter introduces what data science is and what it is not, setting
-the stage for the hands-on tools you will learn in Part I.
+This chapter introduces what data science is and what it is not,
+setting the stage for the hands-on tools you will learn in Part I.
 
-## Data Science Is About Asking Questions
+## What Is Data?
+
+Data are pieces of recorded information.
+
+They can be:
+
+- numbers (test scores, temperatures, distances)
+- categories (favorite food, school subject, city name)
+- text (reviews, comments, tweets)
+- images or sounds
+
+Some data are **structured**, meaning they are organized in a clear and
+consistent format. Often this format is a table with rows and columns,
+like a spreadsheet or database table. Structured data are easy for
+computers to sort, filter, and analyze.
+
+Other data are **unstructured**, meaning they do not come neatly
+organized. A long paragraph of text, a photograph, or an audio
+recording are all examples of unstructured data. They still contain
+information—but that information may need to be transformed into a more
+organized format before certain types of analysis are possible.
+
+It is important to note that data do not *have* to fit into rows and
+columns to be real data. Images, videos, and text can be analyzed
+directly using specialized tools. However, many common statistical
+methods work most easily when data are arranged in a structured format.
+
+To see this more clearly, imagine a small table about students in a
+class:
+
+Name | Grade | Favorite_Subject  
+:--- | ---: | :---:  
+Alex | 88 | Math  
+Jordan | 92 | History  
+Sam | 75 | Biology  
+
+Each row is an **observation** (one student).  
+Each column is a **variable** (a recorded characteristic).
+
+When information is organized like this, a computer can sort it,
+analyze it, and visualize it efficiently.
+
+Here is that same table created in Python.
+
+```{python}
+import pandas as pd
+
+# create a small structured dataset
+students = pd.DataFrame({
+    "Name": ["Alex", "Jordan", "Sam"],
+    "Grade": [88, 92, 75],
+    "Favorite_Subject": ["Math", "History", "Biology"]
+})
+
+students
+```
+
+Now the information is structured data that a computer can analyze
+directly.
+
+If instead we had written:
+
+"Alex scored 88 and likes Math. Jordan scored 92 and likes History..."
+
+that would still be data—but it would not be organized in a consistent
+structure. Before we could apply many standard statistical tools, we
+would likely reorganize it into a table.
+
+::: {.callout-note}
+### Check-in Question
+
+Can you think of an example of data that would be difficult to fit
+into rows and columns?
+:::
+
+
+## Data Science Begins with Questions
 
 Every data science project begins with a question.
 
@@ -23,49 +100,280 @@ Why has traffic increased on my school’s street?
 Do certain neighborhoods file more noise complaints?  
 Which players contributed most to a team’s winning season?
 
-Data science helps translate these questions into something we can
-analyze, measure, and explain.
+But not every question works well for data science. Good data science
+questions are **specific and measurable**. That means we can connect
+them directly to data.
 
-## Data Science Uses Tools, Not Just Math
+For example:
 
-While math is important for deeper understanding, data scientists spend
-much of their time using tools—command line, Git, VS Code, Quarto, and
-programming languages such as Python or R. These tools help you:
+Vague question:  
+Why are students stressed?
 
-- load and clean data
-- organize your work
-- build reproducible workflows
-- create visualizations
-- share results with others
+More precise question:  
+How many hours do students report studying per week, and how does that
+relate to reported stress levels?
 
-This book starts with tools because tools give you the power to actually
-_do_ data science. Once you know how to work with your computer the way
-data scientists do, everything else becomes easier.
+The second question can be answered with collected data. The first one
+is too broad without further definition.
+
+We can even simulate small data to make the question concrete.
+
+```{python}
+import numpy as np
+np.random.seed(42)
+
+hours_studying = np.random.randint(1, 6, size=10)
+stress_level = np.random.randint(1, 6, size=10)
+
+list(zip(hours_studying, stress_level))
+```
+
+This simple example generates pairs of numbers:
+(hours studying, stress level). Now we could measure whether higher
+study time is associated with higher stress.
+
+Data science helps translate everyday curiosity into clear,
+answerable questions. Once a question becomes measurable, we can
+analyze it, test ideas, and draw conclusions based on evidence.
+
+::: {.callout-note}
+### Check-in Question
+
+Can you think of a question about your school that could be rewritten
+to make it measurable?
+:::
+
+## Data Science Uses Tools
+
+Data science is not only about ideas. It is also about building systems
+that allow you to work carefully and efficiently.
+
+While mathematics and statistics help us reason about data, data
+scientists spend much of their time using computational tools. These
+tools allow us to load data, clean it, analyze it, and communicate
+results in a clear and repeatable way.
+
+Some of the most important tools you will learn include:
+
+- the **command line** — a text-based way to control your computer
+- **Git** — a system for tracking changes in your files
+- an **IDE (Integrated Development Environment)** — a program for
+  writing, organizing, and running code
+- **Quarto** — a publishing system that combines code and explanation
+- a programming language such as **Python**
+
+Each tool has a specific role.
+
+The command line allows you to navigate folders, create files, and run
+programs without clicking through menus. This makes your work faster
+and easier to automate.
+
+Git records every change you make to a project. If you make a mistake,
+you can return to an earlier version. If you collaborate with others,
+Git keeps everyone's work organized.
+
+An IDE (Integrated Development Environment) is more than a simple text
+editor. It allows you to write code, run programs, manage files, and
+debug errors in one place. Many different IDEs exist, including free
+and open-source options. The important idea is not the brand of
+software, but the workflow it supports.
+
+Quarto allows you to write explanations and code in the same document.
+When you render the file, Quarto runs the code and inserts the results
+directly into your report. This connects your reasoning and your
+computation in one reproducible workflow.
+
+You may already be familiar with graphical user interfaces (GUIs),
+where you click buttons and select options from menus. GUIs are useful
+for quick exploration and one-time tasks. However, steps performed only
+by clicking are often difficult to document precisely.
+
+For this reason, professional data scientists prefer writing code.
+Code records every instruction explicitly. That makes analyses easier
+to verify, repeat, and improve.
+
+For example, here is a small calculation written in Python:
+
+```{python}
+numbers = [3, 7, 10]
+sum(numbers)
+```
+
+Instead of calculating by hand or clicking through menus, you write the
+instruction once and let the computer execute it exactly.
+
+These tools work together. The command line manages your environment.
+Git tracks your changes. Your IDE organizes and runs your code. Quarto
+publishes your results. Python performs the computation.
+
+Learning these tools gives you the ability to actually *do* data
+science, not just talk about it.
+
+::: {.callout-note}
+### GUI vs. Code
+
+Graphical user interfaces (GUIs) allow you to click buttons and choose
+options from menus. They are helpful for quick exploration and small
+tasks.
+
+However, when you perform steps only by clicking, those steps may not
+be recorded in a clear, repeatable way. If someone asks, “Exactly what
+did you do?”, it can be difficult to answer precisely.
+
+Code works differently. Every instruction is written down. That means
+the computer — and other people — can rerun the exact same steps.
+
+In data science, we prefer tools that make our work transparent and
+reproducible.
+:::
+
+::: {.callout-note}
+### Check-in Question
+
+Why might writing code be more reliable than performing calculations
+by hand or clicking through menus, especially for large datasets?
+:::
+
 
 ## Data Science Is Reproducible
 
-A key idea in this book is reproducibility. A reproducible workflow is
-one where:
+Reproducibility is a core principle of data science. It means that
+someone else, or even you in the future, can run the same analysis
+and obtain the same results.
 
-- your analysis is neatly organized
-- every step is documented
-- results can be reproduced exactly by you or anyone else
+In professional settings, results must be verifiable. If a report
+claims that average test scores increased by 5 points, others should be
+able to examine the data and confirm the calculation. Without
+reproducibility, findings are difficult to trust.
 
-This is why you will learn Quarto for writing reports and Git for
-version control. These skills turn your projects into something
-professional, even as a beginner.
+Imagine finishing a project and coming back to it six months later.
+Would you remember:
+
+- where the data came from?
+- what cleaning steps you applied?
+- which commands produced your final results?
+
+If the answer is no, the work is not reproducible.
+
+A reproducible workflow is one where:
+
+- your files are neatly organized
+- every step is written as code (not done by clicking)
+- results can be generated again automatically
+- changes are tracked over time
+
+For example, suppose you calculate the average test score.
+
+```{python}
+scores = [88, 92, 75]
+sum(scores) / len(scores)
+```
+
+If that calculation lives inside your script, anyone can rerun it.
+But if you computed it on a calculator and only wrote down the final
+number, no one can verify how you obtained it.
+
+Reproducibility protects you from mistakes. If something looks wrong,
+you can rerun everything from the beginning. It also builds trust.
+Others can inspect your code and confirm your results.
+
+This is why data scientists rely on tools such as:
+
+- the command line to control their environment
+- Git to track changes
+- Quarto to combine code and explanation in one document
+
+Together, these tools allow an entire project to be rebuilt from
+scratch using documented steps.
+
+::: {.callout-note}
+### Check-in Question
+
+If a classmate wanted to reproduce your project, what files would they
+need? Would a screenshot of your results be enough?
+:::
+
 
 ## Data Science Is Interdisciplinary
 
-To answer real-world questions, you combine:
+Data science is interdisciplinary. That means it combines knowledge
+from multiple fields rather than relying on just one.
 
-- **computing** — writing code to process data
-- **statistics** — measuring uncertainty and learning patterns
-- **domain knowledge** — understanding the context: climate, health,
-  sports, education, city systems, and many others
+To answer real-world questions, data scientists bring together three
+main pillars:
 
-None of these pillars works alone. Together they create meaningful
-insights.
+- **computing** — writing code to process and manage data
+- **statistics** — measuring variation and uncertainty
+- **domain knowledge** — understanding the real-world context
+
+Each pillar plays a different role.
+
+Computing allows us to handle large datasets efficiently. Without code,
+it would be nearly impossible to analyze millions of records.
+
+Statistics helps us reason carefully about patterns. It teaches us how
+to distinguish real signals from random variation. Without statistics,
+we might mistake coincidence for evidence.
+
+Domain knowledge provides context. Data do not explain themselves. If
+you are analyzing hospital data, you need basic knowledge of health
+care systems. If you are studying sports performance, you need to
+understand the rules of the game.
+
+Consider an example. Suppose a city wants to predict flooding.
+
+- Computing allows us to process rainfall data and elevation maps.
+- Statistics helps us estimate the probability of flooding.
+- Domain knowledge tells us how drainage systems and local geography
+  influence water flow.
+
+If any one pillar is missing, the analysis becomes weaker.
+
+Computing without statistics may produce precise but misleading
+numbers. Statistics without computing may be too slow to apply at
+scale. Both without domain knowledge may lead to unrealistic
+conclusions.
+
+Data science works best when these three areas support each other.
+
+::: {.callout-note}
+### Check-in Question
+
+Think of a problem you care about (sports, music, climate, school
+policy). What kind of domain knowledge would you need to analyze it
+properly?
+:::
+
+## What Data Science Is Not
+
+Data science is not a shortcut around mathematics and
+statistics. When students try to rely only on software
+without understanding probability, variation, or logical
+reasoning, they often produce results that look polished
+but are unreliable. A model can generate precise numbers,
+yet those numbers may rest on weak assumptions. Strong
+quantitative training does not make work complicated for
+its own sake; it prevents false confidence.
+
+
+Data science is also not an exercise in writing code for
+its own sake. A well-written program can process enormous
+amounts of data, but speed does not guarantee truth.
+If the underlying logic is flawed, computing simply
+amplifies the mistake. Learning to program well means
+learning to think carefully about algorithms, structure,
+and consequences.
+
+
+Most importantly, data science is not magic. No method
+can extract reliable information from pure noise. Humans
+are naturally drawn to patterns, even when they occur
+by chance. Without statistical discipline, it is easy
+to mistake randomness for discovery. History is full of
+examples where weak evidence led to strong claims,
+causing confusion or harm. Responsible data science
+requires skepticism, patience, and respect for limits.
+
 
 ## What You Will Learn Next
 
@@ -90,3 +398,64 @@ understand how data science works in practice.
 Data science is not something you learn in one day. It is a craft you
 build over time. This book gives you the tools and the mindset to begin
 that journey the right way.
+
+
+## Exercises
+
+These questions are designed to help you think more carefully about
+the ideas in this chapter. Write short answers unless instructed
+otherwise.
+
+1. In your own words, define **data science**. What are its three
+   main pillars?
+
+1. Give one example of **structured data** and one example of
+   **unstructured data** from your daily life.
+
+1. Rewrite the following vague question so that it becomes
+   measurable:
+
+   “Are students happy at our school?”
+
+1. Explain why clicking through menus in a GUI might make an analysis
+   harder to reproduce.
+
+1. Imagine you conducted a small survey of 10 classmates about how
+   many hours they sleep each night.  
+   a. What would be one possible variable?  
+   a. What would be one observation?
+
+1. Why is reproducibility important in professional settings?
+   Give one practical reason.
+
+1. Choose a real-world topic you care about (sports, music, climate,
+   social media, school policy, etc.).  
+   a. Propose one clear, measurable data science question.  
+   a. Identify what kind of domain knowledge you would need.
+
+1. Optional CLI Warm-Up.  
+   a. Open your terminal.  
+   a. Type:
+
+      ```bash
+      pwd
+      ```
+
+      What does this command display?  
+
+   a. Now type:
+
+      ```bash
+      ls
+      ```
+
+      What do you see?  
+
+   a. In one sentence, explain how using the command line differs
+      from clicking through folders.
+
+1. Mini-Project Preview.  
+   a. Write one clear, measurable question you would like to answer.  
+   a. Describe what data you would need.  
+   a. Explain how you would organize those data in a table.  
+   a. Why would reproducibility matter for this project?
